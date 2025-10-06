@@ -4,6 +4,7 @@
     "description": "文本处理示例插件 - 提供文本清理、格式化和分析功能",
     "author": "AI小说生成器团队",
     "main": "main.py",
+    "entry_point": "create_plugin",
     "dependencies": [],
     "permissions": [
         "file_access"

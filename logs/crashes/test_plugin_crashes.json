@@ -1,0 +1,35 @@
+[
+  {
+    "plugin_name": "test_plugin",
+    "timestamp": "2025-10-06T20:55:42.318521",
+    "exception_type": "Exception",
+    "exception_message": "测试崩溃",
+    "traceback_info": "NoneType: None\n",
+    "severity": "low",
+    "operation": "",
+    "recovery_attempted": false,
+    "recovery_successful": false
+  },
+  {
+    "plugin_name": "test_plugin",
+    "timestamp": "2025-10-06T20:57:36.823034",
+    "exception_type": "Exception",
+    "exception_message": "测试崩溃",
+    "traceback_info": "NoneType: None\n",
+    "severity": "low",
+    "operation": "",
+    "recovery_attempted": false,
+    "recovery_successful": false
+  },
+  {
+    "plugin_name": "test_plugin",
+    "timestamp": "2025-10-06T20:58:16.324816",
+    "exception_type": "Exception",
+    "exception_message": "测试崩溃",
+    "traceback_info": "NoneType: None\n",
+    "severity": "low",
+    "operation": "",
+    "recovery_attempted": false,
+    "recovery_successful": false
+  }
+]

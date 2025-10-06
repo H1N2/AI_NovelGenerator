@@ -1,0 +1,14 @@
+2025-10-06 21:22:32,964 - plugin.text_processor - ERROR - [logging_system:error:291] - 插件初始化失败: 'TextProcessorPlugin' object has no attribute 'plugin_dir'
+2025-10-06 21:23:39,285 - plugin.text_processor - WARNING - [logging_system:warning:278] - jieba不可用，部分功能将受限
+2025-10-06 21:23:39,286 - plugin.text_processor - ERROR - [logging_system:error:291] - 插件初始化失败: 'TextProcessorPlugin' object has no attribute 'register_event_handler'
+2025-10-06 21:27:54,582 - plugin.text_processor - WARNING - [logging_system:warning:278] - jieba不可用，部分功能将受限
+2025-10-06 21:27:54,583 - plugin.text_processor - INFO - [logging_system:info:273] - 文本处理插件 v1.0.0 初始化成功
+2025-10-06 21:27:54,587 - plugin.text_processor - ERROR - [logging_system:error:291] - 插件初始化失败: 'TextProcessorPlugin' object has no attribute 'emit_event'
+2025-10-06 21:28:53,834 - plugin.text_processor - WARNING - [logging_system:warning:278] - jieba不可用，部分功能将受限
+2025-10-06 21:28:53,835 - plugin.text_processor - INFO - [logging_system:info:273] - 文本处理插件 v1.0.0 初始化成功
+2025-10-06 21:47:12,933 - plugin.text_processor - WARNING - [logging_system:warning:278] - jieba不可用，部分功能将受限
+2025-10-06 21:47:12,933 - plugin.text_processor - INFO - [logging_system:info:273] - 文本处理插件 v1.0.0 初始化成功
+2025-10-06 21:49:50,679 - plugin.text_processor - WARNING - [logging_system:warning:278] - jieba不可用，部分功能将受限
+2025-10-06 21:49:50,680 - plugin.text_processor - INFO - [logging_system:info:273] - 文本处理插件 v1.0.0 初始化成功
+2025-10-06 21:50:48,722 - plugin.text_processor - WARNING - [logging_system:warning:278] - jieba不可用，部分功能将受限
+2025-10-06 21:50:48,723 - plugin.text_processor - INFO - [logging_system:info:273] - 文本处理插件 v1.0.0 初始化成功

@@ -1,0 +1,30 @@
+2025-10-06 21:22:32,993 - plugin.novel_enhancer - ERROR - [logging_system:error:291] - 插件初始化失败: 'NovelEnhancerPlugin' object has no attribute 'plugin_dir'
+2025-10-06 21:23:39,314 - plugin.novel_enhancer - WARNING - [logging_system:warning:278] - 文本处理插件不可用，部分功能将受限
+2025-10-06 21:23:39,315 - plugin.novel_enhancer - ERROR - [logging_system:error:291] - 插件初始化失败: 'NovelEnhancerPlugin' object has no attribute 'register_event_handler'
+2025-10-06 21:27:54,604 - plugin.novel_enhancer - WARNING - [logging_system:warning:278] - 文本处理插件不可用，部分功能将受限
+2025-10-06 21:27:54,605 - plugin.novel_enhancer - INFO - [logging_system:info:273] - 小说增强插件 v1.0.0 初始化成功
+2025-10-06 21:27:54,605 - plugin.novel_enhancer - ERROR - [logging_system:error:291] - 插件初始化失败: 'NovelEnhancerPlugin' object has no attribute 'emit_event'
+2025-10-06 21:28:53,865 - plugin.novel_enhancer - WARNING - [logging_system:warning:278] - 文本处理插件不可用，部分功能将受限
+2025-10-06 21:28:53,866 - plugin.novel_enhancer - INFO - [logging_system:info:273] - 小说增强插件 v1.0.0 初始化成功
+2025-10-06 21:28:53,867 - plugin.novel_enhancer - INFO - [logging_system:info:273] - 开始分析小说
+2025-10-06 21:28:53,871 - plugin.novel_enhancer - INFO - [logging_system:info:273] - 小说分析完成
+2025-10-06 21:28:53,873 - plugin.novel_enhancer - INFO - [logging_system:info:273] - 开始分析小说
+2025-10-06 21:28:53,875 - plugin.novel_enhancer - INFO - [logging_system:info:273] - 小说分析完成
+2025-10-06 21:47:12,939 - plugin.novel_enhancer - WARNING - [logging_system:warning:278] - 文本处理插件不可用，部分功能将受限
+2025-10-06 21:47:12,940 - plugin.novel_enhancer - INFO - [logging_system:info:273] - 小说增强插件 v1.0.0 初始化成功
+2025-10-06 21:47:12,940 - plugin.novel_enhancer - INFO - [logging_system:info:273] - 开始分析小说
+2025-10-06 21:47:12,946 - plugin.novel_enhancer - INFO - [logging_system:info:273] - 小说分析完成
+2025-10-06 21:47:12,947 - plugin.novel_enhancer - INFO - [logging_system:info:273] - 开始分析小说
+2025-10-06 21:47:12,948 - plugin.novel_enhancer - INFO - [logging_system:info:273] - 小说分析完成
+2025-10-06 21:49:50,708 - plugin.novel_enhancer - WARNING - [logging_system:warning:278] - 文本处理插件不可用，部分功能将受限
+2025-10-06 21:49:50,710 - plugin.novel_enhancer - INFO - [logging_system:info:273] - 小说增强插件 v1.0.0 初始化成功
+2025-10-06 21:49:50,712 - plugin.novel_enhancer - INFO - [logging_system:info:273] - 开始分析小说
+2025-10-06 21:49:50,715 - plugin.novel_enhancer - INFO - [logging_system:info:273] - 小说分析完成
+2025-10-06 21:49:50,716 - plugin.novel_enhancer - INFO - [logging_system:info:273] - 开始分析小说
+2025-10-06 21:49:50,717 - plugin.novel_enhancer - INFO - [logging_system:info:273] - 小说分析完成
+2025-10-06 21:50:48,729 - plugin.novel_enhancer - WARNING - [logging_system:warning:278] - 文本处理插件不可用，部分功能将受限
+2025-10-06 21:50:48,730 - plugin.novel_enhancer - INFO - [logging_system:info:273] - 小说增强插件 v1.0.0 初始化成功
+2025-10-06 21:50:48,730 - plugin.novel_enhancer - INFO - [logging_system:info:273] - 开始分析小说
+2025-10-06 21:50:48,733 - plugin.novel_enhancer - INFO - [logging_system:info:273] - 小说分析完成
+2025-10-06 21:50:48,735 - plugin.novel_enhancer - INFO - [logging_system:info:273] - 开始分析小说
+2025-10-06 21:50:48,736 - plugin.novel_enhancer - INFO - [logging_system:info:273] - 小说分析完成

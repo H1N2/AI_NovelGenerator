@@ -1,0 +1,221 @@
+2025-10-06 20:57:36,818 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-06 20:57:36,820 - plugin_manager - ERROR - 解析插件配置失败 plugins\template: PluginMetadata.__init__() got an unexpected keyword argument 'main'
+2025-10-06 20:57:37,937 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-06 20:57:37,937 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-06 20:57:37,939 - plugin_manager - ERROR - 解析插件配置失败 plugins\template: PluginMetadata.__init__() got an unexpected keyword argument 'main'
+2025-10-06 20:57:37,939 - plugin_manager - ERROR - 解析插件配置失败 plugins\template: PluginMetadata.__init__() got an unexpected keyword argument 'main'
+2025-10-06 20:58:16,319 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-06 20:58:16,321 - plugin_manager - ERROR - 解析插件配置失败 plugins\template: PluginMetadata.__init__() got an unexpected keyword argument 'main'
+2025-10-06 20:58:16,441 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-06 20:58:16,441 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-06 20:58:16,443 - plugin_manager - ERROR - 解析插件配置失败 plugins\template: PluginMetadata.__init__() got an unexpected keyword argument 'main'
+2025-10-06 20:58:16,443 - plugin_manager - ERROR - 解析插件配置失败 plugins\template: PluginMetadata.__init__() got an unexpected keyword argument 'main'
+2025-10-06 20:59:12,331 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-06 20:59:12,334 - plugin_manager - ERROR - 解析插件配置失败 plugins\template: PluginMetadata.__init__() got an unexpected keyword argument 'main'
+2025-10-06 20:59:12,335 - plugin_manager - ERROR - 未找到插件: novel_enhancer
+2025-10-06 21:00:06,414 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-06 21:00:06,417 - plugin_manager - ERROR - 解析插件配置失败 plugins\template: PluginMetadata.__init__() got an unexpected keyword argument 'main'
+2025-10-06 21:00:06,419 - plugin_manager - ERROR - 未找到插件: text_processor
+2025-10-06 21:00:06,420 - plugin_manager - ERROR - 未找到插件: novel_enhancer
+2025-10-06 21:01:13,695 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins\examples
+2025-10-06 21:01:13,696 - plugin_manager - ERROR - 解析插件配置失败 plugins\examples\novel_enhancer: PluginMetadata.__init__() got an unexpected keyword argument 'main'
+2025-10-06 21:01:13,698 - plugin_manager - ERROR - 解析插件配置失败 plugins\examples\text_processor: PluginMetadata.__init__() got an unexpected keyword argument 'main'
+2025-10-06 21:01:13,698 - plugin_manager - ERROR - 未找到插件: text_processor
+2025-10-06 21:01:13,699 - plugin_manager - ERROR - 未找到插件: novel_enhancer
+2025-10-06 21:01:46,487 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins\examples
+2025-10-06 21:01:46,489 - plugin_manager - ERROR - 解析插件配置失败 plugins\examples\novel_enhancer: PluginMetadata.__init__() got an unexpected keyword argument 'main'
+2025-10-06 21:01:46,489 - plugin_manager - ERROR - 解析插件配置失败 plugins\examples\text_processor: PluginMetadata.__init__() got an unexpected keyword argument 'main'
+2025-10-06 21:01:46,490 - plugin_manager - ERROR - 解析插件配置失败 plugins\examples\novel_enhancer: PluginMetadata.__init__() got an unexpected keyword argument 'main'
+2025-10-06 21:01:46,491 - plugin_manager - ERROR - 解析插件配置失败 plugins\examples\text_processor: PluginMetadata.__init__() got an unexpected keyword argument 'main'
+2025-10-06 21:01:46,491 - plugin_manager - ERROR - 未找到插件: text_processor
+2025-10-06 21:01:46,492 - plugin_manager - ERROR - 未找到插件: novel_enhancer
+2025-10-06 21:02:50,667 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins\examples
+2025-10-06 21:02:50,667 - plugin_manager - INFO - 发现插件: novel_enhancer v1.0.0
+2025-10-06 21:02:50,668 - plugin_manager - INFO - 发现插件: text_processor v1.0.0
+2025-10-06 21:02:50,669 - plugin_manager - INFO - 发现插件: novel_enhancer v1.0.0
+2025-10-06 21:02:50,669 - plugin_manager - INFO - 发现插件: text_processor v1.0.0
+2025-10-06 21:02:50,670 - plugin_manager - INFO - 插件 text_processor 版本兼容: 版本完全兼容
+2025-10-06 21:02:50,675 - plugin_manager - ERROR - 加载插件 text_processor 失败: closing parenthesis ']' does not match opening parenthesis '(' (main.py, line 163)
+2025-10-06 21:02:50,676 - plugin_manager - ERROR - Traceback (most recent call last):
+  File "E:\Code\AI_NovelGenerator\plugins\manager.py", line 171, in load_plugin
+    plugin_module = self._load_plugin_module(metadata)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Code\AI_NovelGenerator\plugins\manager.py", line 237, in _load_plugin_module
+    spec.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1133, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1063, in source_to_code
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "E:\Code\AI_NovelGenerator\plugins\examples\text_processor\main.py", line 163
+    (r'[''']', "'"),  # 统一单引号
+           ^
+SyntaxError: closing parenthesis ']' does not match opening parenthesis '('
+
+2025-10-06 21:02:50,680 - plugin_manager - INFO - 插件 novel_enhancer 版本兼容: 版本完全兼容
+2025-10-06 21:02:50,696 - plugin_manager - ERROR - 加载插件 novel_enhancer 失败: cannot import name 'BasePlugin' from 'plugins.base' (E:\Code\AI_NovelGenerator\plugins\base.py)
+2025-10-06 21:02:50,699 - plugin_manager - ERROR - Traceback (most recent call last):
+  File "E:\Code\AI_NovelGenerator\plugins\manager.py", line 171, in load_plugin
+    plugin_module = self._load_plugin_module(metadata)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Code\AI_NovelGenerator\plugins\manager.py", line 237, in _load_plugin_module
+    spec.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "E:\Code\AI_NovelGenerator\plugins\examples\novel_enhancer\main.py", line 15, in <module>
+    from plugins.base import BasePlugin
+ImportError: cannot import name 'BasePlugin' from 'plugins.base' (E:\Code\AI_NovelGenerator\plugins\base.py)
+
+2025-10-06 21:04:21,549 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins\examples
+2025-10-06 21:04:21,550 - plugin_manager - INFO - 发现插件: novel_enhancer v1.0.0
+2025-10-06 21:04:21,550 - plugin_manager - INFO - 发现插件: text_processor v1.0.0
+2025-10-06 21:04:21,551 - plugin_manager - INFO - 发现插件: novel_enhancer v1.0.0
+2025-10-06 21:04:21,552 - plugin_manager - INFO - 发现插件: text_processor v1.0.0
+2025-10-06 21:04:21,552 - plugin_manager - INFO - 插件 text_processor 版本兼容: 版本完全兼容
+2025-10-06 21:04:21,554 - plugin_manager - ERROR - 加载插件 text_processor 失败: closing parenthesis ']' does not match opening parenthesis '(' (main.py, line 163)
+2025-10-06 21:04:21,555 - plugin_manager - ERROR - Traceback (most recent call last):
+  File "E:\Code\AI_NovelGenerator\plugins\manager.py", line 171, in load_plugin
+    plugin_module = self._load_plugin_module(metadata)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Code\AI_NovelGenerator\plugins\manager.py", line 237, in _load_plugin_module
+    spec.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1133, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1063, in source_to_code
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "E:\Code\AI_NovelGenerator\plugins\examples\text_processor\main.py", line 163
+    (r'[''']', "'"),  # 统一单引号
+           ^
+SyntaxError: closing parenthesis ']' does not match opening parenthesis '('
+
+2025-10-06 21:04:21,565 - plugin_manager - INFO - 插件 novel_enhancer 版本兼容: 版本完全兼容
+2025-10-06 21:04:21,568 - plugin_manager - ERROR - 插件 novel_enhancer 未找到入口点: main
+2025-10-06 21:19:53,853 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins\examples
+2025-10-06 21:19:53,853 - plugin_manager - INFO - 发现插件: novel_enhancer v1.0.0
+2025-10-06 21:19:53,853 - plugin_manager - INFO - 发现插件: text_processor v1.0.0
+2025-10-06 21:19:53,858 - plugin_manager - INFO - 发现插件: novel_enhancer v1.0.0
+2025-10-06 21:19:53,860 - plugin_manager - INFO - 发现插件: text_processor v1.0.0
+2025-10-06 21:19:53,860 - plugin_manager - INFO - 插件 text_processor 版本兼容: 版本完全兼容
+2025-10-06 21:19:53,863 - plugin_manager - ERROR - 插件 text_processor 未找到入口点: main
+2025-10-06 21:19:53,863 - plugin_manager - INFO - 插件 novel_enhancer 版本兼容: 版本完全兼容
+2025-10-06 21:19:53,866 - plugin_manager - ERROR - 插件 novel_enhancer 未找到入口点: main
+2025-10-06 21:21:32,070 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins\examples
+2025-10-06 21:21:32,071 - plugin_manager - INFO - 发现插件: novel_enhancer v1.0.0
+2025-10-06 21:21:32,071 - plugin_manager - INFO - 发现插件: text_processor v1.0.0
+2025-10-06 21:21:32,072 - plugin_manager - INFO - 发现插件: novel_enhancer v1.0.0
+2025-10-06 21:21:32,072 - plugin_manager - INFO - 发现插件: text_processor v1.0.0
+2025-10-06 21:21:32,072 - plugin_manager - INFO - 插件 text_processor 版本兼容: 版本完全兼容
+2025-10-06 21:21:32,074 - plugin_manager - ERROR - 加载插件 text_processor 失败: Can't instantiate abstract class TextProcessorPlugin without an implementation for abstract method 'get_metadata'
+2025-10-06 21:21:32,076 - plugin_manager - ERROR - Traceback (most recent call last):
+  File "E:\Code\AI_NovelGenerator\plugins\manager.py", line 181, in load_plugin
+    plugin_instance = plugin_class()
+                      ^^^^^^^^^^^^^^
+  File "E:\Code\AI_NovelGenerator\plugins\examples\text_processor\main.py", line 531, in create_plugin
+    return TextProcessorPlugin()
+           ^^^^^^^^^^^^^^^^^^^^^
+TypeError: Can't instantiate abstract class TextProcessorPlugin without an implementation for abstract method 'get_metadata'
+
+2025-10-06 21:21:32,082 - plugin_manager - INFO - 插件 novel_enhancer 版本兼容: 版本完全兼容
+2025-10-06 21:21:32,085 - plugin_manager - ERROR - 加载插件 novel_enhancer 失败: Can't instantiate abstract class NovelEnhancerPlugin without an implementation for abstract method 'get_metadata'
+2025-10-06 21:21:32,087 - plugin_manager - ERROR - Traceback (most recent call last):
+  File "E:\Code\AI_NovelGenerator\plugins\manager.py", line 181, in load_plugin
+    plugin_instance = plugin_class()
+                      ^^^^^^^^^^^^^^
+  File "E:\Code\AI_NovelGenerator\plugins\examples\novel_enhancer\main.py", line 824, in create_plugin
+    return NovelEnhancerPlugin()
+           ^^^^^^^^^^^^^^^^^^^^^
+TypeError: Can't instantiate abstract class NovelEnhancerPlugin without an implementation for abstract method 'get_metadata'
+
+2025-10-06 21:22:08,707 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins\examples
+2025-10-06 21:22:08,708 - plugin_manager - INFO - 发现插件: novel_enhancer v1.0.0
+2025-10-06 21:22:08,708 - plugin_manager - INFO - 发现插件: text_processor v1.0.0
+2025-10-06 21:22:08,709 - plugin_manager - INFO - 发现插件: novel_enhancer v1.0.0
+2025-10-06 21:22:08,709 - plugin_manager - INFO - 发现插件: text_processor v1.0.0
+2025-10-06 21:22:08,710 - plugin_manager - INFO - 插件 text_processor 版本兼容: 版本完全兼容
+2025-10-06 21:22:08,724 - plugin_manager - ERROR - 加载插件 text_processor 失败: TextProcessorPlugin.initialize() takes 1 positional argument but 2 were given
+2025-10-06 21:22:08,725 - plugin_manager - ERROR - Traceback (most recent call last):
+  File "E:\Code\AI_NovelGenerator\plugins\manager.py", line 191, in load_plugin
+    if not plugin_instance.initialize(context):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: TextProcessorPlugin.initialize() takes 1 positional argument but 2 were given
+
+2025-10-06 21:22:08,727 - plugin_manager - INFO - 插件 novel_enhancer 版本兼容: 版本完全兼容
+2025-10-06 21:22:08,746 - plugin_manager - ERROR - 加载插件 novel_enhancer 失败: NovelEnhancerPlugin.initialize() takes 1 positional argument but 2 were given
+2025-10-06 21:22:08,747 - plugin_manager - ERROR - Traceback (most recent call last):
+  File "E:\Code\AI_NovelGenerator\plugins\manager.py", line 191, in load_plugin
+    if not plugin_instance.initialize(context):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: NovelEnhancerPlugin.initialize() takes 1 positional argument but 2 were given
+
+2025-10-06 21:22:32,946 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins\examples
+2025-10-06 21:22:32,947 - plugin_manager - INFO - 发现插件: novel_enhancer v1.0.0
+2025-10-06 21:22:32,948 - plugin_manager - INFO - 发现插件: text_processor v1.0.0
+2025-10-06 21:22:32,949 - plugin_manager - INFO - 发现插件: novel_enhancer v1.0.0
+2025-10-06 21:22:32,949 - plugin_manager - INFO - 发现插件: text_processor v1.0.0
+2025-10-06 21:22:32,950 - plugin_manager - INFO - 插件 text_processor 版本兼容: 版本完全兼容
+2025-10-06 21:22:32,965 - plugin_manager - ERROR - 插件 text_processor 初始化失败
+2025-10-06 21:22:32,966 - plugin_manager - INFO - 插件 novel_enhancer 版本兼容: 版本完全兼容
+2025-10-06 21:22:32,995 - plugin_manager - ERROR - 插件 novel_enhancer 初始化失败
+2025-10-06 21:23:39,268 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins\examples
+2025-10-06 21:23:39,269 - plugin_manager - INFO - 发现插件: novel_enhancer v1.0.0
+2025-10-06 21:23:39,270 - plugin_manager - INFO - 发现插件: text_processor v1.0.0
+2025-10-06 21:23:39,271 - plugin_manager - INFO - 发现插件: novel_enhancer v1.0.0
+2025-10-06 21:23:39,271 - plugin_manager - INFO - 发现插件: text_processor v1.0.0
+2025-10-06 21:23:39,272 - plugin_manager - INFO - 插件 text_processor 版本兼容: 版本完全兼容
+2025-10-06 21:23:39,287 - plugin_manager - ERROR - 插件 text_processor 初始化失败
+2025-10-06 21:23:39,287 - plugin_manager - INFO - 插件 novel_enhancer 版本兼容: 版本完全兼容
+2025-10-06 21:23:39,316 - plugin_manager - ERROR - 插件 novel_enhancer 初始化失败
+2025-10-06 21:27:54,567 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins\examples
+2025-10-06 21:27:54,568 - plugin_manager - INFO - 发现插件: novel_enhancer v1.0.0
+2025-10-06 21:27:54,568 - plugin_manager - INFO - 发现插件: text_processor v1.0.0
+2025-10-06 21:27:54,569 - plugin_manager - INFO - 发现插件: novel_enhancer v1.0.0
+2025-10-06 21:27:54,570 - plugin_manager - INFO - 发现插件: text_processor v1.0.0
+2025-10-06 21:27:54,570 - plugin_manager - INFO - 插件 text_processor 版本兼容: 版本完全兼容
+2025-10-06 21:27:54,588 - plugin_manager - ERROR - 插件 text_processor 初始化失败
+2025-10-06 21:27:54,588 - plugin_manager - INFO - 插件 novel_enhancer 版本兼容: 版本完全兼容
+2025-10-06 21:27:54,606 - plugin_manager - ERROR - 插件 novel_enhancer 初始化失败
+2025-10-06 21:28:53,816 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins\examples
+2025-10-06 21:28:53,817 - plugin_manager - INFO - 发现插件: novel_enhancer v1.0.0
+2025-10-06 21:28:53,818 - plugin_manager - INFO - 发现插件: text_processor v1.0.0
+2025-10-06 21:28:53,819 - plugin_manager - INFO - 发现插件: novel_enhancer v1.0.0
+2025-10-06 21:28:53,819 - plugin_manager - INFO - 发现插件: text_processor v1.0.0
+2025-10-06 21:28:53,820 - plugin_manager - INFO - 插件 text_processor 版本兼容: 版本完全兼容
+2025-10-06 21:28:53,836 - plugin_manager - INFO - 插件 text_processor 加载成功
+2025-10-06 21:28:53,842 - plugin_manager - INFO - 插件 novel_enhancer 版本兼容: 版本完全兼容
+2025-10-06 21:28:53,867 - plugin_manager - INFO - 插件 novel_enhancer 加载成功
+2025-10-06 21:47:12,926 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins\examples
+2025-10-06 21:47:12,927 - plugin_manager - INFO - 发现插件: novel_enhancer v1.0.0
+2025-10-06 21:47:12,928 - plugin_manager - INFO - 发现插件: text_processor v1.0.0
+2025-10-06 21:47:12,929 - plugin_manager - INFO - 发现插件: novel_enhancer v1.0.0
+2025-10-06 21:47:12,930 - plugin_manager - INFO - 发现插件: text_processor v1.0.0
+2025-10-06 21:47:12,930 - plugin_manager - INFO - 插件 text_processor 版本兼容: 版本完全兼容
+2025-10-06 21:47:12,934 - plugin_manager - INFO - 插件 text_processor 加载成功
+2025-10-06 21:47:12,936 - plugin_manager - INFO - 插件 novel_enhancer 版本兼容: 版本完全兼容
+2025-10-06 21:47:12,940 - plugin_manager - INFO - 插件 novel_enhancer 加载成功
+2025-10-06 21:49:50,663 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins\examples
+2025-10-06 21:49:50,663 - plugin_manager - INFO - 发现插件: novel_enhancer v1.0.0
+2025-10-06 21:49:50,664 - plugin_manager - INFO - 发现插件: text_processor v1.0.0
+2025-10-06 21:49:50,665 - plugin_manager - INFO - 发现插件: novel_enhancer v1.0.0
+2025-10-06 21:49:50,665 - plugin_manager - INFO - 发现插件: text_processor v1.0.0
+2025-10-06 21:49:50,666 - plugin_manager - INFO - 插件 text_processor 版本兼容: 版本完全兼容
+2025-10-06 21:49:50,680 - plugin_manager - INFO - 插件 text_processor 加载成功
+2025-10-06 21:49:50,683 - plugin_manager - INFO - 插件 novel_enhancer 版本兼容: 版本完全兼容
+2025-10-06 21:49:50,711 - plugin_manager - INFO - 插件 novel_enhancer 加载成功
+2025-10-06 21:50:48,705 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins\examples
+2025-10-06 21:50:48,706 - plugin_manager - INFO - 发现插件: novel_enhancer v1.0.0
+2025-10-06 21:50:48,706 - plugin_manager - INFO - 发现插件: text_processor v1.0.0
+2025-10-06 21:50:48,707 - plugin_manager - INFO - 发现插件: novel_enhancer v1.0.0
+2025-10-06 21:50:48,708 - plugin_manager - INFO - 发现插件: text_processor v1.0.0
+2025-10-06 21:50:48,708 - plugin_manager - INFO - 插件 text_processor 版本兼容: 版本完全兼容
+2025-10-06 21:50:48,723 - plugin_manager - INFO - 插件 text_processor 加载成功
+2025-10-06 21:50:48,726 - plugin_manager - INFO - 插件 novel_enhancer 版本兼容: 版本完全兼容
+2025-10-06 21:50:48,730 - plugin_manager - INFO - 插件 novel_enhancer 加载成功
+2025-10-06 21:53:32,453 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-06 21:53:32,454 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-06 21:54:28,602 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-06 21:55:03,756 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-06 21:55:16,855 - plugin_manager - INFO - 插件 template_plugin 版本兼容: 版本完全兼容
+2025-10-06 21:55:16,855 - plugin_manager - ERROR - 插件 template_plugin 主文件不存在: plugins\template_plugin\main.py
+2025-10-06 21:55:18,316 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-06 21:55:24,805 - plugin_manager - INFO - 插件 template_plugin 版本兼容: 版本完全兼容
+2025-10-06 21:55:24,806 - plugin_manager - ERROR - 插件 template_plugin 主文件不存在: plugins\template_plugin\main.py
+2025-10-06 21:55:28,434 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0

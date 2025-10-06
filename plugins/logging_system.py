@@ -479,6 +479,53 @@ class PluginLoggingSystem:
         """获取所有插件日志记录器"""
         return self._plugin_loggers.copy()
     
+    def create_plugin_logger(self, plugin_name: str, config: Optional[LogConfig] = None) -> PluginLogger:
+        """创建插件日志记录器（别名方法）"""
+        return self.get_logger(plugin_name, config)
+    
+    def remove_plugin_logger(self, plugin_name: str):
+        """移除插件日志记录器"""
+        if plugin_name in self._plugin_loggers:
+            logger = self._plugin_loggers[plugin_name]
+            # 关闭所有处理器
+            for handler in logger.logger.handlers[:]:
+                handler.close()
+                logger.logger.removeHandler(handler)
+            
+            # 从字典中移除
+            del self._plugin_loggers[plugin_name]
+            
+            # 清理统计信息
+            with self._lock:
+                if plugin_name in self._log_statistics:
+                    del self._log_statistics[plugin_name]
+    
+    def get_plugin_logs(self, plugin_name: str, count: int = 100) -> List[LogRecord]:
+        """获取插件日志记录"""
+        if plugin_name in self._plugin_loggers:
+            return self._plugin_loggers[plugin_name].get_recent_logs(count)
+        return []
+    
+    def search_plugin_logs(self, plugin_name: str, query: str, 
+                          start_time: Optional[datetime] = None,
+                          end_time: Optional[datetime] = None) -> List[LogRecord]:
+        """搜索插件日志"""
+        if plugin_name in self._plugin_loggers:
+            return self._plugin_loggers[plugin_name].search_logs(query, start_time, end_time)
+        return []
+    
+    def export_plugin_logs(self, plugin_name: str, file_path: str, 
+                          format_type: str = "json",
+                          start_time: Optional[datetime] = None,
+                          end_time: Optional[datetime] = None):
+        """导出插件日志"""
+        if plugin_name in self._plugin_loggers:
+            self._plugin_loggers[plugin_name].export_logs(file_path, format_type, start_time, end_time)
+    
+    def get_logging_statistics(self) -> Dict[str, Dict[str, int]]:
+        """获取日志统计信息（别名方法）"""
+        return self.get_log_statistics()
+
     def get_log_statistics(self) -> Dict[str, Dict[str, int]]:
         """获取日志统计信息"""
         with self._lock:
@@ -501,13 +548,13 @@ class PluginLoggingSystem:
 # 全局日志系统实例
 _logging_system = None
 
-def get_logging_system() -> PluginLoggingSystem:
-    """获取全局日志系统实例"""
+def get_plugin_logging_system() -> PluginLoggingSystem:
+    """获取全局插件日志系统实例"""
     global _logging_system
     if _logging_system is None:
         _logging_system = PluginLoggingSystem()
     return _logging_system
 
 def get_plugin_logger(plugin_name: str, config: Optional[LogConfig] = None) -> PluginLogger:
-    """便捷函数：获取插件日志记录器"""
-    return get_logging_system().get_logger(plugin_name, config)
+    """获取指定插件的日志器"""
+    return get_plugin_logging_system().get_logger(plugin_name, config)

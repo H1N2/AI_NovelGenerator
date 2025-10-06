@@ -301,6 +301,10 @@ class PluginCrashHandler:
             if record.timestamp > cutoff_time
         ]
     
+    def get_crash_history(self, plugin_name: str) -> List[CrashRecord]:
+        """获取插件崩溃历史记录"""
+        return self._crash_records.get(plugin_name, [])
+    
     def get_crash_statistics(self, plugin_name: Optional[str] = None) -> dict:
         """获取崩溃统计信息"""
         if plugin_name:

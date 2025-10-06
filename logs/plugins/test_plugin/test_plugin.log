@@ -1,0 +1,9 @@
+2025-10-06 20:55:43,332 - plugin.test_plugin - INFO - [logging_system:info:273] - 测试信息日志
+2025-10-06 20:55:43,332 - plugin.test_plugin - WARNING - [logging_system:warning:278] - 测试警告日志
+2025-10-06 20:55:43,333 - plugin.test_plugin - ERROR - [logging_system:error:291] - 测试错误日志
+2025-10-06 20:57:37,833 - plugin.test_plugin - INFO - [logging_system:info:273] - 测试信息日志
+2025-10-06 20:57:37,833 - plugin.test_plugin - WARNING - [logging_system:warning:278] - 测试警告日志
+2025-10-06 20:57:37,833 - plugin.test_plugin - ERROR - [logging_system:error:291] - 测试错误日志
+2025-10-06 20:58:16,334 - plugin.test_plugin - INFO - [logging_system:info:273] - 测试信息日志
+2025-10-06 20:58:16,335 - plugin.test_plugin - WARNING - [logging_system:warning:278] - 测试警告日志
+2025-10-06 20:58:16,335 - plugin.test_plugin - ERROR - [logging_system:error:291] - 测试错误日志

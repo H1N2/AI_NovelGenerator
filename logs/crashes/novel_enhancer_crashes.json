@@ -1,0 +1,35 @@
+[
+  {
+    "plugin_name": "novel_enhancer",
+    "timestamp": "2025-10-06T21:02:50.700294",
+    "exception_type": "ImportError",
+    "exception_message": "cannot import name 'BasePlugin' from 'plugins.base' (E:\\Code\\AI_NovelGenerator\\plugins\\base.py)",
+    "traceback_info": "Traceback (most recent call last):\n  File \"E:\\Code\\AI_NovelGenerator\\plugins\\manager.py\", line 171, in load_plugin\n    plugin_module = self._load_plugin_module(metadata)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\Code\\AI_NovelGenerator\\plugins\\manager.py\", line 237, in _load_plugin_module\n    spec.loader.exec_module(module)\n  File \"<frozen importlib._bootstrap_external>\", line 999, in exec_module\n  File \"<frozen importlib._bootstrap>\", line 488, in _call_with_frames_removed\n  File \"E:\\Code\\AI_NovelGenerator\\plugins\\examples\\novel_enhancer\\main.py\", line 15, in <module>\n    from plugins.base import BasePlugin\nImportError: cannot import name 'BasePlugin' from 'plugins.base' (E:\\Code\\AI_NovelGenerator\\plugins\\base.py)\n",
+    "severity": "high",
+    "operation": "plugin_load",
+    "recovery_attempted": false,
+    "recovery_successful": false
+  },
+  {
+    "plugin_name": "novel_enhancer",
+    "timestamp": "2025-10-06T21:21:32.087974",
+    "exception_type": "TypeError",
+    "exception_message": "Can't instantiate abstract class NovelEnhancerPlugin without an implementation for abstract method 'get_metadata'",
+    "traceback_info": "Traceback (most recent call last):\n  File \"E:\\Code\\AI_NovelGenerator\\plugins\\manager.py\", line 181, in load_plugin\n    plugin_instance = plugin_class()\n                      ^^^^^^^^^^^^^^\n  File \"E:\\Code\\AI_NovelGenerator\\plugins\\examples\\novel_enhancer\\main.py\", line 824, in create_plugin\n    return NovelEnhancerPlugin()\n           ^^^^^^^^^^^^^^^^^^^^^\nTypeError: Can't instantiate abstract class NovelEnhancerPlugin without an implementation for abstract method 'get_metadata'\n",
+    "severity": "high",
+    "operation": "plugin_load",
+    "recovery_attempted": false,
+    "recovery_successful": false
+  },
+  {
+    "plugin_name": "novel_enhancer",
+    "timestamp": "2025-10-06T21:22:08.747021",
+    "exception_type": "TypeError",
+    "exception_message": "NovelEnhancerPlugin.initialize() takes 1 positional argument but 2 were given",
+    "traceback_info": "Traceback (most recent call last):\n  File \"E:\\Code\\AI_NovelGenerator\\plugins\\manager.py\", line 191, in load_plugin\n    if not plugin_instance.initialize(context):\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: NovelEnhancerPlugin.initialize() takes 1 positional argument but 2 were given\n",
+    "severity": "high",
+    "operation": "plugin_load",
+    "recovery_attempted": false,
+    "recovery_successful": false
+  }
+]

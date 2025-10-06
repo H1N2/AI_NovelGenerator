@@ -1,0 +1,111 @@
+2025-10-06 20:57:36,820 - plugin_manager - ERROR - 解析插件配置失败 plugins\template: PluginMetadata.__init__() got an unexpected keyword argument 'main'
+2025-10-06 20:57:37,939 - plugin_manager - ERROR - 解析插件配置失败 plugins\template: PluginMetadata.__init__() got an unexpected keyword argument 'main'
+2025-10-06 20:57:37,939 - plugin_manager - ERROR - 解析插件配置失败 plugins\template: PluginMetadata.__init__() got an unexpected keyword argument 'main'
+2025-10-06 20:58:16,321 - plugin_manager - ERROR - 解析插件配置失败 plugins\template: PluginMetadata.__init__() got an unexpected keyword argument 'main'
+2025-10-06 20:58:16,443 - plugin_manager - ERROR - 解析插件配置失败 plugins\template: PluginMetadata.__init__() got an unexpected keyword argument 'main'
+2025-10-06 20:58:16,443 - plugin_manager - ERROR - 解析插件配置失败 plugins\template: PluginMetadata.__init__() got an unexpected keyword argument 'main'
+2025-10-06 20:59:12,334 - plugin_manager - ERROR - 解析插件配置失败 plugins\template: PluginMetadata.__init__() got an unexpected keyword argument 'main'
+2025-10-06 20:59:12,335 - plugin_manager - ERROR - 未找到插件: novel_enhancer
+2025-10-06 21:00:06,417 - plugin_manager - ERROR - 解析插件配置失败 plugins\template: PluginMetadata.__init__() got an unexpected keyword argument 'main'
+2025-10-06 21:00:06,419 - plugin_manager - ERROR - 未找到插件: text_processor
+2025-10-06 21:00:06,420 - plugin_manager - ERROR - 未找到插件: novel_enhancer
+2025-10-06 21:01:13,696 - plugin_manager - ERROR - 解析插件配置失败 plugins\examples\novel_enhancer: PluginMetadata.__init__() got an unexpected keyword argument 'main'
+2025-10-06 21:01:13,698 - plugin_manager - ERROR - 解析插件配置失败 plugins\examples\text_processor: PluginMetadata.__init__() got an unexpected keyword argument 'main'
+2025-10-06 21:01:13,698 - plugin_manager - ERROR - 未找到插件: text_processor
+2025-10-06 21:01:13,699 - plugin_manager - ERROR - 未找到插件: novel_enhancer
+2025-10-06 21:01:46,489 - plugin_manager - ERROR - 解析插件配置失败 plugins\examples\novel_enhancer: PluginMetadata.__init__() got an unexpected keyword argument 'main'
+2025-10-06 21:01:46,489 - plugin_manager - ERROR - 解析插件配置失败 plugins\examples\text_processor: PluginMetadata.__init__() got an unexpected keyword argument 'main'
+2025-10-06 21:01:46,490 - plugin_manager - ERROR - 解析插件配置失败 plugins\examples\novel_enhancer: PluginMetadata.__init__() got an unexpected keyword argument 'main'
+2025-10-06 21:01:46,491 - plugin_manager - ERROR - 解析插件配置失败 plugins\examples\text_processor: PluginMetadata.__init__() got an unexpected keyword argument 'main'
+2025-10-06 21:01:46,491 - plugin_manager - ERROR - 未找到插件: text_processor
+2025-10-06 21:01:46,492 - plugin_manager - ERROR - 未找到插件: novel_enhancer
+2025-10-06 21:02:50,675 - plugin_manager - ERROR - 加载插件 text_processor 失败: closing parenthesis ']' does not match opening parenthesis '(' (main.py, line 163)
+2025-10-06 21:02:50,676 - plugin_manager - ERROR - Traceback (most recent call last):
+  File "E:\Code\AI_NovelGenerator\plugins\manager.py", line 171, in load_plugin
+    plugin_module = self._load_plugin_module(metadata)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Code\AI_NovelGenerator\plugins\manager.py", line 237, in _load_plugin_module
+    spec.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1133, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1063, in source_to_code
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "E:\Code\AI_NovelGenerator\plugins\examples\text_processor\main.py", line 163
+    (r'[''']', "'"),  # 统一单引号
+           ^
+SyntaxError: closing parenthesis ']' does not match opening parenthesis '('
+
+2025-10-06 21:02:50,696 - plugin_manager - ERROR - 加载插件 novel_enhancer 失败: cannot import name 'BasePlugin' from 'plugins.base' (E:\Code\AI_NovelGenerator\plugins\base.py)
+2025-10-06 21:02:50,699 - plugin_manager - ERROR - Traceback (most recent call last):
+  File "E:\Code\AI_NovelGenerator\plugins\manager.py", line 171, in load_plugin
+    plugin_module = self._load_plugin_module(metadata)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Code\AI_NovelGenerator\plugins\manager.py", line 237, in _load_plugin_module
+    spec.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "E:\Code\AI_NovelGenerator\plugins\examples\novel_enhancer\main.py", line 15, in <module>
+    from plugins.base import BasePlugin
+ImportError: cannot import name 'BasePlugin' from 'plugins.base' (E:\Code\AI_NovelGenerator\plugins\base.py)
+
+2025-10-06 21:04:21,554 - plugin_manager - ERROR - 加载插件 text_processor 失败: closing parenthesis ']' does not match opening parenthesis '(' (main.py, line 163)
+2025-10-06 21:04:21,555 - plugin_manager - ERROR - Traceback (most recent call last):
+  File "E:\Code\AI_NovelGenerator\plugins\manager.py", line 171, in load_plugin
+    plugin_module = self._load_plugin_module(metadata)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\Code\AI_NovelGenerator\plugins\manager.py", line 237, in _load_plugin_module
+    spec.loader.exec_module(module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1133, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1063, in source_to_code
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "E:\Code\AI_NovelGenerator\plugins\examples\text_processor\main.py", line 163
+    (r'[''']', "'"),  # 统一单引号
+           ^
+SyntaxError: closing parenthesis ']' does not match opening parenthesis '('
+
+2025-10-06 21:04:21,568 - plugin_manager - ERROR - 插件 novel_enhancer 未找到入口点: main
+2025-10-06 21:19:53,863 - plugin_manager - ERROR - 插件 text_processor 未找到入口点: main
+2025-10-06 21:19:53,866 - plugin_manager - ERROR - 插件 novel_enhancer 未找到入口点: main
+2025-10-06 21:21:32,074 - plugin_manager - ERROR - 加载插件 text_processor 失败: Can't instantiate abstract class TextProcessorPlugin without an implementation for abstract method 'get_metadata'
+2025-10-06 21:21:32,076 - plugin_manager - ERROR - Traceback (most recent call last):
+  File "E:\Code\AI_NovelGenerator\plugins\manager.py", line 181, in load_plugin
+    plugin_instance = plugin_class()
+                      ^^^^^^^^^^^^^^
+  File "E:\Code\AI_NovelGenerator\plugins\examples\text_processor\main.py", line 531, in create_plugin
+    return TextProcessorPlugin()
+           ^^^^^^^^^^^^^^^^^^^^^
+TypeError: Can't instantiate abstract class TextProcessorPlugin without an implementation for abstract method 'get_metadata'
+
+2025-10-06 21:21:32,085 - plugin_manager - ERROR - 加载插件 novel_enhancer 失败: Can't instantiate abstract class NovelEnhancerPlugin without an implementation for abstract method 'get_metadata'
+2025-10-06 21:21:32,087 - plugin_manager - ERROR - Traceback (most recent call last):
+  File "E:\Code\AI_NovelGenerator\plugins\manager.py", line 181, in load_plugin
+    plugin_instance = plugin_class()
+                      ^^^^^^^^^^^^^^
+  File "E:\Code\AI_NovelGenerator\plugins\examples\novel_enhancer\main.py", line 824, in create_plugin
+    return NovelEnhancerPlugin()
+           ^^^^^^^^^^^^^^^^^^^^^
+TypeError: Can't instantiate abstract class NovelEnhancerPlugin without an implementation for abstract method 'get_metadata'
+
+2025-10-06 21:22:08,724 - plugin_manager - ERROR - 加载插件 text_processor 失败: TextProcessorPlugin.initialize() takes 1 positional argument but 2 were given
+2025-10-06 21:22:08,725 - plugin_manager - ERROR - Traceback (most recent call last):
+  File "E:\Code\AI_NovelGenerator\plugins\manager.py", line 191, in load_plugin
+    if not plugin_instance.initialize(context):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: TextProcessorPlugin.initialize() takes 1 positional argument but 2 were given
+
+2025-10-06 21:22:08,746 - plugin_manager - ERROR - 加载插件 novel_enhancer 失败: NovelEnhancerPlugin.initialize() takes 1 positional argument but 2 were given
+2025-10-06 21:22:08,747 - plugin_manager - ERROR - Traceback (most recent call last):
+  File "E:\Code\AI_NovelGenerator\plugins\manager.py", line 191, in load_plugin
+    if not plugin_instance.initialize(context):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: NovelEnhancerPlugin.initialize() takes 1 positional argument but 2 were given
+
+2025-10-06 21:22:32,965 - plugin_manager - ERROR - 插件 text_processor 初始化失败
+2025-10-06 21:22:32,995 - plugin_manager - ERROR - 插件 novel_enhancer 初始化失败
+2025-10-06 21:23:39,287 - plugin_manager - ERROR - 插件 text_processor 初始化失败
+2025-10-06 21:23:39,316 - plugin_manager - ERROR - 插件 novel_enhancer 初始化失败
+2025-10-06 21:27:54,588 - plugin_manager - ERROR - 插件 text_processor 初始化失败
+2025-10-06 21:27:54,606 - plugin_manager - ERROR - 插件 novel_enhancer 初始化失败
+2025-10-06 21:55:16,855 - plugin_manager - ERROR - 插件 template_plugin 主文件不存在: plugins\template_plugin\main.py
+2025-10-06 21:55:24,806 - plugin_manager - ERROR - 插件 template_plugin 主文件不存在: plugins\template_plugin\main.py

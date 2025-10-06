@@ -1,0 +1,46 @@
+[
+  {
+    "plugin_name": "text_processor",
+    "timestamp": "2025-10-06T21:02:50.676759",
+    "exception_type": "SyntaxError",
+    "exception_message": "closing parenthesis ']' does not match opening parenthesis '(' (main.py, line 163)",
+    "traceback_info": "Traceback (most recent call last):\n  File \"E:\\Code\\AI_NovelGenerator\\plugins\\manager.py\", line 171, in load_plugin\n    plugin_module = self._load_plugin_module(metadata)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\Code\\AI_NovelGenerator\\plugins\\manager.py\", line 237, in _load_plugin_module\n    spec.loader.exec_module(module)\n  File \"<frozen importlib._bootstrap_external>\", line 995, in exec_module\n  File \"<frozen importlib._bootstrap_external>\", line 1133, in get_code\n  File \"<frozen importlib._bootstrap_external>\", line 1063, in source_to_code\n  File \"<frozen importlib._bootstrap>\", line 488, in _call_with_frames_removed\n  File \"E:\\Code\\AI_NovelGenerator\\plugins\\examples\\text_processor\\main.py\", line 163\n    (r'[''']', \"'\"),  # 统一单引号\n           ^\nSyntaxError: closing parenthesis ']' does not match opening parenthesis '('\n",
+    "severity": "high",
+    "operation": "plugin_load",
+    "recovery_attempted": false,
+    "recovery_successful": false
+  },
+  {
+    "plugin_name": "text_processor",
+    "timestamp": "2025-10-06T21:04:21.555059",
+    "exception_type": "SyntaxError",
+    "exception_message": "closing parenthesis ']' does not match opening parenthesis '(' (main.py, line 163)",
+    "traceback_info": "Traceback (most recent call last):\n  File \"E:\\Code\\AI_NovelGenerator\\plugins\\manager.py\", line 171, in load_plugin\n    plugin_module = self._load_plugin_module(metadata)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"E:\\Code\\AI_NovelGenerator\\plugins\\manager.py\", line 237, in _load_plugin_module\n    spec.loader.exec_module(module)\n  File \"<frozen importlib._bootstrap_external>\", line 995, in exec_module\n  File \"<frozen importlib._bootstrap_external>\", line 1133, in get_code\n  File \"<frozen importlib._bootstrap_external>\", line 1063, in source_to_code\n  File \"<frozen importlib._bootstrap>\", line 488, in _call_with_frames_removed\n  File \"E:\\Code\\AI_NovelGenerator\\plugins\\examples\\text_processor\\main.py\", line 163\n    (r'[''']', \"'\"),  # 统一单引号\n           ^\nSyntaxError: closing parenthesis ']' does not match opening parenthesis '('\n",
+    "severity": "high",
+    "operation": "plugin_load",
+    "recovery_attempted": false,
+    "recovery_successful": false
+  },
+  {
+    "plugin_name": "text_processor",
+    "timestamp": "2025-10-06T21:21:32.076007",
+    "exception_type": "TypeError",
+    "exception_message": "Can't instantiate abstract class TextProcessorPlugin without an implementation for abstract method 'get_metadata'",
+    "traceback_info": "Traceback (most recent call last):\n  File \"E:\\Code\\AI_NovelGenerator\\plugins\\manager.py\", line 181, in load_plugin\n    plugin_instance = plugin_class()\n                      ^^^^^^^^^^^^^^\n  File \"E:\\Code\\AI_NovelGenerator\\plugins\\examples\\text_processor\\main.py\", line 531, in create_plugin\n    return TextProcessorPlugin()\n           ^^^^^^^^^^^^^^^^^^^^^\nTypeError: Can't instantiate abstract class TextProcessorPlugin without an implementation for abstract method 'get_metadata'\n",
+    "severity": "high",
+    "operation": "plugin_load",
+    "recovery_attempted": false,
+    "recovery_successful": false
+  },
+  {
+    "plugin_name": "text_processor",
+    "timestamp": "2025-10-06T21:22:08.725456",
+    "exception_type": "TypeError",
+    "exception_message": "TextProcessorPlugin.initialize() takes 1 positional argument but 2 were given",
+    "traceback_info": "Traceback (most recent call last):\n  File \"E:\\Code\\AI_NovelGenerator\\plugins\\manager.py\", line 191, in load_plugin\n    if not plugin_instance.initialize(context):\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: TextProcessorPlugin.initialize() takes 1 positional argument but 2 were given\n",
+    "severity": "high",
+    "operation": "plugin_load",
+    "recovery_attempted": false,
+    "recovery_successful": false
+  }
+]

@@ -4,6 +4,7 @@
     "description": "小说增强示例插件 - 提供情节分析、角色管理、风格优化等功能",
     "author": "AI小说生成器团队",
     "main": "main.py",
+    "entry_point": "create_plugin",
     "dependencies": ["text_processor"],
     "permissions": [
         "file_access",

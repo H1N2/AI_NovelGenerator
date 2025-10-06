@@ -65,7 +65,7 @@ class NovelGeneratorView(BaseView):
         self._build_ui()
         
         # 初始化插件系统
-        self.plugin_manager = PluginManager()
+        self.plugin_manager = PluginManager(self)
         self.plugin_ui = PluginManagerUI(self.master, self.plugin_manager)
     
     def _bind_generation_methods(self):

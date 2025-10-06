@@ -11,6 +11,8 @@ from enum import Enum
 import customtkinter as ctk
 
 
+
+
 class PluginState(Enum):
     """插件状态枚举"""
     DISCOVERED = "discovered"
@@ -29,17 +31,30 @@ class PluginMetadata:
     version: str
     description: str
     author: str
-    min_app_version: str
+    min_app_version: str = "1.0.0"
     max_app_version: Optional[str] = None
     dependencies: List[str] = None
     entry_point: str = "main"
+    main: str = "main.py"  # 主文件名
     ui_components: List[str] = None
+    permissions: List[str] = None
+    config: Dict[str, Any] = None
+    requirements: Dict[str, Any] = None
+    metadata: Dict[str, Any] = None
     
     def __post_init__(self):
         if self.dependencies is None:
             self.dependencies = []
         if self.ui_components is None:
             self.ui_components = []
+        if self.permissions is None:
+            self.permissions = []
+        if self.config is None:
+            self.config = {}
+        if self.requirements is None:
+            self.requirements = {}
+        if self.metadata is None:
+            self.metadata = {}
 
 
 class PluginContext:
@@ -110,7 +125,7 @@ class NovelGeneratorPlugin(ABC):
         """返回插件提供的服务"""
         return self._services
         
-    def get_ui_components(self) -> Dict[str, ctk.CTkWidget]:
+    def get_ui_components(self) -> Dict[str, Any]:
         """返回插件的UI组件"""
         return self._ui_components
         
@@ -149,3 +164,7 @@ class NovelGeneratorPlugin(ABC):
     def get_menu_items(self) -> List[Dict[str, Any]]:
         """返回插件的菜单项"""
         return []
+
+
+# 为了向后兼容，添加BasePlugin别名
+BasePlugin = NovelGeneratorPlugin

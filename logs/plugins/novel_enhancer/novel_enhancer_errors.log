@@ -1,0 +1,3 @@
+2025-10-06 21:22:32,993 - plugin.novel_enhancer - ERROR - [logging_system:error:291] - 插件初始化失败: 'NovelEnhancerPlugin' object has no attribute 'plugin_dir'
+2025-10-06 21:23:39,315 - plugin.novel_enhancer - ERROR - [logging_system:error:291] - 插件初始化失败: 'NovelEnhancerPlugin' object has no attribute 'register_event_handler'
+2025-10-06 21:27:54,605 - plugin.novel_enhancer - ERROR - [logging_system:error:291] - 插件初始化失败: 'NovelEnhancerPlugin' object has no attribute 'emit_event'
