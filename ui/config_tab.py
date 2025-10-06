@@ -8,6 +8,7 @@ import customtkinter as ctk
 
 from config_manager import load_config, save_config
 from tooltips import tooltips
+from language_manager import t
 
 import os
 
@@ -30,7 +31,7 @@ def create_label_with_help(self, parent, label_text, tooltip_key, row, column,
         width=22,
         height=22,
         font=("Microsoft YaHei", 10),
-        command=lambda: messagebox.showinfo("参数说明", tooltips.get(tooltip_key, "暂无说明"))
+        command=lambda: messagebox.showinfo(t("labels.parameter_description"), tooltips.get(tooltip_key, t("messages.no_description")))
     )
     btn.pack(side="left", padx=3)
 
@@ -43,9 +44,9 @@ def build_config_tabview(self):
     self.config_tabview = ctk.CTkTabview(self.config_frame)
     self.config_tabview.grid(row=0, column=0, sticky="we", padx=5, pady=5)
 
-    self.ai_config_tab = self.config_tabview.add("LLM Model settings")
-    self.embeddings_config_tab = self.config_tabview.add("Embedding settings")
-    self.config_choose = self.config_tabview.add("Config choose")
+    self.ai_config_tab = self.config_tabview.add(t("tabs.llm_settings"))
+    self.embeddings_config_tab = self.config_tabview.add(t("tabs.embedding_settings"))
+    self.config_choose = self.config_tabview.add(t("tabs.config_choose"))
 
     # PenBo 增加代理功能支持
     self.proxy_setting_tab = self.config_tabview.add("Proxy setting")

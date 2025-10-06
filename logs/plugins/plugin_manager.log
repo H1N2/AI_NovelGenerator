@@ -219,3 +219,7 @@ TypeError: NovelEnhancerPlugin.initialize() takes 1 positional argument but 2 we
 2025-10-06 21:55:24,805 - plugin_manager - INFO - 插件 template_plugin 版本兼容: 版本完全兼容
 2025-10-06 21:55:24,806 - plugin_manager - ERROR - 插件 template_plugin 主文件不存在: plugins\template_plugin\main.py
 2025-10-06 21:55:28,434 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-06 22:03:55,146 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-06 22:03:55,147 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-06 22:12:47,324 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-06 22:12:47,326 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0

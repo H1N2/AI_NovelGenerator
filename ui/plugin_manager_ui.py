@@ -10,6 +10,7 @@ import customtkinter as ctk
 from typing import Dict, Any, Optional
 import threading
 import json
+from language_manager import t
 
 
 class PluginManagerUI:
@@ -30,7 +31,7 @@ class PluginManagerUI:
             return
             
         self.window = ctk.CTkToplevel(self.parent)
-        self.window.title("插件系统管理")
+        self.window.title(t("plugin.manager_title"))
         self.window.geometry("900x600")
         self.window.transient(self.parent)
         

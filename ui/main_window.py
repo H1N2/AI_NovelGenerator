@@ -49,6 +49,9 @@ from config_manager import test_llm_config, test_embedding_config
 from utils import read_file, save_string_to_txt, clear_file_content
 from tooltips import tooltips
 
+# 导入多语言支持
+from language_manager import get_language_manager, t
+
 
 class NovelGeneratorView(BaseView):
     """
@@ -110,7 +113,7 @@ class NovelGeneratorView(BaseView):
     
     def _setup_window(self):
         """设置主窗口"""
-        self.master.title("Novel Generator GUI")
+        self.master.title(t("app.title"))
         try:
             if os.path.exists("icon.ico"):
                 self.master.iconbitmap("icon.ico")
@@ -191,27 +194,38 @@ class NovelGeneratorView(BaseView):
         
         # 插件系统菜单
         plugin_menu = tk.Menu(menubar, tearoff=0)
-        menubar.add_cascade(label="插件系统", menu=plugin_menu)
+        menubar.add_cascade(label=t("menu.plugin_system"), menu=plugin_menu)
         
-        plugin_menu.add_command(label="插件管理器", command=self._show_plugin_manager)
+        plugin_menu.add_command(label=t("menu.plugin_manager"), command=self._show_plugin_manager)
         plugin_menu.add_separator()
-        plugin_menu.add_command(label="重新加载所有插件", command=self._reload_all_plugins)
-        plugin_menu.add_command(label="插件开发文档", command=self._show_plugin_docs)
+        plugin_menu.add_command(label=t("menu.reload_plugins"), command=self._reload_all_plugins)
+        plugin_menu.add_command(label=t("menu.plugin_docs"), command=self._show_plugin_docs)
+        
+        # 设置菜单
+        settings_menu = tk.Menu(menubar, tearoff=0)
+        menubar.add_cascade(label=t("menu.settings"), menu=settings_menu)
+        
+        # 语言设置子菜单
+        language_menu = tk.Menu(settings_menu, tearoff=0)
+        settings_menu.add_cascade(label=t("menu.language"), menu=language_menu)
+        
+        language_menu.add_command(label="中文", command=lambda: self._change_language("zh_CN"))
+        language_menu.add_command(label="English", command=lambda: self._change_language("en_US"))
         
     def _show_plugin_manager(self):
         """显示插件管理器"""
         try:
             self.plugin_ui.show_manager_window()
         except Exception as e:
-            self.show_error(f"打开插件管理器失败: {e}")
+            self.show_error(f"{t('error.plugin_manager_failed')}: {e}")
             
     def _reload_all_plugins(self):
         """重新加载所有插件"""
         try:
             self.plugin_manager.reload_all_plugins()
-            self.show_success("所有插件重新加载完成")
+            self.show_success(t("success.plugins_reloaded"))
         except Exception as e:
-            self.show_error(f"重新加载插件失败: {e}")
+            self.show_error(f"{t('error.plugin_reload_failed')}: {e}")
             
     def _show_plugin_docs(self):
         """显示插件开发文档"""
@@ -222,9 +236,20 @@ class NovelGeneratorView(BaseView):
             if os.path.exists(docs_path):
                 webbrowser.open(f"file://{os.path.abspath(docs_path)}")
             else:
-                self.show_error("插件开发文档不存在")
+                self.show_error(t("error.plugin_docs_not_found"))
         except Exception as e:
-            self.show_error(f"打开文档失败: {e}")
+            self.show_error(f"{t('error.open_docs_failed')}: {e}")
+            
+    def _change_language(self, language_code):
+        """切换语言"""
+        try:
+            lang_manager = get_language_manager()
+            lang_manager.set_language(language_code)
+            self.show_success(t("success.language_changed"))
+            # 重新创建菜单栏以更新语言
+            self._create_menu_bar()
+        except Exception as e:
+            self.show_error(f"{t('error.language_change_failed')}: {e}")
     
     def update_view(self, data: Dict[str, Any]):
         """更新视图显示"""

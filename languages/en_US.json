@@ -1,0 +1,100 @@
+{
+  "app": {
+    "title": "Novel Generator"
+  },
+  "menus": {
+    "plugin_system": "Plugin System",
+    "plugin_manager": "Plugin Manager",
+    "reload_plugins": "Reload All Plugins",
+    "plugin_docs": "Plugin Development Documentation",
+    "settings": "Settings",
+    "language": "Language"
+  },
+  "tabs": {
+    "main_functions": "Main Functions",
+    "chapters_manage": "Chapters Management",
+    "config": "Configuration",
+    "character_library": "Character Library"
+  },
+  "buttons": {
+    "generate_architecture": "Step1. Generate Architecture",
+    "generate_directory": "Step2. Generate Directory",
+    "generate_draft": "Step3. Generate Draft",
+    "finalize_chapter": "Step4. Finalize Chapter",
+    "batch_generate": "Batch Generate",
+    "prev_chapter": "<< Previous Chapter",
+    "next_chapter": "Next Chapter >>",
+    "save_changes": "Save Changes",
+    "refresh_chapters": "Refresh Chapter List"
+  },
+  "labels": {
+    "chapter_content": "Chapter Content (Editable)",
+    "word_count": "Word Count",
+    "output_log": "Output Log (Read Only)",
+    "parameter_description": "Parameter Description"
+  },
+  "config": {
+    "llm_settings": "LLM Model Settings",
+    "embedding_settings": "Embedding Settings",
+    "config_choose": "Configuration Selection"
+  },
+  "generation": {
+    "process": "Generation Process",
+    "status": "Status",
+    "progress": "Progress"
+  },
+  "novel": {
+    "title": "Novel Title",
+    "genre": "Genre",
+    "style": "Style",
+    "length": "Length",
+    "chapters": "Number of Chapters"
+  },
+  "character": {
+    "name": "Character Name",
+    "description": "Description",
+    "personality": "Personality",
+    "background": "Background",
+    "library_management": "Character Library Management"
+  },
+  "plugin": {
+    "name": "Plugin Name",
+    "version": "Version",
+    "description": "Description",
+    "status": "Status",
+    "enabled": "Enabled",
+    "disabled": "Disabled",
+    "manager_title": "Plugin System Management",
+    "load": "Load Plugin",
+    "unload": "Unload Plugin",
+    "reload": "Reload",
+    "performance": "Performance Stats",
+    "logs": "View Logs"
+  },
+  "messages": {
+    "success": "Success",
+    "error": "Error",
+    "warning": "Warning",
+    "info": "Information",
+    "no_description": "No description available",
+    "loading": "Loading...",
+    "saving": "Saving...",
+    "generating": "Generating...",
+    "completed": "Completed",
+    "failed": "Failed"
+  },
+  "tooltips": {
+    "help": "Help",
+    "settings": "Settings",
+    "refresh": "Refresh",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit"
+  },
+  "status": {
+    "ready": "Ready",
+    "processing": "Processing",
+    "error": "Error",
+    "completed": "Completed"
+  }
+}

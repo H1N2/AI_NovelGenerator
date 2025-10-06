@@ -1,0 +1,201 @@
+{
+  "app": {
+    "title": "小说生成器"
+  },
+  "menus": {
+    "plugin_system": "插件系统",
+    "plugin_manager": "插件管理器",
+    "reload_plugins": "重新加载所有插件",
+    "plugin_docs": "插件开发文档",
+    "settings": "设置",
+    "language": "语言"
+  },
+  "tabs": {
+    "main_functions": "主要功能",
+    "chapters_manage": "章节管理",
+    "config": "配置",
+    "character_library": "角色库"
+  },
+  "buttons": {
+    "generate_architecture": "Step1. 生成架构",
+    "generate_directory": "Step2. 生成目录",
+    "generate_draft": "Step3. 生成草稿",
+    "finalize_chapter": "Step4. 定稿章节",
+    "batch_generate": "批量生成",
+    "prev_chapter": "<< 上一章",
+    "next_chapter": "下一章 >>",
+    "save_changes": "保存修改",
+    "refresh_chapters": "刷新章节列表"
+  },
+  "labels": {
+    "chapter_content": "本章内容（可编辑）",
+    "word_count": "字数",
+    "output_log": "输出日志 (只读)",
+    "parameter_description": "参数说明"
+  },
+  "generation": {
+    "architecture": {
+      "title": "生成小说架构",
+      "button": "生成小说架构",
+      "description": "根据设定生成小说的整体架构和大纲",
+      "success": "小说架构生成成功！",
+      "error": "小说架构生成失败：{error}"
+    },
+    "blueprint": {
+      "title": "生成章节蓝图",
+      "button": "生成章节蓝图",
+      "description": "为指定章节生成详细的蓝图和大纲",
+      "success": "章节蓝图生成成功！",
+      "error": "章节蓝图生成失败：{error}"
+    },
+    "chapter": {
+      "title": "生成章节草稿",
+      "button": "生成章节草稿",
+      "description": "根据蓝图生成章节的初稿内容",
+      "success": "章节草稿生成成功！",
+      "error": "章节草稿生成失败：{error}"
+    },
+    "finalize": {
+      "title": "完善章节",
+      "button": "完善章节",
+      "description": "对章节草稿进行润色和完善",
+      "success": "章节完善成功！",
+      "error": "章节完善失败：{error}"
+    },
+    "batch": {
+      "title": "批量生成",
+      "button": "批量生成章节",
+      "description": "批量生成多个章节",
+      "success": "批量生成完成！",
+      "error": "批量生成失败：{error}"
+    }
+  },
+  "config": {
+    "llm": {
+      "title": "大语言模型配置",
+      "provider": "提供商",
+      "model": "模型",
+      "api_key": "API密钥",
+      "base_url": "基础URL",
+      "temperature": "温度",
+      "max_tokens": "最大令牌数",
+      "test_connection": "测试连接"
+    },
+    "embedding": {
+      "title": "嵌入模型配置",
+      "provider": "提供商",
+      "model": "模型",
+      "api_key": "API密钥",
+      "base_url": "基础URL",
+      "test_connection": "测试连接"
+    },
+    "general": {
+      "title": "通用设置",
+      "language": "界面语言",
+      "theme": "主题",
+      "auto_save": "自动保存",
+      "backup": "备份设置"
+    }
+  },
+  "novel": {
+    "params": {
+      "title": "小说参数",
+      "genre": "类型",
+      "style": "风格",
+      "length": "长度",
+      "chapters": "章节数",
+      "words_per_chapter": "每章字数",
+      "protagonist": "主角",
+      "setting": "背景设定",
+      "theme": "主题"
+    },
+    "character": {
+      "title": "角色管理",
+      "name": "角色名称",
+      "description": "角色描述",
+      "personality": "性格特点",
+      "background": "背景故事",
+      "relationships": "人物关系",
+      "add_character": "添加角色",
+      "edit_character": "编辑角色",
+      "delete_character": "删除角色"
+    }
+  },
+  "plugins": {
+    "title": "插件管理",
+    "name": "插件名称",
+    "version": "版本",
+    "status": "状态",
+    "description": "描述",
+    "author": "作者",
+    "enabled": "已启用",
+    "disabled": "已禁用",
+    "loading": "加载中",
+    "error": "错误",
+    "enable": "启用",
+    "disable": "禁用",
+    "reload": "重新加载",
+    "install": "安装",
+    "uninstall": "卸载",
+    "settings": "设置",
+    "manager_title": "插件系统管理",
+    "load": "加载插件",
+    "unload": "卸载插件",
+    "performance": "性能统计",
+    "logs": "日志查看"
+  },
+  "messages": {
+    "success": {
+      "saved": "保存成功！",
+      "loaded": "加载成功！",
+      "deleted": "删除成功！",
+      "imported": "导入成功！",
+      "exported": "导出成功！",
+      "generated": "生成成功！",
+      "updated": "更新成功！"
+    },
+    "error": {
+      "save_failed": "保存失败：{error}",
+      "load_failed": "加载失败：{error}",
+      "delete_failed": "删除失败：{error}",
+      "import_failed": "导入失败：{error}",
+      "export_failed": "导出失败：{error}",
+      "generate_failed": "生成失败：{error}",
+      "update_failed": "更新失败：{error}",
+      "file_not_found": "文件未找到：{file}",
+      "invalid_format": "无效的文件格式",
+      "network_error": "网络连接错误",
+      "api_error": "API调用错误：{error}"
+    },
+    "warning": {
+      "unsaved_changes": "有未保存的更改，是否继续？",
+      "delete_confirm": "确定要删除吗？此操作无法撤销。",
+      "overwrite_confirm": "文件已存在，是否覆盖？"
+    },
+    "info": {
+      "processing": "正在处理...",
+      "loading": "加载中...",
+      "saving": "保存中...",
+      "generating": "生成中...",
+      "please_wait": "请稍候...",
+      "completed": "操作完成",
+      "no_data": "暂无数据"
+    }
+  },
+  "tooltips": {
+    "temperature": "控制生成文本的随机性，值越高越随机",
+    "max_tokens": "生成文本的最大长度限制",
+    "api_key": "从服务提供商获取的API密钥",
+    "base_url": "API服务的基础URL地址",
+    "auto_save": "自动保存工作进度",
+    "backup": "定期备份重要数据"
+  },
+  "status": {
+    "ready": "就绪",
+    "working": "工作中",
+    "completed": "已完成",
+    "failed": "失败",
+    "cancelled": "已取消",
+    "paused": "已暂停"
+  }
+}

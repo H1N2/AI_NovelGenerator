@@ -10,6 +10,7 @@ from customtkinter import CTkScrollableFrame, CTkTextbox, END
 from utils import read_file, save_string_to_txt  # 导入 utils 中的函数
 from novel_generator.common import invoke_with_cleaning  # 新增导入
 from prompt_definitions import Character_Import_Prompt
+from language_manager import t
 
 DEFAULT_FONT = ("Microsoft YaHei", 12)
 
@@ -24,7 +25,7 @@ class RoleLibrary:
 
         # 初始化窗口
         self.window = ctk.CTkToplevel(master)
-        self.window.title("角色库管理")
+        self.window.title(t("character.library_management"))
         self.window.geometry("1200x800")
         self.window.protocol("WM_DELETE_WINDOW", self.on_close)
 
