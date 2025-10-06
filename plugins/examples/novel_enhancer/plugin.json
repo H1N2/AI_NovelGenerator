@@ -1,0 +1,28 @@
+{
+    "name": "novel_enhancer",
+    "version": "1.0.0",
+    "description": "小说增强示例插件 - 提供情节分析、角色管理、风格优化等功能",
+    "author": "AI小说生成器团队",
+    "main": "main.py",
+    "dependencies": ["text_processor"],
+    "permissions": [
+        "file_access",
+        "network_access"
+    ],
+    "config": {
+        "enabled": true,
+        "auto_start": true,
+        "debug_mode": false
+    },
+    "requirements": {
+        "python_version": ">=3.8",
+        "packages": []
+    },
+    "metadata": {
+        "category": "novel_enhancement",
+        "tags": ["novel", "enhancement", "analysis", "characters", "plot"],
+        "homepage": "",
+        "repository": "",
+        "license": "MIT"
+    }
+}

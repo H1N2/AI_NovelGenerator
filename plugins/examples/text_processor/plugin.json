@@ -1,0 +1,30 @@
+{
+    "name": "text_processor",
+    "version": "1.0.0",
+    "description": "文本处理示例插件 - 提供文本清理、格式化和分析功能",
+    "author": "AI小说生成器团队",
+    "main": "main.py",
+    "dependencies": [],
+    "permissions": [
+        "file_access"
+    ],
+    "config": {
+        "enabled": true,
+        "auto_start": true,
+        "debug_mode": false
+    },
+    "requirements": {
+        "python_version": ">=3.8",
+        "packages": [
+            "jieba>=0.42.1",
+            "regex>=2021.4.4"
+        ]
+    },
+    "metadata": {
+        "category": "text_processing",
+        "tags": ["text", "processing", "analysis", "example"],
+        "homepage": "",
+        "repository": "",
+        "license": "MIT"
+    }
+}

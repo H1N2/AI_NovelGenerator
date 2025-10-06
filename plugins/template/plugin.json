@@ -1,0 +1,28 @@
+{
+    "name": "template_plugin",
+    "version": "1.0.0",
+    "description": "插件模板 - 复制此模板开始开发你的插件",
+    "author": "你的名字",
+    "main": "main.py",
+    "dependencies": [],
+    "permissions": [
+        "file_access",
+        "network_access"
+    ],
+    "config": {
+        "enabled": true,
+        "auto_start": true,
+        "debug_mode": false
+    },
+    "requirements": {
+        "python_version": ">=3.8",
+        "packages": []
+    },
+    "metadata": {
+        "category": "utility",
+        "tags": ["template", "example"],
+        "homepage": "",
+        "repository": "",
+        "license": "MIT"
+    }
+}
