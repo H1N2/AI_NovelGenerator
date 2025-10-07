@@ -142,8 +142,19 @@ class ConfigController(BaseController):
                 self.set_state(ControllerState.ERROR)
                 return False
             
-            # 执行测试
-            success = await asyncio.to_thread(test_llm_config, llm_config)
+            # 执行测试 - 需要传递正确的参数
+            success = await asyncio.to_thread(
+                test_llm_config,
+                interface_format=llm_config.get("interface_format"),
+                api_key=llm_config.get("api_key"),
+                base_url=llm_config.get("base_url"),
+                model_name=llm_config.get("model_name"),
+                temperature=llm_config.get("temperature", 0.7),
+                max_tokens=llm_config.get("max_tokens", 8192),
+                timeout=llm_config.get("timeout", 600),
+                log_func=self.view.safe_log if hasattr(self.view, 'safe_log') else print,
+                handle_exception_func=self.view.handle_exception if hasattr(self.view, 'handle_exception') else lambda x: None
+            )
             
             if success:
                 if hasattr(self.view, 'show_success'):
@@ -183,8 +194,16 @@ class ConfigController(BaseController):
                 self.set_state(ControllerState.ERROR)
                 return False
             
-            # 执行测试
-            success = await asyncio.to_thread(test_embedding_config, embedding_config)
+            # 执行测试 - 需要传递正确的参数
+            success = await asyncio.to_thread(
+                test_embedding_config,
+                api_key=embedding_config.get("api_key"),
+                base_url=embedding_config.get("base_url"),
+                interface_format=embedding_config.get("interface_format"),
+                model_name=embedding_config.get("model_name"),
+                log_func=self.view.safe_log if hasattr(self.view, 'safe_log') else print,
+                handle_exception_func=self.view.handle_exception if hasattr(self.view, 'handle_exception') else lambda x: None
+            )
             
             if success:
                 if hasattr(self.view, 'show_success'):

@@ -521,7 +521,7 @@ def build_ai_config_tab(self):
     test_btn = ctk.CTkButton(
         self.ai_config_tab, 
         text="测试配置", 
-        command=self.test_llm_config,
+        command=lambda: self._test_llm_config_async(),
         font=("Microsoft YaHei", 12)
     )
     test_btn.grid(row=row_start+7, column=0, columnspan=3, padx=5, pady=5, sticky="ew")
@@ -632,7 +632,7 @@ def build_embeddings_config_tab(self):
     emb_retrieval_k_entry.grid(row=4, column=1, padx=5, pady=5, sticky="nsew")
 
     # 添加测试按钮
-    test_btn = ctk.CTkButton(self.embeddings_config_tab, text="测试配置", command=self.test_embedding_config, font=("Microsoft YaHei", 12))
+    test_btn = ctk.CTkButton(self.embeddings_config_tab, text="测试配置", command=lambda: self._test_embedding_config_async(), font=("Microsoft YaHei", 12))
     test_btn.grid(row=5, column=0, columnspan=2, padx=5, pady=5, sticky="ew")
 
 def build_config_choose_tab(self):

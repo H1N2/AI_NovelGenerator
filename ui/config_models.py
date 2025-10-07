@@ -19,6 +19,9 @@ class LLMConfig:
     max_tokens: int = 8192
     timeout: int = 600
     interface_format: str = "OpenAI"
+    updated_at: Optional[str] = None  # 添加updated_at字段以兼容配置文件
+    id: Optional[str] = None  # 添加id字段以兼容配置文件
+    created_at: Optional[str] = None  # 添加created_at字段以兼容配置文件
 
 
 @dataclass
@@ -29,6 +32,8 @@ class EmbeddingConfig:
     model_name: str = "text-embedding-ada-002"
     retrieval_k: int = 4
     interface_format: str = "OpenAI"
+    id: Optional[str] = None  # 添加id字段以兼容配置文件
+    created_at: Optional[str] = None  # 添加created_at字段以兼容配置文件
 
 
 @dataclass

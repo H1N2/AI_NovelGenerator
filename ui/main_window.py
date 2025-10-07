@@ -713,3 +713,43 @@ class NovelGeneratorGUI:
         # 绑定到view对象
         self.view.test_llm_config = self.presenter.test_llm_config
         self.view.test_embedding_config = self.presenter.test_embedding_config
+        
+        # 添加异步包装函数，用于UI按钮调用
+        self.view._test_llm_config_async = self._test_llm_config_async
+        self.view._test_embedding_config_async = self._test_embedding_config_async
+    
+    def _test_llm_config_async(self):
+        """异步包装函数，用于UI按钮调用LLM配置测试"""
+        import asyncio
+        import threading
+        
+        def run_async():
+            try:
+                loop = asyncio.new_event_loop()
+                asyncio.set_event_loop(loop)
+                loop.run_until_complete(self.config_controller.test_llm_configuration())
+            except Exception as e:
+                self.view.safe_log(f"**测试LLM配置失败**: {str(e)}")
+            finally:
+                loop.close()
+        
+        thread = threading.Thread(target=run_async, daemon=True)
+        thread.start()
+    
+    def _test_embedding_config_async(self):
+        """异步包装函数，用于UI按钮调用Embedding配置测试"""
+        import asyncio
+        import threading
+        
+        def run_async():
+            try:
+                loop = asyncio.new_event_loop()
+                asyncio.set_event_loop(loop)
+                loop.run_until_complete(self.config_controller.test_embedding_configuration())
+            except Exception as e:
+                self.view.safe_log(f"**测试Embedding配置失败**: {str(e)}")
+            finally:
+                loop.close()
+        
+        thread = threading.Thread(target=run_async, daemon=True)
+        thread.start()

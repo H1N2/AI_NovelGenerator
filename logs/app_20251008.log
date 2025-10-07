@@ -1,0 +1,57 @@
+2025-10-08 07:28:06,139 - root - INFO - 应用程序启动
+2025-10-08 07:28:07,858 - root - INFO - 尚未找到 chapters 文件夹，请先生成章节或检查保存路径。
+2025-10-08 07:28:07,931 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-08 07:28:07,932 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-08 07:28:08,554 - root - ERROR - Failed to setup role library: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2025-10-08 07:28:08,554 - ControllerRegistry - INFO - Controller ConfigController registered
+2025-10-08 07:28:08,554 - ControllerRegistry - INFO - Controller NovelController registered
+2025-10-08 07:28:08,554 - ControllerRegistry - INFO - Controller GenerationController registered
+2025-10-08 07:28:08,555 - root - INFO - **控制器事件系统设置完成**
+2025-10-08 07:28:08,555 - root - INFO - **控制器系统初始化成功**
+2025-10-08 07:34:44,946 - root - INFO - 应用程序启动
+2025-10-08 07:34:45,024 - root - ERROR - Failed to load configuration: LLMConfig.__init__() got an unexpected keyword argument 'updated_at'
+2025-10-08 07:34:46,568 - root - INFO - 尚未找到 chapters 文件夹，请先生成章节或检查保存路径。
+2025-10-08 07:34:46,636 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-08 07:34:46,638 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-08 07:34:47,204 - root - ERROR - Failed to setup role library: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2025-10-08 07:34:47,204 - ControllerRegistry - INFO - Controller ConfigController registered
+2025-10-08 07:34:47,204 - ControllerRegistry - INFO - Controller NovelController registered
+2025-10-08 07:34:47,205 - ControllerRegistry - INFO - Controller GenerationController registered
+2025-10-08 07:34:47,205 - root - INFO - **控制器事件系统设置完成**
+2025-10-08 07:34:47,205 - root - INFO - **控制器系统初始化成功**
+2025-10-08 07:34:47,206 - root - ERROR - Failed to load configuration: LLMConfig.__init__() got an unexpected keyword argument 'updated_at'
+2025-10-08 07:35:35,460 - root - INFO - 应用程序启动
+2025-10-08 07:35:35,536 - root - ERROR - Failed to load configuration: LLMConfig.__init__() got an unexpected keyword argument 'id'
+2025-10-08 07:35:37,147 - root - INFO - 尚未找到 chapters 文件夹，请先生成章节或检查保存路径。
+2025-10-08 07:35:37,226 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-08 07:35:37,229 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-08 07:35:37,917 - root - ERROR - Failed to setup role library: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2025-10-08 07:35:37,917 - ControllerRegistry - INFO - Controller ConfigController registered
+2025-10-08 07:35:37,917 - ControllerRegistry - INFO - Controller NovelController registered
+2025-10-08 07:35:37,918 - ControllerRegistry - INFO - Controller GenerationController registered
+2025-10-08 07:35:37,918 - root - INFO - **控制器事件系统设置完成**
+2025-10-08 07:35:37,918 - root - INFO - **控制器系统初始化成功**
+2025-10-08 07:35:37,919 - root - ERROR - Failed to load configuration: LLMConfig.__init__() got an unexpected keyword argument 'id'
+2025-10-08 07:36:28,002 - root - INFO - 应用程序启动
+2025-10-08 07:36:28,085 - root - ERROR - Failed to load configuration: LLMConfig.__init__() got an unexpected keyword argument 'created_at'
+2025-10-08 07:36:29,916 - root - INFO - 尚未找到 chapters 文件夹，请先生成章节或检查保存路径。
+2025-10-08 07:36:30,033 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-08 07:36:30,034 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-08 07:36:30,630 - root - ERROR - Failed to setup role library: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2025-10-08 07:36:30,631 - ControllerRegistry - INFO - Controller ConfigController registered
+2025-10-08 07:36:30,631 - ControllerRegistry - INFO - Controller NovelController registered
+2025-10-08 07:36:30,631 - ControllerRegistry - INFO - Controller GenerationController registered
+2025-10-08 07:36:30,632 - root - INFO - **控制器事件系统设置完成**
+2025-10-08 07:36:30,632 - root - INFO - **控制器系统初始化成功**
+2025-10-08 07:36:30,633 - root - ERROR - Failed to load configuration: LLMConfig.__init__() got an unexpected keyword argument 'created_at'
+2025-10-08 07:37:09,267 - root - INFO - 应用程序退出
+2025-10-08 07:37:14,272 - root - INFO - 应用程序启动
+2025-10-08 07:37:15,877 - root - INFO - 尚未找到 chapters 文件夹，请先生成章节或检查保存路径。
+2025-10-08 07:37:15,948 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-08 07:37:15,949 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-08 07:37:17,671 - ControllerRegistry - INFO - Controller ConfigController registered
+2025-10-08 07:37:17,671 - ControllerRegistry - INFO - Controller NovelController registered
+2025-10-08 07:37:17,672 - ControllerRegistry - INFO - Controller GenerationController registered
+2025-10-08 07:37:17,672 - root - INFO - **控制器事件系统设置完成**
+2025-10-08 07:37:17,672 - root - INFO - **控制器系统初始化成功**
+2025-10-08 07:38:52,694 - root - INFO - 应用程序退出
