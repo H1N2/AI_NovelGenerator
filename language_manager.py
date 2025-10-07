@@ -8,7 +8,7 @@ import json
 import os
 from typing import Dict, Any, Optional
 from pathlib import Path
-
+import logging
 
 class LanguageManager:
     """多语言管理器"""
@@ -24,6 +24,7 @@ class LanguageManager:
         self.languages_dir = Path(languages_dir)
         self.default_language = default_language
         self.current_language = default_language
+        
         self.translations: Dict[str, Dict[str, Any]] = {}
         self.available_languages: Dict[str, str] = {
             "zh_CN": "简体中文",

@@ -5,9 +5,10 @@ import customtkinter as ctk
 from tkinter import messagebox
 from utils import read_file, save_string_to_txt, clear_file_content
 from ui.context_menu import TextWidgetContextMenu
+from language_manager import t
 
 def build_directory_tab(self):
-    self.directory_tab = self.tabview.add("Chapter Blueprint")
+    self.directory_tab = self.tabview.add(t("tabs.chapter_blueprint"))
     self.directory_tab.rowconfigure(0, weight=0)
     self.directory_tab.rowconfigure(1, weight=1)
     self.directory_tab.columnconfigure(0, weight=1)

@@ -49,7 +49,7 @@ def build_config_tabview(self):
     self.config_choose = self.config_tabview.add(t("tabs.config_choose"))
 
     # PenBo 增加代理功能支持
-    self.proxy_setting_tab = self.config_tabview.add("Proxy setting")
+    self.proxy_setting_tab = self.config_tabview.add(t("tabs.proxy_setting"))
 
 
     build_ai_config_tab(self)

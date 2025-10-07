@@ -16,13 +16,7 @@ from langchain.docstore.document import Document
 # 禁用特定的Torch警告
 warnings.filterwarnings('ignore', message='.*Torch was not compiled with flash attention.*')
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
-logging.basicConfig(
-    filename='app.log',      # 日志文件名
-    filemode='a',            # 追加模式（'w' 会覆盖）
-    level=logging.INFO,      # 记录 INFO 及以上级别的日志
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S'
-)
+# 日志配置已在main.py中统一设置
 def advanced_split_content(content: str, similarity_threshold: float = 0.7, max_length: int = 500) -> list:
     """使用基本分段策略"""
     # nltk.download('punkt', quiet=True)
@@ -59,7 +53,6 @@ def import_knowledge_file(
     file_path: str,
     filepath: str
 ):
-    logging.info(f"开始导入知识库文件: {file_path}, 接口格式: {embedding_interface_format}, 模型: {embedding_model_name}")
     if not os.path.exists(file_path):
         logging.warning(f"知识库文件不存在: {file_path}")
         return

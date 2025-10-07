@@ -352,14 +352,8 @@ class PluginLogger:
     
     def _trigger_breakpoint(self, message: str):
         """触发调试断点"""
-        print(f"\n=== 调试断点触发 ===")
-        print(f"插件: {self.plugin_name}")
-        print(f"消息: {message}")
-        print(f"时间: {datetime.now()}")
-        print("===================\n")
-        
-        # 这里可以集成调试器或提供交互式调试
-        # import pdb; pdb.set_trace()
+        # 调试断点功能 - 可在需要时启用
+        pass
     
     def get_recent_logs(self, count: int = 100, level: Optional[str] = None) -> List[LogRecord]:
         """获取最近的日志记录"""

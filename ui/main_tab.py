@@ -60,7 +60,7 @@ def build_left_layout(self):
 
     self.btn_generate_architecture = ctk.CTkButton(
         self.step_buttons_frame,
-        text=t("buttons.step1_architecture"),
+        text=t("buttons.generate_architecture"),
         command=self.generate_novel_architecture_ui,
         font=("Microsoft YaHei", 12)
     )
@@ -68,7 +68,7 @@ def build_left_layout(self):
 
     self.btn_generate_directory = ctk.CTkButton(
         self.step_buttons_frame,
-        text=t("buttons.step2_directory"),
+        text=t("buttons.generate_directory"),
         command=self.generate_chapter_blueprint_ui,
         font=("Microsoft YaHei", 12)
     )
@@ -76,7 +76,7 @@ def build_left_layout(self):
 
     self.btn_generate_chapter = ctk.CTkButton(
         self.step_buttons_frame,
-        text=t("buttons.step3_draft"),
+        text=t("buttons.generate_draft"),
         command=self.generate_chapter_draft_ui,
         font=("Microsoft YaHei", 12)
     )
@@ -84,7 +84,7 @@ def build_left_layout(self):
 
     self.btn_finalize_chapter = ctk.CTkButton(
         self.step_buttons_frame,
-        text=t("buttons.step4_finalize"),
+        text=t("buttons.finalize_chapter"),
         command=self.finalize_chapter_ui,
         font=("Microsoft YaHei", 12)
     )

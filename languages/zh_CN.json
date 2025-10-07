@@ -10,11 +10,26 @@
     "settings": "设置",
     "language": "语言"
   },
+  "context_menu": {
+    "copy": "复制",
+    "paste": "粘贴",
+    "cut": "剪切",
+    "select_all": "全选"
+  },
   "tabs": {
     "main_functions": "主要功能",
+	"novel_architecture":"小说架构",
+	"chapter_blueprint":"章节蓝图",
+	"character_state":"角色状态",
+	"global_summary":"全局摘要",
     "chapters_manage": "章节管理",
+	"other_settings":"其它设置",
     "config": "配置",
-    "character_library": "角色库"
+    "character_library": "角色库",
+	"llm_settings":"大模型设置",
+	"embedding_settings":"嵌入模型配置",
+	"config_choose":"配置选择",
+	"proxy_setting":"代理设置"
   },
   "buttons": {
     "generate_architecture": "Step1. 生成架构",
@@ -25,7 +40,8 @@
     "prev_chapter": "<< 上一章",
     "next_chapter": "下一章 >>",
     "save_changes": "保存修改",
-    "refresh_chapters": "刷新章节列表"
+    "refresh_chapters": "刷新章节列表",
+    "load_character_state": "加载 character_state.txt"
   },
   "labels": {
     "chapter_content": "本章内容（可编辑）",
@@ -167,11 +183,15 @@
       "network_error": "网络连接错误",
       "api_error": "API调用错误：{error}"
     },
-    "warning": {
-      "unsaved_changes": "有未保存的更改，是否继续？",
-      "delete_confirm": "确定要删除吗？此操作无法撤销。",
-      "overwrite_confirm": "文件已存在，是否覆盖？"
-    },
+    "warning": "警告",
+    "set_filepath_first": "请先设置保存文件路径",
+    "character_state_loaded": "已加载 character_state.txt 到编辑区。",
+    "character_state_saved": "已保存对 character_state.txt 的修改。",
+    "no_description": "暂无说明",
+    "language_switched": "语言已切换",
+    "unsaved_changes": "有未保存的更改，是否继续？",
+    "delete_confirm": "确定要删除吗？此操作无法撤销。",
+    "overwrite_confirm": "文件已存在，是否覆盖？",
     "info": {
       "processing": "正在处理...",
       "loading": "加载中...",

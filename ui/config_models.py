@@ -28,6 +28,7 @@ class EmbeddingConfig:
     base_url: str = "https://api.openai.com/v1"
     model_name: str = "text-embedding-ada-002"
     retrieval_k: int = 4
+    interface_format: str = "OpenAI"
 
 
 @dataclass

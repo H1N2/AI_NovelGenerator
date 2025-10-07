@@ -10,11 +10,26 @@
     "settings": "Settings",
     "language": "Language"
   },
+  "context_menu": {
+    "copy": "Copy",
+    "paste": "Paste",
+    "cut": "Cut",
+    "select_all": "Select All"
+  },
   "tabs": {
     "main_functions": "Main Functions",
+	"novel_architecture":"Novel Architecture",
+	"chapter_blueprint":"Chapter Blueprint",
+    "character_state": "Character State",
+	"global_summary":"Global Summary",
     "chapters_manage": "Chapters Management",
+	"other_settings":"Other Settings",
     "config": "Configuration",
-    "character_library": "Character Library"
+    "character_library": "Character Library",
+	"llm_settings":"LLM Setting",
+	"embedding_settings":"Embedding Setting",
+	"config_choose":"Config Choose",
+	"proxy_setting":"Proxy setting"
   },
   "buttons": {
     "generate_architecture": "Step1. Generate Architecture",
@@ -25,7 +40,8 @@
     "prev_chapter": "<< Previous Chapter",
     "next_chapter": "Next Chapter >>",
     "save_changes": "Save Changes",
-    "refresh_chapters": "Refresh Chapter List"
+    "refresh_chapters": "Refresh Chapter List",
+    "load_character_state": "Load character_state.txt"
   },
   "labels": {
     "chapter_content": "Chapter Content (Editable)",
@@ -81,7 +97,11 @@
     "saving": "Saving...",
     "generating": "Generating...",
     "completed": "Completed",
-    "failed": "Failed"
+    "failed": "Failed",
+    "set_filepath_first": "Please set the save file path first",
+    "character_state_loaded": "character_state.txt has been loaded to the editor.",
+    "character_state_saved": "Changes to character_state.txt have been saved.",
+    "language_switched": "Language switched"
   },
   "tooltips": {
     "help": "Help",

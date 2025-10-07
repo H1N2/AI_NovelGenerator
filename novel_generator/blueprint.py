@@ -10,13 +10,7 @@ from novel_generator.common import invoke_with_cleaning
 from llm_adapters import create_llm_adapter
 from prompt_definitions import chapter_blueprint_prompt, chunked_chapter_blueprint_prompt
 from utils import read_file, clear_file_content, save_string_to_txt
-logging.basicConfig(
-    filename='app.log',      # 日志文件名
-    filemode='a',            # 追加模式（'w' 会覆盖）
-    level=logging.INFO,      # 记录 INFO 及以上级别的日志
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S'
-)
+# 日志配置已在main.py中统一设置
 def compute_chunk_size(number_of_chapters: int, max_tokens: int) -> int:
     """
     基于“每章约100 tokens”的粗略估算，

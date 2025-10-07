@@ -223,3 +223,48 @@ TypeError: NovelEnhancerPlugin.initialize() takes 1 positional argument but 2 we
 2025-10-06 22:03:55,147 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
 2025-10-06 22:12:47,324 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
 2025-10-06 22:12:47,326 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 19:14:17,549 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-07 19:14:17,550 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 19:32:27,230 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-07 19:32:27,232 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 19:34:33,045 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-07 19:34:33,046 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 19:38:35,237 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-07 19:38:35,239 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 19:40:08,011 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-07 19:40:08,013 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 19:59:07,281 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-07 19:59:07,282 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 19:59:48,737 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-07 19:59:48,738 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 20:12:12,761 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-07 20:12:12,762 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 20:23:51,896 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-07 20:23:51,897 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 20:24:34,389 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-07 20:24:34,390 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 20:26:04,082 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-07 20:26:04,083 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 20:27:44,348 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-07 20:27:44,350 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 20:32:54,678 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-07 20:32:54,679 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 20:33:54,627 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-07 20:33:54,628 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 20:34:25,886 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-07 20:34:25,888 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 20:37:12,586 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-07 20:37:12,588 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 20:41:35,695 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-07 20:41:35,697 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 20:42:25,354 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-07 20:42:25,357 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 20:47:05,748 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-07 20:47:05,750 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 20:48:27,425 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-07 20:48:27,427 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 20:48:37,000 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 21:24:16,883 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-07 21:24:16,886 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 21:42:41,245 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-07 21:42:41,246 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0

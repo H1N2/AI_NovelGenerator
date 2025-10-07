@@ -5,9 +5,10 @@ import customtkinter as ctk
 from tkinter import messagebox
 from utils import read_file, save_string_to_txt, clear_file_content
 from ui.context_menu import TextWidgetContextMenu
+from language_manager import t
 
 def build_summary_tab(self):
-    self.summary_tab = self.tabview.add("Global Summary")
+    self.summary_tab = self.tabview.add(t("tabs.global_summary"))   
     self.summary_tab.rowconfigure(0, weight=0)
     self.summary_tab.rowconfigure(1, weight=1)
     self.summary_tab.columnconfigure(0, weight=1)

@@ -1,0 +1,124 @@
+2025-10-07 20:42:22,938 - root - INFO - 应用程序启动
+2025-10-07 20:42:23,202 - root - INFO - NovelGeneratorGUI.__init__: 开始初始化主GUI类
+2025-10-07 20:42:23,203 - root - INFO - NovelGeneratorGUI.__init__: 开始创建配置管理器
+2025-10-07 20:42:23,203 - root - INFO - ConfigurationManager.__init__: 开始初始化配置管理器
+2025-10-07 20:42:23,204 - root - INFO - ConfigurationManager.__init__: 设置配置文件路径为 config.json
+2025-10-07 20:42:23,204 - root - INFO - ConfigurationManager.__init__: 开始加载配置
+2025-10-07 20:42:23,206 - root - INFO - ConfigurationManager.__init__: 配置管理器初始化完成
+2025-10-07 20:42:23,206 - root - INFO - NovelGeneratorGUI.__init__: 开始创建View
+2025-10-07 20:42:23,211 - root - INFO - NovelGeneratorView.__init__: 开始初始化视图类
+2025-10-07 20:42:23,212 - root - INFO - NovelGeneratorView.__init__: 开始设置窗口
+2025-10-07 20:42:23,213 - root - INFO - LanguageManager.__init__: 开始初始化语言管理器
+2025-10-07 20:42:23,214 - root - INFO - LanguageManager.__init__: 语言目录=languages, 默认语言=zh_CN
+2025-10-07 20:42:23,215 - root - INFO - LanguageManager.__init__: 语言管理器初始化完成
+2025-10-07 20:42:23,217 - root - INFO - NovelGeneratorView.__init__: 开始创建UI变量
+2025-10-07 20:42:23,218 - root - INFO - NovelGeneratorView.__init__: 开始绑定生成方法
+2025-10-07 20:42:23,218 - root - INFO - NovelGeneratorView.__init__: 开始构建UI
+2025-10-07 20:42:23,219 - root - INFO - _create_menu_bar: 开始创建菜单栏
+2025-10-07 20:42:25,250 - root - INFO - 尚未找到 chapters 文件夹，请先生成章节或检查保存路径。
+2025-10-07 20:42:25,348 - root - INFO - NovelGeneratorView.__init__: 开始初始化插件管理器
+2025-10-07 20:42:25,348 - root - INFO - PluginManager.__init__: 开始初始化插件管理器
+2025-10-07 20:42:25,349 - root - INFO - PluginManager.__init__: 插件目录=plugins
+2025-10-07 20:42:25,352 - root - INFO - PluginManager.__init__: 核心组件初始化完成
+2025-10-07 20:42:25,353 - root - INFO - PluginManager.__init__: 插件管理器初始化完成
+2025-10-07 20:42:25,354 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-07 20:42:25,357 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 20:42:25,358 - root - INFO - NovelGeneratorView.__init__: 开始初始化插件UI
+2025-10-07 20:42:25,358 - root - INFO - PluginManagerUI.__init__: 开始初始化插件管理器UI
+2025-10-07 20:42:25,358 - root - INFO - PluginManagerUI.__init__: 插件管理器已设置
+2025-10-07 20:42:25,359 - root - INFO - PluginManagerUI.__init__: 插件管理器UI初始化完成
+2025-10-07 20:42:25,359 - root - INFO - NovelGeneratorView.__init__: 视图类初始化完成
+2025-10-07 20:42:25,360 - root - INFO - NovelGeneratorGUI.__init__: 开始创建Presenter
+2025-10-07 20:42:25,360 - root - INFO - NovelGeneratorPresenter.__init__: 开始初始化Presenter类
+2025-10-07 20:42:25,360 - root - INFO - NovelGeneratorPresenter.__init__: 开始设置角色库
+2025-10-07 20:42:25,361 - root - ERROR - Failed to setup role library: create_llm_adapter() missing 6 required positional arguments: 'base_url', 'model_name', 'api_key', 'temperature', 'max_tokens', and 'timeout'
+2025-10-07 20:42:25,362 - root - INFO - NovelGeneratorPresenter.__init__: Presenter类初始化完成
+2025-10-07 20:42:25,362 - root - INFO - NovelGeneratorGUI.__init__: 开始设置兼容性属性
+2025-10-07 20:42:25,363 - root - INFO - NovelGeneratorGUI.__init__: 主GUI类初始化完成
+2025-10-07 20:47:03,553 - root - INFO - 应用程序启动
+2025-10-07 20:47:03,792 - root - INFO - NovelGeneratorGUI.__init__: 开始初始化主GUI类
+2025-10-07 20:47:03,792 - root - INFO - NovelGeneratorGUI.__init__: 开始创建配置管理器
+2025-10-07 20:47:03,793 - root - INFO - ConfigurationManager.__init__: 开始初始化配置管理器
+2025-10-07 20:47:03,793 - root - INFO - ConfigurationManager.__init__: 设置配置文件路径为 config.json
+2025-10-07 20:47:03,793 - root - INFO - ConfigurationManager.__init__: 开始加载配置
+2025-10-07 20:47:03,794 - root - INFO - ConfigurationManager.__init__: 配置管理器初始化完成
+2025-10-07 20:47:03,795 - root - INFO - NovelGeneratorGUI.__init__: 开始创建View
+2025-10-07 20:47:03,795 - root - INFO - NovelGeneratorView.__init__: 开始初始化视图类
+2025-10-07 20:47:03,795 - root - INFO - NovelGeneratorView.__init__: 开始设置窗口
+2025-10-07 20:47:03,796 - root - INFO - LanguageManager.__init__: 开始初始化语言管理器
+2025-10-07 20:47:03,796 - root - INFO - LanguageManager.__init__: 语言目录=languages, 默认语言=zh_CN
+2025-10-07 20:47:03,797 - root - INFO - LanguageManager.__init__: 语言管理器初始化完成
+2025-10-07 20:47:03,799 - root - INFO - NovelGeneratorView.__init__: 开始创建UI变量
+2025-10-07 20:47:03,800 - root - INFO - NovelGeneratorView.__init__: 开始绑定生成方法
+2025-10-07 20:47:03,800 - root - INFO - NovelGeneratorView.__init__: 开始构建UI
+2025-10-07 20:47:03,800 - root - INFO - _create_menu_bar: 开始创建菜单栏
+2025-10-07 20:47:05,656 - root - INFO - 尚未找到 chapters 文件夹，请先生成章节或检查保存路径。
+2025-10-07 20:47:05,744 - root - INFO - NovelGeneratorView.__init__: 开始初始化插件管理器
+2025-10-07 20:47:05,745 - root - INFO - PluginManager.__init__: 开始初始化插件管理器
+2025-10-07 20:47:05,745 - root - INFO - PluginManager.__init__: 插件目录=plugins
+2025-10-07 20:47:05,747 - root - INFO - PluginManager.__init__: 核心组件初始化完成
+2025-10-07 20:47:05,748 - root - INFO - PluginManager.__init__: 插件管理器初始化完成
+2025-10-07 20:47:05,748 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-07 20:47:05,750 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 20:47:05,751 - root - INFO - NovelGeneratorView.__init__: 开始初始化插件UI
+2025-10-07 20:47:05,751 - root - INFO - PluginManagerUI.__init__: 开始初始化插件管理器UI
+2025-10-07 20:47:05,752 - root - INFO - PluginManagerUI.__init__: 插件管理器已设置
+2025-10-07 20:47:05,752 - root - INFO - PluginManagerUI.__init__: 插件管理器UI初始化完成
+2025-10-07 20:47:05,752 - root - INFO - NovelGeneratorView.__init__: 视图类初始化完成
+2025-10-07 20:47:05,752 - root - INFO - NovelGeneratorGUI.__init__: 开始创建Presenter
+2025-10-07 20:47:05,753 - root - INFO - NovelGeneratorPresenter.__init__: 开始初始化Presenter类
+2025-10-07 20:47:05,753 - root - INFO - NovelGeneratorPresenter.__init__: 开始设置角色库
+2025-10-07 20:47:05,753 - root - ERROR - Failed to setup role library: create_llm_adapter() missing 6 required positional arguments: 'base_url', 'model_name', 'api_key', 'temperature', 'max_tokens', and 'timeout'
+2025-10-07 20:47:05,754 - root - INFO - NovelGeneratorPresenter.__init__: Presenter类初始化完成
+2025-10-07 20:47:05,754 - root - INFO - NovelGeneratorGUI.__init__: 开始设置兼容性属性
+2025-10-07 20:47:05,754 - root - INFO - NovelGeneratorGUI.__init__: 主GUI类初始化完成
+2025-10-07 20:48:25,142 - root - INFO - 应用程序启动
+2025-10-07 20:48:25,389 - root - INFO - NovelGeneratorGUI.__init__: 开始初始化主GUI类
+2025-10-07 20:48:25,389 - root - INFO - NovelGeneratorGUI.__init__: 开始创建配置管理器
+2025-10-07 20:48:25,390 - root - INFO - ConfigurationManager.__init__: 开始初始化配置管理器
+2025-10-07 20:48:25,390 - root - INFO - ConfigurationManager.__init__: 设置配置文件路径为 config.json
+2025-10-07 20:48:25,390 - root - INFO - ConfigurationManager.__init__: 开始加载配置
+2025-10-07 20:48:25,391 - root - INFO - ConfigurationManager.__init__: 配置管理器初始化完成
+2025-10-07 20:48:25,392 - root - INFO - NovelGeneratorGUI.__init__: 开始创建View
+2025-10-07 20:48:25,392 - root - INFO - NovelGeneratorView.__init__: 开始初始化视图类
+2025-10-07 20:48:25,392 - root - INFO - NovelGeneratorView.__init__: 开始设置窗口
+2025-10-07 20:48:25,393 - root - INFO - LanguageManager.__init__: 开始初始化语言管理器
+2025-10-07 20:48:25,393 - root - INFO - LanguageManager.__init__: 语言目录=languages, 默认语言=zh_CN
+2025-10-07 20:48:25,395 - root - INFO - LanguageManager.__init__: 语言管理器初始化完成
+2025-10-07 20:48:25,398 - root - INFO - NovelGeneratorView.__init__: 开始创建UI变量
+2025-10-07 20:48:25,399 - root - INFO - NovelGeneratorView.__init__: 开始绑定生成方法
+2025-10-07 20:48:25,400 - root - INFO - NovelGeneratorView.__init__: 开始构建UI
+2025-10-07 20:48:25,400 - root - INFO - _create_menu_bar: 开始创建菜单栏
+2025-10-07 20:48:27,317 - root - INFO - 尚未找到 chapters 文件夹，请先生成章节或检查保存路径。
+2025-10-07 20:48:27,421 - root - INFO - NovelGeneratorView.__init__: 开始初始化插件管理器
+2025-10-07 20:48:27,421 - root - INFO - PluginManager.__init__: 开始初始化插件管理器
+2025-10-07 20:48:27,422 - root - INFO - PluginManager.__init__: 插件目录=plugins
+2025-10-07 20:48:27,424 - root - INFO - PluginManager.__init__: 核心组件初始化完成
+2025-10-07 20:48:27,425 - root - INFO - PluginManager.__init__: 插件管理器初始化完成
+2025-10-07 20:48:27,425 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-07 20:48:27,427 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 20:48:27,428 - root - INFO - NovelGeneratorView.__init__: 开始初始化插件UI
+2025-10-07 20:48:27,428 - root - INFO - PluginManagerUI.__init__: 开始初始化插件管理器UI
+2025-10-07 20:48:27,429 - root - INFO - PluginManagerUI.__init__: 插件管理器已设置
+2025-10-07 20:48:27,429 - root - INFO - PluginManagerUI.__init__: 插件管理器UI初始化完成
+2025-10-07 20:48:27,429 - root - INFO - NovelGeneratorView.__init__: 视图类初始化完成
+2025-10-07 20:48:27,429 - root - INFO - NovelGeneratorGUI.__init__: 开始创建Presenter
+2025-10-07 20:48:27,430 - root - INFO - NovelGeneratorPresenter.__init__: 开始初始化Presenter类
+2025-10-07 20:48:27,430 - root - INFO - NovelGeneratorPresenter.__init__: 开始设置角色库
+2025-10-07 20:48:27,430 - root - ERROR - Failed to setup role library: create_llm_adapter() missing 6 required positional arguments: 'base_url', 'model_name', 'api_key', 'temperature', 'max_tokens', and 'timeout'
+2025-10-07 20:48:27,430 - root - INFO - NovelGeneratorPresenter.__init__: Presenter类初始化完成
+2025-10-07 20:48:27,430 - root - INFO - NovelGeneratorGUI.__init__: 开始设置兼容性属性
+2025-10-07 20:48:27,431 - root - INFO - NovelGeneratorGUI.__init__: 主GUI类初始化完成
+2025-10-07 20:48:37,000 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 20:53:39,993 - root - INFO - 应用程序退出
+2025-10-07 21:24:14,737 - root - INFO - 应用程序启动
+2025-10-07 21:24:16,794 - root - INFO - 尚未找到 chapters 文件夹，请先生成章节或检查保存路径。
+2025-10-07 21:24:16,883 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-07 21:24:16,886 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 21:24:16,887 - root - ERROR - Failed to setup role library: create_llm_adapter() missing 6 required positional arguments: 'base_url', 'model_name', 'api_key', 'temperature', 'max_tokens', and 'timeout'
+2025-10-07 21:42:28,573 - root - INFO - 应用程序退出
+2025-10-07 21:42:39,801 - root - INFO - 应用程序启动
+2025-10-07 21:42:41,176 - root - INFO - 尚未找到 chapters 文件夹，请先生成章节或检查保存路径。
+2025-10-07 21:42:41,245 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-07 21:42:41,246 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 21:42:41,246 - root - ERROR - Failed to setup role library: create_llm_adapter() missing 6 required positional arguments: 'base_url', 'model_name', 'api_key', 'temperature', 'max_tokens', and 'timeout'

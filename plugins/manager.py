@@ -29,6 +29,7 @@ class PluginManager:
     def __init__(self, app_instance, plugins_dir: str = "plugins"):
         self.app = app_instance
         self.plugins_dir = Path(plugins_dir)
+        
         self.registry = PluginRegistry()
         self.event_system = PluginEventSystem()
         self.performance_monitor = PluginPerformanceMonitor()

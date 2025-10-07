@@ -11,13 +11,7 @@ from prompt_definitions import summary_prompt, update_character_state_prompt
 from novel_generator.common import invoke_with_cleaning
 from utils import read_file, clear_file_content, save_string_to_txt
 from novel_generator.vectorstore_utils import update_vector_store
-logging.basicConfig(
-    filename='app.log',      # 日志文件名
-    filemode='a',            # 追加模式（'w' 会覆盖）
-    level=logging.INFO,      # 记录 INFO 及以上级别的日志
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S'
-)
+# 日志配置已在main.py中统一设置
 def finalize_chapter(
     novel_number: int,
     word_number: int,

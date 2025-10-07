@@ -79,7 +79,7 @@ class NovelGeneratorView(BaseView):
         self.generate_chapter_draft_ui = generate_chapter_draft_ui
         self.finalize_chapter_ui = finalize_chapter_ui
         self.do_consistency_check = do_consistency_check
-        self.generate_batch_ui = generate_batch_ui
+        self.generate_batch_ui = lambda: generate_batch_ui(self)
         self.import_knowledge_handler = import_knowledge_handler
         self.clear_vectorstore_handler = clear_vectorstore_handler
         self.show_plot_arcs_ui = show_plot_arcs_ui
@@ -194,20 +194,20 @@ class NovelGeneratorView(BaseView):
         
         # 插件系统菜单
         plugin_menu = tk.Menu(menubar, tearoff=0)
-        menubar.add_cascade(label=t("menu.plugin_system"), menu=plugin_menu)
+        menubar.add_cascade(label=t("menus.plugin_system"), menu=plugin_menu)
         
-        plugin_menu.add_command(label=t("menu.plugin_manager"), command=self._show_plugin_manager)
+        plugin_menu.add_command(label=t("menus.plugin_manager"), command=self._show_plugin_manager)
         plugin_menu.add_separator()
-        plugin_menu.add_command(label=t("menu.reload_plugins"), command=self._reload_all_plugins)
-        plugin_menu.add_command(label=t("menu.plugin_docs"), command=self._show_plugin_docs)
+        plugin_menu.add_command(label=t("menus.reload_plugins"), command=self._reload_all_plugins)
+        plugin_menu.add_command(label=t("menus.plugin_docs"), command=self._show_plugin_docs)
         
         # 设置菜单
         settings_menu = tk.Menu(menubar, tearoff=0)
-        menubar.add_cascade(label=t("menu.settings"), menu=settings_menu)
+        menubar.add_cascade(label=t("menus.settings"), menu=settings_menu)
         
         # 语言设置子菜单
         language_menu = tk.Menu(settings_menu, tearoff=0)
-        settings_menu.add_cascade(label=t("menu.language"), menu=language_menu)
+        settings_menu.add_cascade(label=t("menus.language"), menu=language_menu)
         
         language_menu.add_command(label="中文", command=lambda: self._change_language("zh_CN"))
         language_menu.add_command(label="English", command=lambda: self._change_language("en_US"))
@@ -551,7 +551,7 @@ class NovelGeneratorGUI:
         self.generate_chapter_draft_ui = generate_chapter_draft_ui
         self.finalize_chapter_ui = finalize_chapter_ui
         self.do_consistency_check = do_consistency_check
-        self.generate_batch_ui = generate_batch_ui
+        self.generate_batch_ui = lambda: generate_batch_ui(self)
         self.import_knowledge_handler = import_knowledge_handler
         self.clear_vectorstore_handler = clear_vectorstore_handler
         self.show_plot_arcs_ui = show_plot_arcs_ui
@@ -595,7 +595,7 @@ class NovelGeneratorGUI:
         self.view.generate_chapter_draft_ui = generate_chapter_draft_ui
         self.view.finalize_chapter_ui = finalize_chapter_ui
         self.view.do_consistency_check = do_consistency_check
-        self.view.generate_batch_ui = generate_batch_ui
+        self.view.generate_batch_ui = lambda: generate_batch_ui(self.view)
         self.view.import_knowledge_handler = import_knowledge_handler
         self.view.clear_vectorstore_handler = clear_vectorstore_handler
         self.view.show_plot_arcs_ui = show_plot_arcs_ui

@@ -10,6 +10,7 @@ import customtkinter as ctk
 from typing import Dict, Any, Optional
 import threading
 import json
+import logging
 from language_manager import t
 
 
