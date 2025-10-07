@@ -62,28 +62,55 @@ def build_config_tabview(self):
 def build_ai_config_tab(self):
     def refresh_config_dropdown():
         """刷新配置下拉菜单"""
-        config_names = list(self.loaded_config.get("llm_configs", {}).keys())
+        # **使用控制器获取配置列表**
+        if hasattr(self, 'config_controller') and self.config_controller:
+            config_names = self.config_controller.get_llm_config_names()
+        else:
+            config_names = list(self.loaded_config.get("llm_configs", {}).keys())
+        
         interface_config_dropdown.configure(values=config_names)
         if config_names and self.interface_config_var.get() not in config_names:
             self.interface_config_var.set(config_names[0])
 
     def on_config_selected(new_value):
         """当选择不同配置时的回调"""
-        if new_value in self.loaded_config.get("llm_configs", {}):
-            config = self.loaded_config["llm_configs"][new_value]
-            # 更新所有UI变量
-            self.api_key_var.set(config.get("api_key", ""))
-            self.base_url_var.set(config.get("base_url", ""))
-            self.model_name_var.set(config.get("model_name", ""))
-            self.temperature_var.set(float(config.get("temperature", 0.7)))
-            self.max_tokens_var.set(int(config.get("max_tokens", 8192)))
-            self.timeout_var.set(int(config.get("timeout", 600)))
-            self.interface_format_var.set(config.get("interface_format", "OpenAI"))
-            
-            # 更新显示标签
-            self.temp_value_label.configure(text=f"{float(config.get('temperature', 0.7)):.2f}")
-            self.max_tokens_value_label.configure(text=str(int(config.get('max_tokens', 8192))))
-            self.timeout_value_label.configure(text=str(int(config.get('timeout', 600))))
+        # **使用控制器加载配置**
+        if hasattr(self, 'config_controller') and self.config_controller:
+            try:
+                config = self.config_controller.get_llm_config(new_value)
+                if config:
+                    # 更新所有UI变量
+                    self.api_key_var.set(config.api_key)
+                    self.base_url_var.set(config.base_url)
+                    self.model_name_var.set(config.model_name)
+                    self.temperature_var.set(config.temperature)
+                    self.max_tokens_var.set(config.max_tokens)
+                    self.timeout_var.set(config.timeout)
+                    self.interface_format_var.set(config.interface_format)
+                    
+                    # 更新显示标签
+                    self.temp_value_label.configure(text=f"{config.temperature:.2f}")
+                    self.max_tokens_value_label.configure(text=str(config.max_tokens))
+                    self.timeout_value_label.configure(text=str(config.timeout))
+            except Exception as e:
+                messagebox.showerror("错误", f"加载配置失败: {e}")
+        else:
+            # 原有逻辑作为备用
+            if new_value in self.loaded_config.get("llm_configs", {}):
+                config = self.loaded_config["llm_configs"][new_value]
+                # 更新所有UI变量
+                self.api_key_var.set(config.get("api_key", ""))
+                self.base_url_var.set(config.get("base_url", ""))
+                self.model_name_var.set(config.get("model_name", ""))
+                self.temperature_var.set(float(config.get("temperature", 0.7)))
+                self.max_tokens_var.set(int(config.get("max_tokens", 8192)))
+                self.timeout_var.set(int(config.get("timeout", 600)))
+                self.interface_format_var.set(config.get("interface_format", "OpenAI"))
+                
+                # 更新显示标签
+                self.temp_value_label.configure(text=f"{float(config.get('temperature', 0.7)):.2f}")
+                self.max_tokens_value_label.configure(text=str(int(config.get('max_tokens', 8192))))
+                self.timeout_value_label.configure(text=str(int(config.get('timeout', 600))))
 
     def add_new_config():
         """添加新配置 - 弹出对话框让用户输入名称"""
@@ -98,111 +125,172 @@ def build_ai_config_tab(self):
             
         new_name = new_name.strip()
         
-        if new_name in self.loaded_config.get("llm_configs", {}):
-            messagebox.showerror("错误", f"配置名称 '{new_name}' 已存在!")
-            return
-            
-        if "llm_configs" not in self.loaded_config:
-            self.loaded_config["llm_configs"] = {}
-            
-        self.loaded_config["llm_configs"][new_name] = {
-            "id": str(uuid.uuid4()),
-            "api_key": "",
-            "base_url": "",
-            "model_name": "",
-            "temperature": 0.7,
-            "max_tokens": 8192,
-            "timeout": 600,
-            "interface_format": "OpenAI",
-            "created_at": datetime.datetime.now().isoformat()
-        }
-        
-        refresh_config_dropdown()
-        self.interface_config_var.set(new_name)
-        messagebox.showinfo("提示", f"已成功创建新配置: {new_name}")
-
-    def delete_current_config():
-        """删除当前选中的配置并保存到JSON文件"""
-        selected_config = self.interface_config_var.get()
-        if selected_config in self.loaded_config.get("llm_configs", {}):
-            if len(self.loaded_config["llm_configs"]) <= 1:
-                messagebox.showerror("错误", "至少需要保留一个配置!")
+        # **使用控制器添加配置**
+        if hasattr(self, 'config_controller') and self.config_controller:
+            try:
+                # 创建默认配置数据
+                config_data = {
+                    "api_key": "",
+                    "base_url": "https://api.openai.com/v1",
+                    "model_name": "gpt-4",
+                    "temperature": 0.7,
+                    "max_tokens": 8192,
+                    "timeout": 600,
+                    "interface_format": "OpenAI"
+                }
+                
+                success = self.config_controller.add_llm_config(new_name, config_data)
+                if success:
+                    refresh_config_dropdown()
+                    self.interface_config_var.set(new_name)
+                    messagebox.showinfo("提示", f"已成功创建新配置: {new_name}")
+                else:
+                    messagebox.showerror("错误", f"配置名称 '{new_name}' 已存在!")
+            except Exception as e:
+                messagebox.showerror("错误", f"创建配置失败: {e}")
+        else:
+            # 原有逻辑作为备用
+            if new_name in self.loaded_config.get("llm_configs", {}):
+                messagebox.showerror("错误", f"配置名称 '{new_name}' 已存在!")
                 return
                 
-            confirm = messagebox.askyesno(
-            "确认删除",
-            f"确定要删除配置 '{selected_config}' 吗?\n此操作不可撤销!"
-        )
-        if not confirm:
+            if "llm_configs" not in self.loaded_config:
+                self.loaded_config["llm_configs"] = {}
+                
+            self.loaded_config["llm_configs"][new_name] = {
+                "id": str(uuid.uuid4()),
+                "api_key": "",
+                "base_url": "",
+                "model_name": "",
+                "temperature": 0.7,
+                "max_tokens": 8192,
+                "timeout": 600,
+                "interface_format": "OpenAI",
+                "created_at": datetime.datetime.now().isoformat()
+            }
+            
+            refresh_config_dropdown()
+            self.interface_config_var.set(new_name)
+            messagebox.showinfo("提示", f"已成功创建新配置: {new_name}")
+
+    def rename_current_config():
+        """重命名当前配置"""
+        current_name = self.interface_config_var.get()
+        if not current_name:
+            messagebox.showerror("错误", "请先选择一个配置!")
             return
             
-        del self.loaded_config["llm_configs"][selected_config]
-        refresh_config_dropdown()
+        dialog = ctk.CTkInputDialog(
+            text=f"请输入新名称 (当前: {current_name}):",
+            title="重命名配置"
+        )
+        new_name = dialog.get_input()
         
-        # 保存到JSON文件
-        try:
-            save_config(self.loaded_config, self.config_file)
-            messagebox.showinfo("提示", f"已删除配置: {selected_config}，并已更新配置文件")
-        except Exception as e:
-            messagebox.showerror("错误", f"保存配置文件失败: {str(e)}")
+        if not new_name or new_name.strip() == current_name:
+            return
+            
+        new_name = new_name.strip()
+        
+        # **使用控制器重命名配置**
+        if hasattr(self, 'config_controller') and self.config_controller:
+            try:
+                success = self.config_controller.rename_llm_config(current_name, new_name)
+                if success:
+                    refresh_config_dropdown()
+                    self.interface_config_var.set(new_name)
+                    messagebox.showinfo("提示", f"配置已重命名为: {new_name}")
+                else:
+                    messagebox.showerror("错误", f"重命名失败，可能名称已存在")
+            except Exception as e:
+                messagebox.showerror("错误", f"重命名配置失败: {e}")
+
+    def delete_current_config():
+        """删除当前配置"""
+        config_name = self.interface_config_var.get()
+        if not config_name:
+            messagebox.showerror("错误", "请先选择一个配置!")
+            return
+            
+        # **使用控制器获取配置数量**
+        if hasattr(self, 'config_controller') and self.config_controller:
+            config_names = self.config_controller.get_llm_config_names()
         else:
-            messagebox.showerror("错误", "未找到选中的配置!")
+            config_names = list(self.loaded_config.get("llm_configs", {}).keys())
+            
+        if len(config_names) <= 1:
+            messagebox.showerror("错误", "至少需要保留一个配置!")
+            return
+            
+        result = messagebox.askyesno("确认删除", f"确定要删除配置 '{config_name}' 吗？")
+        if result:
+            # **使用控制器删除配置**
+            if hasattr(self, 'config_controller') and self.config_controller:
+                try:
+                    success = self.config_controller.remove_llm_config(config_name)
+                    if success:
+                        refresh_config_dropdown()
+                        # 选择第一个可用配置
+                        remaining_configs = self.config_controller.get_llm_config_names()
+                        if remaining_configs:
+                            self.interface_config_var.set(remaining_configs[0])
+                            on_config_selected(remaining_configs[0])
+                        messagebox.showinfo("提示", f"配置 '{config_name}' 已删除")
+                    else:
+                        messagebox.showerror("错误", "删除配置失败")
+                except Exception as e:
+                    messagebox.showerror("错误", f"删除配置失败: {e}")
 
     def save_current_config():
         """保存当前配置的修改到JSON文件"""
         config_name = self.interface_config_var.get()
-        if config_name not in self.loaded_config.get("llm_configs", {}):
-            messagebox.showerror("错误", "配置不存在!")
+        if not config_name:
+            messagebox.showerror("错误", "请先选择一个配置!")
             return
             
-        config = self.loaded_config["llm_configs"][config_name]
-        config.update({
-            "api_key": self.api_key_var.get(),
-            "base_url": self.base_url_var.get(),
-            "model_name": self.model_name_var.get(),
-            "temperature": float(self.temperature_var.get()),
-            "max_tokens": int(self.max_tokens_var.get()),
-            "timeout": int(self.timeout_var.get()),
-            "interface_format": self.interface_format_var.get(),
-            "updated_at": datetime.datetime.now().isoformat()
-        })
-        
-        # 如果修改了配置名称
-        new_name = self.interface_config_var.get()
-        if new_name != config_name:
-            self.loaded_config["llm_configs"][new_name] = self.loaded_config["llm_configs"].pop(config_name)
-            refresh_config_dropdown()
-        embedding_config = {
-        "api_key": self.embedding_api_key_var.get(),
-        "base_url": self.embedding_url_var.get(),
-        "model_name": self.embedding_model_name_var.get(),
-        "retrieval_k": self.safe_get_int(self.embedding_retrieval_k_var, 4),
-        "interface_format": self.embedding_interface_format_var.get().strip()
-
-        }
-        other_params = {
-            "topic": self.topic_text.get("0.0", "end").strip(),
-            "genre": self.genre_var.get(),
-            "num_chapters": self.safe_get_int(self.num_chapters_var, 10),
-            "word_number": self.safe_get_int(self.word_number_var, 3000),
-            "filepath": self.filepath_var.get(),
-            "chapter_num": self.chapter_num_var.get(),
-            "user_guidance": self.user_guide_text.get("0.0", "end").strip(),
-            "characters_involved": self.characters_involved_var.get(),
-            "key_items": self.key_items_var.get(),
-            "scene_location": self.scene_location_var.get(),
-            "time_constraint": self.time_constraint_var.get()
-        }
-        self.loaded_config["embedding_configs"][self.embedding_interface_format_var.get().strip()] = embedding_config
-        self.loaded_config["other_params"] = other_params
-
-
-        # 保存到JSON文件
-        try:
-            save_config(self.loaded_config, self.config_file)
-            messagebox.showinfo("提示", f"配置 {new_name} 已保存并持久化到文件")
-        except Exception as e:
-            messagebox.showerror("错误", f"保存配置文件失败: {str(e)}")
+        # **使用控制器保存配置**
+        if hasattr(self, 'config_controller') and self.config_controller:
+            try:
+                config_data = {
+                    "api_key": self.api_key_var.get(),
+                    "base_url": self.base_url_var.get(),
+                    "model_name": self.model_name_var.get(),
+                    "temperature": float(self.temperature_var.get()),
+                    "max_tokens": int(self.max_tokens_var.get()),
+                    "timeout": int(self.timeout_var.get()),
+                    "interface_format": self.interface_format_var.get()
+                }
+                
+                success = self.config_controller.update_llm_config(config_name, config_data)
+                if success:
+                    messagebox.showinfo("提示", f"配置 {config_name} 已保存")
+                else:
+                    messagebox.showerror("错误", "保存配置失败")
+            except Exception as e:
+                messagebox.showerror("错误", f"保存配置失败: {e}")
+        else:
+            # 原有逻辑作为备用
+            if config_name not in self.loaded_config.get("llm_configs", {}):
+                messagebox.showerror("错误", "配置不存在!")
+                return
+                
+            config = self.loaded_config["llm_configs"][config_name]
+            config.update({
+                "api_key": self.api_key_var.get(),
+                "base_url": self.base_url_var.get(),
+                "model_name": self.model_name_var.get(),
+                "temperature": float(self.temperature_var.get()),
+                "max_tokens": int(self.max_tokens_var.get()),
+                "timeout": int(self.timeout_var.get()),
+                "interface_format": self.interface_format_var.get(),
+                "updated_at": datetime.datetime.now().isoformat()
+            })
+            
+            # 保存到JSON文件
+            try:
+                save_config(self.loaded_config, self.config_file)
+                messagebox.showinfo("提示", f"配置 {config_name} 已保存并持久化到文件")
+            except Exception as e:
+                messagebox.showerror("错误", f"保存配置文件失败: {str(e)}")
 
     def rename_current_config():
         """重命名当前配置"""

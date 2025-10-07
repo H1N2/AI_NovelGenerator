@@ -122,3 +122,36 @@
 2025-10-07 21:42:41,245 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
 2025-10-07 21:42:41,246 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
 2025-10-07 21:42:41,246 - root - ERROR - Failed to setup role library: create_llm_adapter() missing 6 required positional arguments: 'base_url', 'model_name', 'api_key', 'temperature', 'max_tokens', and 'timeout'
+2025-10-07 21:43:48,856 - root - INFO - 应用程序退出
+2025-10-07 22:05:49,058 - root - INFO - 应用程序启动
+2025-10-07 22:05:50,864 - root - INFO - 尚未找到 chapters 文件夹，请先生成章节或检查保存路径。
+2025-10-07 22:05:50,943 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-07 22:05:50,945 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 22:05:50,946 - root - ERROR - Failed to setup role library: create_llm_adapter() missing 6 required positional arguments: 'base_url', 'model_name', 'api_key', 'temperature', 'max_tokens', and 'timeout'
+2025-10-07 22:05:50,946 - root - ERROR - **控制器系统初始化失败**: ConfigController.__init__() takes 1 positional argument but 2 were given
+2025-10-07 22:06:07,714 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 22:06:10,990 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 22:08:45,644 - root - INFO - 应用程序启动
+2025-10-07 22:08:47,946 - root - INFO - 尚未找到 chapters 文件夹，请先生成章节或检查保存路径。
+2025-10-07 22:08:48,046 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-07 22:08:48,048 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 22:08:48,049 - root - ERROR - Failed to setup role library: create_llm_adapter() missing 6 required positional arguments: 'base_url', 'model_name', 'api_key', 'temperature', 'max_tokens', and 'timeout'
+2025-10-07 22:08:48,050 - root - ERROR - **控制器系统初始化失败**: 'NovelGeneratorGUI' object has no attribute 'configuration_manager'
+2025-10-07 22:10:05,555 - root - INFO - 应用程序退出
+2025-10-07 22:10:24,625 - root - INFO - 应用程序启动
+2025-10-07 22:10:26,831 - root - INFO - 尚未找到 chapters 文件夹，请先生成章节或检查保存路径。
+2025-10-07 22:10:26,909 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-07 22:10:26,912 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 22:10:27,990 - root - ERROR - Failed to setup role library: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2025-10-07 22:10:27,991 - root - ERROR - **控制器系统初始化失败**: property 'model' of 'ConfigController' object has no setter
+2025-10-07 22:12:41,448 - root - INFO - 应用程序启动
+2025-10-07 22:12:42,965 - root - INFO - 尚未找到 chapters 文件夹，请先生成章节或检查保存路径。
+2025-10-07 22:12:43,033 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-07 22:12:43,034 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-07 22:12:43,579 - root - ERROR - Failed to setup role library: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2025-10-07 22:12:43,579 - ControllerRegistry - INFO - Controller ConfigController registered
+2025-10-07 22:12:43,580 - ControllerRegistry - INFO - Controller NovelController registered
+2025-10-07 22:12:43,580 - ControllerRegistry - INFO - Controller GenerationController registered
+2025-10-07 22:12:43,580 - root - INFO - **控制器事件系统设置完成**
+2025-10-07 22:12:43,580 - root - INFO - **控制器系统初始化成功**
+2025-10-07 22:13:52,942 - root - INFO - 应用程序退出

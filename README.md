@@ -88,8 +88,22 @@ novel-generator/
 ├── config.json                  # 用户配置文件 (可选)
 ├── novel_generator/             # 章节生成核心逻辑
 ├── ui/                          # 图形界面
+│   ├── controllers/             # **控制器架构** (新增)
+│   │   ├── base_controller.py   # 基础控制器类
+│   │   ├── config_controller.py # 配置管理控制器
+│   │   ├── novel_controller.py  # 小说生成控制器
+│   │   └── generation_controller.py # 生成流程控制器
+│   ├── main_window.py           # 主窗口界面
+│   └── generation_handlers.py   # 生成处理函数
 └── vectorstore/                 # (可选) 本地向量数据库存储
 ```
+
+### 🏗 **架构升级亮点**
+- **🎯 控制器模式**: 采用MVC架构，分离业务逻辑与界面展示
+- **⚡ 异步支持**: 支持异步操作，提升用户体验
+- **🔄 事件驱动**: 基于事件的松耦合设计
+- **🛡 错误处理**: 统一的异常处理机制
+- **🔧 向下兼容**: 保持原有功能完整性
 
 ---
 

@@ -17,6 +17,9 @@ from .config_models import ConfigurationManager, LLMConfig, EmbeddingConfig, Nov
 from .role_library import RoleLibrary
 from llm_adapters import create_llm_adapter
 
+# 导入新的控制器架构
+from .controllers import ControllerRegistry, ConfigController, NovelController, GenerationController
+
 # 导入插件系统
 from plugins import PluginManager
 from .plugin_manager_ui import PluginManagerUI
@@ -399,7 +402,17 @@ class NovelGeneratorPresenter(BasePresenter):
         """设置角色库"""
         try:
             save_path = self.model.novel_params.filepath or "."
-            llm_adapter = create_llm_adapter(self.model.current_llm_config.__dict__)
+            # **修复create_llm_adapter调用，传递正确的参数**
+            config_dict = self.model.current_llm_config.__dict__
+            llm_adapter = create_llm_adapter(
+                interface_format=config_dict.get('interface_format', ''),
+                base_url=config_dict.get('base_url', ''),
+                model_name=config_dict.get('model_name', ''),
+                api_key=config_dict.get('api_key', ''),
+                temperature=config_dict.get('temperature', 0.7),
+                max_tokens=config_dict.get('max_tokens', 2000),
+                timeout=config_dict.get('timeout', 600)
+            )
             self.view._role_lib = RoleLibrary(self.view.master, save_path, llm_adapter)
         except Exception as e:
             logging.error(f"Failed to setup role library: {e}")
@@ -422,7 +435,17 @@ class NovelGeneratorPresenter(BasePresenter):
         try:
             if hasattr(self.view, '_role_lib'):
                 save_path = self.model.novel_params.filepath or "."
-                llm_adapter = create_llm_adapter(self.model.current_llm_config.__dict__)
+                # **修复create_llm_adapter调用，传递正确的参数**
+                config_dict = self.model.current_llm_config.__dict__
+                llm_adapter = create_llm_adapter(
+                    interface_format=config_dict.get('interface_format', ''),
+                    base_url=config_dict.get('base_url', ''),
+                    model_name=config_dict.get('model_name', ''),
+                    api_key=config_dict.get('api_key', ''),
+                    temperature=config_dict.get('temperature', 0.7),
+                    max_tokens=config_dict.get('max_tokens', 2000),
+                    timeout=config_dict.get('timeout', 600)
+                )
                 self.view._role_lib = RoleLibrary(self.view.master, save_path, llm_adapter)
         except Exception as e:
             logging.error(f"Failed to update role library: {e}")
@@ -468,12 +491,20 @@ class NovelGeneratorGUI:
     def __init__(self, master):
         # 创建配置管理器
         self.config_manager = ConfigurationManager()
+        # **添加configuration_manager别名以支持控制器**
+        self.configuration_manager = self.config_manager
+        
+        # **添加logger属性**
+        self.logger = logging.getLogger("NovelGeneratorGUI")
         
         # 创建View
         self.view = NovelGeneratorView(master)
         
         # 创建Presenter
         self.presenter = NovelGeneratorPresenter(self.config_manager, self.view)
+        
+        # **初始化控制器系统**
+        self._setup_controllers()
         
         # 保持向后兼容的属性访问
         self._setup_compatibility_attributes()
@@ -491,6 +522,70 @@ class NovelGeneratorGUI:
         # 设置观察者模式
         self.config_manager.add_observer(self.presenter)
     
+    def _setup_controllers(self):
+        """**初始化控制器系统**"""
+        try:
+            # 创建控制器注册表
+            self.controller_registry = ControllerRegistry()
+            
+            # 创建各个控制器
+            self.config_controller = ConfigController()
+            self.novel_controller = NovelController()
+            self.generation_controller = GenerationController()
+            
+            # **使用set_model方法设置模型**
+            self.config_controller.set_model(self.configuration_manager)
+            self.novel_controller.set_model(self.configuration_manager)
+            self.generation_controller.set_model(self.configuration_manager)
+            
+            # 注册控制器
+            self.controller_registry.register(self.config_controller)
+            self.controller_registry.register(self.novel_controller)
+            self.controller_registry.register(self.generation_controller)
+            
+            # 设置控制器间的事件监听
+            self._setup_controller_events()
+            
+            logging.info("**控制器系统初始化成功**")
+            
+        except Exception as e:
+            logging.error(f"**控制器系统初始化失败**: {e}")
+            # 即使控制器初始化失败，也不应该阻止应用程序启动
+            # 设置为None以便后续检查
+            self.config_controller = None
+            self.novel_controller = None
+            self.generation_controller = None
+    
+    def _setup_controller_events(self):
+        """设置控制器间的事件监听"""
+        if not self.controller_registry:
+            return
+            
+        try:
+            # 配置变更事件
+            self.config_controller.add_event_listener("config_changed", 
+                lambda data: self.novel_controller.handle_config_change(data))
+            self.config_controller.add_event_listener("config_changed", 
+                lambda data: self.generation_controller.handle_config_change(data))
+            
+            # 项目变更事件
+            self.novel_controller.add_event_listener("project_changed", 
+                lambda data: self.generation_controller.handle_project_change(data))
+            
+            logging.info("**控制器事件系统设置完成**")
+            
+        except Exception as e:
+            logging.error(f"**控制器事件设置失败**: {e}")
+    
+    def cleanup(self):
+        """清理资源"""
+        try:
+            if hasattr(self, 'controller_registry') and self.controller_registry:
+                self.controller_registry.cleanup_all()
+                logging.info("**控制器系统清理完成**")
+        except Exception as e:
+            logging.error(f"**控制器清理失败**: {e}")
+        
     def _setup_compatibility_attributes(self):
         """设置向后兼容的属性"""
         # 将View的属性暴露到主类中（保持兼容性）
