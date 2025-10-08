@@ -535,8 +535,11 @@ class NovelGeneratorGUI:
             
             # **使用set_model方法设置模型**
             self.config_controller.set_model(self.configuration_manager)
+            self.config_controller.set_view(self.view)  # 添加这行
             self.novel_controller.set_model(self.configuration_manager)
+            self.novel_controller.set_view(self.view)  # 添加这行
             self.generation_controller.set_model(self.configuration_manager)
+            self.generation_controller.set_view(self.view)  # 添加这行
             
             # 注册控制器
             self.controller_registry.register(self.config_controller)
@@ -727,7 +730,20 @@ class NovelGeneratorGUI:
             try:
                 loop = asyncio.new_event_loop()
                 asyncio.set_event_loop(loop)
-                loop.run_until_complete(self.config_controller.test_llm_configuration())
+                
+                # ═══════════════════════════════════════════════════════════════
+                # 获取当前选中的LLM配置名称
+                # ═══════════════════════════════════════════════════════════════
+                current_llm_name = None
+                if hasattr(self.view, 'interface_config_var'):
+                    current_llm_name = self.view.interface_config_var.get()
+                    self.view.safe_log(f"**正在测试LLM配置**: {current_llm_name}")
+                
+                # 调用Controller测试方法，传递配置名称
+                loop.run_until_complete(
+                    self.config_controller.test_llm_configuration(current_llm_name)
+                )
+                
             except Exception as e:
                 self.view.safe_log(f"**测试LLM配置失败**: {str(e)}")
             finally:
