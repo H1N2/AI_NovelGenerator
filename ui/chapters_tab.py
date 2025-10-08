@@ -21,20 +21,20 @@ def build_chapters_tab(self):
     top_frame.columnconfigure(3, weight=0)
     top_frame.columnconfigure(4, weight=1)
 
-    prev_btn = ctk.CTkButton(top_frame, text=t("buttons.prev_chapter"), command=self.prev_chapter, font=("Microsoft YaHei", 12))
+    prev_btn = ctk.CTkButton(top_frame, text=t("buttons.prev_chapter"), command=lambda: prev_chapter(self), font=("Microsoft YaHei", 12))
     prev_btn.grid(row=0, column=0, padx=5, pady=5, sticky="w")
 
-    next_btn = ctk.CTkButton(top_frame, text=t("buttons.next_chapter"), command=self.next_chapter, font=("Microsoft YaHei", 12))
+    next_btn = ctk.CTkButton(top_frame, text=t("buttons.next_chapter"), command=lambda: next_chapter(self), font=("Microsoft YaHei", 12))
     next_btn.grid(row=0, column=1, padx=5, pady=5, sticky="w")
 
     self.chapter_select_var = ctk.StringVar(value="")
-    self.chapter_select_menu = ctk.CTkOptionMenu(top_frame, values=[], variable=self.chapter_select_var, command=self.on_chapter_selected, font=("Microsoft YaHei", 12))
+    self.chapter_select_menu = ctk.CTkOptionMenu(top_frame, values=[], variable=self.chapter_select_var, command=lambda value: on_chapter_selected(self, value), font=("Microsoft YaHei", 12))
     self.chapter_select_menu.grid(row=0, column=2, padx=5, pady=5, sticky="w")
 
     save_btn = ctk.CTkButton(top_frame, text=t("buttons.save_changes"), command=lambda: self.save_current_chapter(self), font=("Microsoft YaHei", 12))
     save_btn.grid(row=0, column=3, padx=5, pady=5, sticky="w")
 
-    refresh_btn = ctk.CTkButton(top_frame, text=t("buttons.refresh_chapters"), command=self.refresh_chapters_list, font=("Microsoft YaHei", 12))
+    refresh_btn = ctk.CTkButton(top_frame, text=t("buttons.refresh_chapters"), command=lambda: refresh_chapters_list(self), font=("Microsoft YaHei", 12))
     refresh_btn.grid(row=0, column=5, padx=5, pady=5, sticky="e")
 
     self.chapters_word_count_label = ctk.CTkLabel(top_frame, text=f"{t('labels.word_count')}: 0", font=("Microsoft YaHei", 12))

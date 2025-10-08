@@ -104,32 +104,32 @@ def build_optional_buttons_area(self, start_row=2):
     self.optional_btn_frame.columnconfigure((0, 1, 2, 3, 4), weight=1)
 
     self.btn_check_consistency = ctk.CTkButton(
-        self.optional_btn_frame, text="一致性审校", command=self.do_consistency_check, 
+        self.optional_btn_frame, text="一致性审校", command=lambda: self.do_consistency_check(self), 
         font=("Microsoft YaHei", 12), width=100  # 固定宽度
     )
     self.btn_check_consistency.grid(row=0, column=0, padx=5, pady=5, sticky="ew")
 
     self.btn_import_knowledge = ctk.CTkButton(
-        self.optional_btn_frame, text="导入知识库", command=self.import_knowledge_handler,
+        self.optional_btn_frame, text="导入知识库", command=lambda: self.import_knowledge_handler(self),
         font=("Microsoft YaHei", 12), width=100
     )
     self.btn_import_knowledge.grid(row=0, column=1, padx=5, pady=5, sticky="ew")
 
     self.btn_clear_vectorstore = ctk.CTkButton(
         self.optional_btn_frame, text="清空向量库", fg_color="red", 
-        command=self.clear_vectorstore_handler, font=("Microsoft YaHei", 12), width=100
+        command=lambda: self.clear_vectorstore_handler(self), font=("Microsoft YaHei", 12), width=100
     )
     self.btn_clear_vectorstore.grid(row=0, column=2, padx=5, pady=5, sticky="ew")
 
     self.plot_arcs_btn = ctk.CTkButton(
-        self.optional_btn_frame, text="查看剧情要点", command=self.show_plot_arcs_ui,
+        self.optional_btn_frame, text="查看剧情要点", command=lambda: self.show_plot_arcs_ui(self),
         font=("Microsoft YaHei", 12), width=100
     )
     self.plot_arcs_btn.grid(row=0, column=3, padx=5, pady=5, sticky="ew")
 
     # 新增角色库按钮
     self.role_library_btn = ctk.CTkButton(
-        self.optional_btn_frame, text="角色库", command=self.show_role_library,
+        self.optional_btn_frame, text="角色库", command=lambda: self.show_role_library(self),
         font=("Microsoft YaHei", 12), width=100
     )
     self.role_library_btn.grid(row=0, column=4, padx=5, pady=5, sticky="ew")

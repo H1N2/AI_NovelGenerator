@@ -316,3 +316,33 @@
 2025-10-08 14:48:52,289 - root - INFO - 尚未找到 chapters 文件夹，请先生成章节或检查保存路径。
 2025-10-08 14:48:52,478 - root - ERROR - Observer notification failed: 'NovelGeneratorPresenter' object is not callable
 2025-10-08 14:48:52,479 - root - INFO - **配置控制器异步初始化完成**
+2025-10-08 14:53:28,288 - root - INFO - 应用程序启动
+2025-10-08 14:53:30,093 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-08 14:53:30,096 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-08 14:53:30,241 - root - ERROR - Failed to setup role library: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2025-10-08 14:53:30,241 - root - INFO - **开始初始化控制器系统**
+2025-10-08 14:53:30,243 - ControllerRegistry - INFO - Controller ConfigController registered
+2025-10-08 14:53:30,243 - ControllerRegistry - INFO - Controller NovelController registered
+2025-10-08 14:53:30,243 - ControllerRegistry - INFO - Controller GenerationController registered
+2025-10-08 14:53:30,243 - root - INFO - **控制器事件系统设置完成**
+2025-10-08 14:53:30,243 - root - INFO - **控制器系统初始化成功**
+2025-10-08 14:53:30,255 - root - INFO - 尚未找到 chapters 文件夹，请先生成章节或检查保存路径。
+2025-10-08 14:53:31,392 - root - ERROR - Observer notification failed: 'NovelGeneratorPresenter' object is not callable
+2025-10-08 14:53:31,394 - root - INFO - **配置控制器异步初始化完成**
+2025-10-08 14:55:06,978 - root - INFO - 已加载 Novel_architecture.txt 内容到编辑区。
+2025-10-08 14:55:14,994 - root - ERROR - 生成小说架构时出错: Traceback (most recent call last):
+  File "G:\04-code\AIDone\AI_NovelGenerator\ui\generation_handlers.py", line 71, in task
+    self._generate_architecture_fallback(filepath)
+AttributeError: 'NovelGeneratorView' object has no attribute '_generate_architecture_fallback'
+
+2025-10-08 14:55:20,833 - root - ERROR - 生成小说架构时出错: Traceback (most recent call last):
+  File "G:\04-code\AIDone\AI_NovelGenerator\ui\generation_handlers.py", line 71, in task
+    self._generate_architecture_fallback(filepath)
+AttributeError: 'NovelGeneratorView' object has no attribute '_generate_architecture_fallback'
+
+2025-10-08 14:55:30,028 - root - INFO - 已加载 Novel_architecture.txt 内容到编辑区。
+2025-10-08 14:55:45,561 - root - ERROR - 生成小说架构时出错: Traceback (most recent call last):
+  File "G:\04-code\AIDone\AI_NovelGenerator\ui\generation_handlers.py", line 71, in task
+    self._generate_architecture_fallback(filepath)
+AttributeError: 'NovelGeneratorView' object has no attribute '_generate_architecture_fallback'
+
