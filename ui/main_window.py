@@ -741,8 +741,9 @@ class NovelGeneratorGUI:
         
         # 添加异步包装函数，用于UI按钮调用
         self.view._test_llm_config_async = self._test_llm_config_async
+        self.view._test_llm_config_with_button_state = self._test_llm_config_with_button_state
         self.view._test_embedding_config_async = self._test_embedding_config_async
-    
+
     def _test_llm_config_async(self):
         """异步包装函数，用于UI按钮调用LLM配置测试"""
         import asyncio
@@ -769,6 +770,46 @@ class NovelGeneratorGUI:
             except Exception as e:
                 self.view.safe_log(f"**测试LLM配置失败**: {str(e)}")
             finally:
+                loop.close()
+        
+        thread = threading.Thread(target=run_async, daemon=True)
+        thread.start()
+    
+    def _test_llm_config_with_button_state(self, button):
+        """带按钮状态管理的LLM配置测试方法"""
+        import asyncio
+        import threading
+        
+        def run_async():
+            try:
+                # ═══════════════════════════════════════════════════════════════
+                # 禁用按钮，防止重复点击
+                # ═══════════════════════════════════════════════════════════════
+                if button and hasattr(button, 'configure'):
+                    button.configure(state="disabled", text="测试中...")
+                
+                loop = asyncio.new_event_loop()
+                asyncio.set_event_loop(loop)
+                
+                # 获取当前选中的LLM配置名称
+                current_llm_name = None
+                if hasattr(self.view, 'interface_config_var'):
+                    current_llm_name = self.view.interface_config_var.get()
+                    self.view.safe_log(f"**正在测试LLM配置**: {current_llm_name}")
+                
+                # 调用Controller测试方法，传递配置名称
+                loop.run_until_complete(
+                    self.config_controller.test_llm_configuration(current_llm_name)
+                )
+                
+            except Exception as e:
+                self.view.safe_log(f"**测试LLM配置失败**: {str(e)}")
+            finally:
+                # ═══════════════════════════════════════════════════════════════
+                # 恢复按钮状态
+                # ═══════════════════════════════════════════════════════════════
+                if button and hasattr(button, 'configure'):
+                    button.configure(state="normal", text=t("config.llm.test_connection"))
                 loop.close()
         
         thread = threading.Thread(target=run_async, daemon=True)

@@ -578,14 +578,19 @@ def build_ai_config_tab(self):
     )
     self.timeout_value_label.grid(row=row_start+6, column=2, padx=5, pady=5, sticky="w")
     
-    # 测试按钮
+    # ═══════════════════════════════════════════════════════════════
+    # 测试按钮 - 添加状态管理支持
+    # ═══════════════════════════════════════════════════════════════
     test_btn = ctk.CTkButton(
         self.ai_config_tab, 
         text=t("config.llm.test_connection"), 
-        command=lambda: self._test_llm_config_async(),
+        command=lambda: self._test_llm_config_with_button_state(test_btn),
         font=("Microsoft YaHei", 12)
     )
     test_btn.grid(row=row_start+7, column=0, columnspan=3, padx=5, pady=5, sticky="ew")
+    
+    # 保存按钮引用，用于状态管理
+    self.llm_test_btn = test_btn
 
     # 初始化当前配置
     on_config_selected(config_names[0])
