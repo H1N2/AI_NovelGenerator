@@ -336,13 +336,28 @@ class NovelGeneratorView(BaseView):
             return default
     
     def log(self, message: str):
-        """记录日志"""
+        """记录日志到UI控件和系统日志"""
+        # 记录到系统日志
         logging.info(message)
+        
+        # 记录到UI控件（如果存在）
+        if hasattr(self, 'log_text') and self.log_text:
+            try:
+                self.log_text.configure(state="normal")
+                self.log_text.insert("end", message + "\n")
+                self.log_text.see("end")
+                self.log_text.configure(state="disabled")
+            except Exception as e:
+                print(f"UI log output failed: {e}")
     
     def safe_log(self, message: str):
-        """安全记录日志"""
+        """安全记录日志（线程安全）"""
         try:
-            self.log(message)
+            # 使用after方法确保在主线程中执行UI更新
+            if hasattr(self, 'master') and self.master:
+                self.master.after(0, lambda: self.log(message))
+            else:
+                self.log(message)
         except Exception as e:
             print(f"Logging failed: {e}")
     

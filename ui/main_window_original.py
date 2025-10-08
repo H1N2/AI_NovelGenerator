@@ -194,13 +194,26 @@ class NovelGeneratorGUI:
             return default
 
     def log(self, message: str):
-        self.log_text.configure(state="normal")
-        self.log_text.insert("end", message + "\n")
-        self.log_text.see("end")
-        self.log_text.configure(state="disabled")
+        """记录日志到UI控件和系统日志"""
+        # 记录到系统日志
+        logging.info(message)
+        
+        # 记录到UI控件
+        if hasattr(self, 'log_text') and self.log_text:
+            try:
+                self.log_text.configure(state="normal")
+                self.log_text.insert("end", message + "\n")
+                self.log_text.see("end")
+                self.log_text.configure(state="disabled")
+            except Exception as e:
+                print(f"UI log output failed: {e}")
 
     def safe_log(self, message: str):
-        self.master.after(0, lambda: self.log(message))
+        """安全记录日志（线程安全）"""
+        if hasattr(self, 'master') and self.master:
+            self.master.after(0, lambda: self.log(message))
+        else:
+            self.log(message)
 
     def disable_button_safe(self, btn):
         self.master.after(0, lambda: btn.configure(state="disabled"))
