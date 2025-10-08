@@ -111,31 +111,31 @@ def save_config(config_data: dict, config_file: str) -> bool:
 
 def test_llm_config(interface_format, api_key, base_url, model_name, temperature, max_tokens, timeout, log_func, handle_exception_func):
     """测试当前的LLM配置是否可用"""
-    def task():
-        try:
-            log_func("开始测试LLM配置...")
-            llm_adapter = create_llm_adapter(
-                interface_format=interface_format,
-                base_url=base_url,
-                model_name=model_name,
-                api_key=api_key,
-                temperature=temperature,
-                max_tokens=max_tokens,
-                timeout=timeout
-            )
+    try:
+        log_func("开始测试LLM配置...")
+        llm_adapter = create_llm_adapter(
+            interface_format=interface_format,
+            base_url=base_url,
+            model_name=model_name,
+            api_key=api_key,
+            temperature=temperature,
+            max_tokens=max_tokens,
+            timeout=timeout
+        )
 
-            test_prompt = "Please reply 'OK'"
-            response = llm_adapter.invoke(test_prompt)
-            if response:
-                log_func("✅ LLM配置测试成功！")
-                log_func(f"测试回复: {response}")
-            else:
-                log_func("❌ LLM配置测试失败：未获取到响应")
-        except Exception as e:
-            log_func(f"❌ LLM配置测试出错: {str(e)}")
-            handle_exception_func("测试LLM配置时出错")
-
-    threading.Thread(target=task, daemon=True).start()
+        test_prompt = "Please reply 'OK'"
+        response = llm_adapter.invoke(test_prompt)
+        if response:
+            log_func("✅ LLM配置测试成功！")
+            log_func(f"测试回复: {response}")
+            return True
+        else:
+            log_func("❌ LLM配置测试失败：未获取到响应")
+            return False
+    except Exception as e:
+        log_func(f"❌ LLM配置测试出错: {str(e)}")
+        handle_exception_func("测试LLM配置时出错")
+        return False
 
 def test_embedding_config(api_key, base_url, interface_format, model_name, log_func, handle_exception_func):
     """测试当前的Embedding配置是否可用"""
