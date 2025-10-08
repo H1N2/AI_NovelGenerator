@@ -47,29 +47,38 @@ class ConfigController(BaseController):
             self.set_state(ControllerState.PROCESSING)
             
             # 从Model加载配置
-            if hasattr(self.model, 'load_config'):
-                config_data = await asyncio.to_thread(self.model.load_config)
+            if hasattr(self.model, 'load_configuration'):
+                # ConfigurationManager的方法是load_configuration，不是load_config
+                success = await asyncio.to_thread(self.model.load_configuration)
                 
-                if config_data:
-                    self._config_cache = config_data
-                    self._extract_current_configs(config_data)
+                if success:
+                    # 获取配置数据
+                    config_data = await asyncio.to_thread(self.model._get_current_config)
                     
-                    # 通知View更新
-                    if hasattr(self.view, 'update_config_display'):
-                        self.view.update_config_display(config_data)
-                    
-                    # 发出配置加载完成事件
-                    event = ControllerEvent(
-                        event_type="config_loaded",
-                        source=self.name,
-                        data=config_data
-                    )
-                    self.emit_event(event)
-                    
-                    self.set_state(ControllerState.COMPLETED)
-                    return True
+                    if config_data:
+                        self._config_cache = config_data
+                        self._extract_current_configs(config_data)
+                        
+                        # 通知View更新
+                        if hasattr(self.view, 'update_config_display'):
+                            self.view.update_config_display(config_data)
+                        
+                        # 发出配置加载完成事件
+                        event = ControllerEvent(
+                            event_type="config_loaded",
+                            source=self.name,
+                            data=config_data
+                        )
+                        self.emit_event(event)
+                        
+                        self.set_state(ControllerState.COMPLETED)
+                        return True
+                    else:
+                        self.logger.warning("配置数据获取失败")
+                        self.set_state(ControllerState.IDLE)
+                        return False
                 else:
-                    self.logger.warning("配置文件为空或不存在")
+                    self.logger.warning("配置文件加载失败")
                     self.set_state(ControllerState.IDLE)
                     return False
             else:
