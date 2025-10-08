@@ -61,7 +61,7 @@ def build_left_layout(self):
     self.btn_generate_architecture = ctk.CTkButton(
         self.step_buttons_frame,
         text=t("buttons.generate_architecture"),
-        command=self.generate_novel_architecture_ui,
+        command=lambda: self.generate_novel_architecture_ui(self),
         font=("Microsoft YaHei", 12)
     )
     self.btn_generate_architecture.grid(row=0, column=0, padx=5, pady=2, sticky="ew")
@@ -69,7 +69,7 @@ def build_left_layout(self):
     self.btn_generate_directory = ctk.CTkButton(
         self.step_buttons_frame,
         text=t("buttons.generate_directory"),
-        command=self.generate_chapter_blueprint_ui,
+        command=lambda: self.generate_chapter_blueprint_ui(self),
         font=("Microsoft YaHei", 12)
     )
     self.btn_generate_directory.grid(row=0, column=1, padx=5, pady=2, sticky="ew")
@@ -77,7 +77,7 @@ def build_left_layout(self):
     self.btn_generate_chapter = ctk.CTkButton(
         self.step_buttons_frame,
         text=t("buttons.generate_draft"),
-        command=self.generate_chapter_draft_ui,
+        command=lambda: self.generate_chapter_draft_ui(self),
         font=("Microsoft YaHei", 12)
     )
     self.btn_generate_chapter.grid(row=0, column=2, padx=5, pady=2, sticky="ew")
@@ -85,7 +85,7 @@ def build_left_layout(self):
     self.btn_finalize_chapter = ctk.CTkButton(
         self.step_buttons_frame,
         text=t("buttons.finalize_chapter"),
-        command=self.finalize_chapter_ui,
+        command=lambda: self.finalize_chapter_ui(self),
         font=("Microsoft YaHei", 12)
     )
     self.btn_finalize_chapter.grid(row=0, column=3, padx=5, pady=2, sticky="ew")
@@ -93,7 +93,7 @@ def build_left_layout(self):
     self.btn_batch_generate = ctk.CTkButton(
         self.step_buttons_frame,
         text=t("buttons.batch_generate"),
-        command=self.generate_batch_ui,
+        command=lambda: self.generate_batch_ui(self),
         font=("Microsoft YaHei", 12)
     )
     self.btn_batch_generate.grid(row=0, column=4, padx=5, pady=2, sticky="ew")
