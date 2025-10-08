@@ -13,6 +13,84 @@ from language_manager import t
 import os
 
 
+# ===== 配置数据安全访问工具函数 =====
+
+def _ensure_config_initialized(self):
+    """
+    确保loaded_config已正确初始化
+    
+    Args:
+        self: 包含配置相关属性的对象实例
+    """
+    if not hasattr(self, 'loaded_config') or not self.loaded_config:
+        self.loaded_config = {}
+        
+        # 优先从Controller获取配置
+        if hasattr(self, 'config_controller') and self.config_controller:
+            try:
+                current_config = self.config_controller.get_current_config()
+                if current_config:
+                    self.loaded_config = current_config
+            except Exception as e:
+                print(f"从Controller获取配置失败: {e}")
+        
+        # 如果Controller不可用，尝试从配置管理器获取
+        if not self.loaded_config and hasattr(self, 'config_manager') and self.config_manager:
+            try:
+                current_config = self.config_manager._get_current_config()
+                if current_config:
+                    self.loaded_config = current_config
+            except Exception as e:
+                print(f"从配置管理器获取配置失败: {e}")
+        
+        # 最后的兜底方案：直接加载配置文件
+        if not self.loaded_config:
+            try:
+                from config_manager import load_config
+                self.loaded_config = load_config("config.json") or {}
+            except Exception as e:
+                print(f"直接加载配置文件失败: {e}")
+                self.loaded_config = {}
+
+def _get_llm_config_names(self):
+    """
+    统一的LLM配置名称获取接口
+    
+    Returns:
+        list: LLM配置名称列表
+    """
+    if hasattr(self, 'config_controller') and self.config_controller:
+        try:
+            return self.config_controller.get_llm_config_names()
+        except Exception:
+            pass
+    
+    # 兜底方案：从loaded_config获取
+    _ensure_config_initialized(self)
+    return list(self.loaded_config.get("llm_configs", {}).keys())
+
+def _get_llm_config(self, config_name):
+    """
+    统一的LLM配置获取接口
+    
+    Args:
+        config_name (str): 配置名称
+        
+    Returns:
+        dict: LLM配置数据
+    """
+    if hasattr(self, 'config_controller') and self.config_controller:
+        try:
+            return self.config_controller.get_llm_config(config_name)
+        except Exception:
+            pass
+    
+    # 兜底方案：从loaded_config获取
+    _ensure_config_initialized(self)
+    return self.loaded_config.get("llm_configs", {}).get(config_name, {})
+
+# ===== 原有的工具函数 =====
+
 def create_label_with_help(self, parent, label_text, tooltip_key, row, column,
                            font=None, sticky="e", padx=5, pady=5):
     """
@@ -41,6 +119,9 @@ def build_config_tabview(self):
     """
     创建包含 LLM Model settings 和 Embedding settings 的选项卡。
     """
+    # ===== 配置数据初始化安全检查 =====
+    _ensure_config_initialized(self)
+    
     self.config_tabview = ctk.CTkTabview(self.config_frame)
     self.config_tabview.grid(row=0, column=0, sticky="we", padx=5, pady=5)
 
@@ -62,11 +143,8 @@ def build_config_tabview(self):
 def build_ai_config_tab(self):
     def refresh_config_dropdown():
         """刷新配置下拉菜单"""
-        # **使用控制器获取配置列表**
-        if hasattr(self, 'config_controller') and self.config_controller:
-            config_names = self.config_controller.get_llm_config_names()
-        else:
-            config_names = list(self.loaded_config.get("llm_configs", {}).keys())
+        # **使用统一的配置获取接口**
+        config_names = _get_llm_config_names(self)
         
         interface_config_dropdown.configure(values=config_names)
         if config_names and self.interface_config_var.get() not in config_names:
@@ -74,30 +152,10 @@ def build_ai_config_tab(self):
 
     def on_config_selected(new_value):
         """当选择不同配置时的回调"""
-        # **使用控制器加载配置**
-        if hasattr(self, 'config_controller') and self.config_controller:
-            try:
-                config = self.config_controller.get_llm_config(new_value)
-                if config:
-                    # 更新所有UI变量
-                    self.api_key_var.set(config.api_key)
-                    self.base_url_var.set(config.base_url)
-                    self.model_name_var.set(config.model_name)
-                    self.temperature_var.set(config.temperature)
-                    self.max_tokens_var.set(config.max_tokens)
-                    self.timeout_var.set(config.timeout)
-                    self.interface_format_var.set(config.interface_format)
-                    
-                    # 更新显示标签
-                    self.temp_value_label.configure(text=f"{config.temperature:.2f}")
-                    self.max_tokens_value_label.configure(text=str(config.max_tokens))
-                    self.timeout_value_label.configure(text=str(config.timeout))
-            except Exception as e:
-                messagebox.showerror("错误", f"加载配置失败: {e}")
-        else:
-            # 原有逻辑作为备用
-            if new_value in self.loaded_config.get("llm_configs", {}):
-                config = self.loaded_config["llm_configs"][new_value]
+        if new_value:
+            # 使用统一的配置获取接口
+            config = _get_llm_config(self, new_value)
+            if config:
                 # 更新所有UI变量
                 self.api_key_var.set(config.get("api_key", ""))
                 self.base_url_var.set(config.get("base_url", ""))
@@ -150,6 +208,7 @@ def build_ai_config_tab(self):
                 messagebox.showerror("错误", f"创建配置失败: {e}")
         else:
             # 原有逻辑作为备用
+            _ensure_config_initialized(self)
             if new_name in self.loaded_config.get("llm_configs", {}):
                 messagebox.showerror("错误", f"配置名称 '{new_name}' 已存在!")
                 return
@@ -313,7 +372,9 @@ def build_ai_config_tab(self):
         if new_name == old_name:
             return
             
-        if new_name in self.loaded_config.get("llm_configs", {}):
+        # 检查配置名称是否已存在
+        existing_names = _get_llm_config_names(self)
+        if new_name in existing_names:
             messagebox.showerror("错误", f"配置名称 '{new_name}' 已存在!")
             return
             
@@ -520,7 +581,7 @@ def build_ai_config_tab(self):
     # 测试按钮
     test_btn = ctk.CTkButton(
         self.ai_config_tab, 
-        text="测试配置", 
+        text=t("config.llm.test_connection"), 
         command=lambda: self._test_llm_config_async(),
         font=("Microsoft YaHei", 12)
     )
