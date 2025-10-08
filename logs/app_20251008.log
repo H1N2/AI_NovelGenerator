@@ -110,3 +110,209 @@
 2025-10-08 11:53:24,162 - root - INFO - **控制器系统初始化成功**
 2025-10-08 11:53:36,391 - root - INFO - 应用程序退出
 2025-10-08 11:57:54,232 - root - INFO - 应用程序启动
+2025-10-08 12:16:32,798 - root - INFO - 应用程序启动
+2025-10-08 12:16:34,636 - root - INFO - 尚未找到 chapters 文件夹，请先生成章节或检查保存路径。
+2025-10-08 12:16:34,701 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-08 12:16:34,704 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-08 12:16:34,812 - root - ERROR - Failed to setup role library: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2025-10-08 12:16:34,812 - ControllerRegistry - INFO - Controller ConfigController registered
+2025-10-08 12:16:34,813 - ControllerRegistry - INFO - Controller NovelController registered
+2025-10-08 12:16:34,813 - ControllerRegistry - INFO - Controller GenerationController registered
+2025-10-08 12:16:34,813 - root - INFO - **控制器事件系统设置完成**
+2025-10-08 12:16:34,813 - root - INFO - **控制器系统初始化成功**
+2025-10-08 12:53:36,280 - root - INFO - 应用程序启动
+2025-10-08 12:53:38,054 - root - INFO - 尚未找到 chapters 文件夹，请先生成章节或检查保存路径。
+2025-10-08 12:53:38,116 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-08 12:53:38,122 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-08 12:53:38,222 - root - ERROR - Failed to setup role library: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2025-10-08 12:53:38,222 - ControllerRegistry - INFO - Controller ConfigController registered
+2025-10-08 12:53:38,223 - ControllerRegistry - INFO - Controller NovelController registered
+2025-10-08 12:53:38,223 - ControllerRegistry - INFO - Controller GenerationController registered
+2025-10-08 12:53:38,223 - root - INFO - **控制器事件系统设置完成**
+2025-10-08 12:53:38,223 - root - INFO - **控制器系统初始化成功**
+2025-10-08 13:55:01,400 - root - INFO - 应用程序退出
+2025-10-08 13:55:46,949 - root - INFO - 尚未找到 chapters 文件夹，请先生成章节或检查保存路径。
+2025-10-08 13:55:47,029 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-08 13:55:47,033 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-08 13:55:47,232 - root - ERROR - Failed to setup role library: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2025-10-08 13:55:47,233 - ControllerRegistry - INFO - Controller ConfigController registered
+2025-10-08 13:55:47,233 - ControllerRegistry - INFO - Controller NovelController registered
+2025-10-08 13:55:47,235 - ControllerRegistry - INFO - Controller GenerationController registered
+2025-10-08 13:55:47,236 - root - INFO - **控制器事件系统设置完成**
+2025-10-08 13:55:47,238 - root - INFO - **控制器系统初始化成功**
+2025-10-08 13:55:51,391 - root - INFO - 应用程序启动
+2025-10-08 13:56:06,265 - root - INFO - 尚未找到 chapters 文件夹，请先生成章节或检查保存路径。
+2025-10-08 13:56:06,351 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-08 13:56:06,354 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-08 13:56:06,538 - root - ERROR - Failed to setup role library: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2025-10-08 13:56:06,539 - ControllerRegistry - INFO - Controller ConfigController registered
+2025-10-08 13:56:06,539 - ControllerRegistry - INFO - Controller NovelController registered
+2025-10-08 13:56:06,540 - ControllerRegistry - INFO - Controller GenerationController registered
+2025-10-08 13:56:06,540 - root - INFO - **控制器事件系统设置完成**
+2025-10-08 13:56:06,540 - root - INFO - **控制器系统初始化成功**
+2025-10-08 13:57:31,405 - root - INFO - 应用程序退出
+2025-10-08 13:58:11,189 - root - INFO - 应用程序启动
+2025-10-08 13:58:12,911 - root - INFO - 尚未找到 chapters 文件夹，请先生成章节或检查保存路径。
+2025-10-08 13:58:12,976 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-08 13:58:12,978 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-08 13:58:13,080 - root - ERROR - Failed to setup role library: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2025-10-08 13:58:13,080 - ControllerRegistry - INFO - Controller ConfigController registered
+2025-10-08 13:58:13,080 - ControllerRegistry - INFO - Controller NovelController registered
+2025-10-08 13:58:13,080 - ControllerRegistry - INFO - Controller GenerationController registered
+2025-10-08 13:58:13,081 - root - INFO - **控制器事件系统设置完成**
+2025-10-08 13:58:13,081 - root - INFO - **控制器系统初始化成功**
+2025-10-08 14:04:51,715 - root - INFO - 应用程序启动
+2025-10-08 14:04:53,516 - root - INFO - 尚未找到 chapters 文件夹，请先生成章节或检查保存路径。
+2025-10-08 14:04:53,581 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-08 14:04:53,584 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-08 14:04:53,688 - root - ERROR - Failed to setup role library: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2025-10-08 14:04:53,689 - ControllerRegistry - INFO - Controller ConfigController registered
+2025-10-08 14:04:53,689 - ControllerRegistry - INFO - Controller NovelController registered
+2025-10-08 14:04:53,689 - ControllerRegistry - INFO - Controller GenerationController registered
+2025-10-08 14:04:53,689 - root - INFO - **控制器事件系统设置完成**
+2025-10-08 14:04:53,689 - root - INFO - **控制器系统初始化成功**
+2025-10-08 14:05:00,622 - root - INFO - **正在测试LLM配置**: GLM-4.5-Flash
+2025-10-08 14:05:03,374 - root - INFO - **正在测试LLM配置**: GLM-4.5-Flash
+2025-10-08 14:05:22,143 - root - INFO - 应用程序退出
+2025-10-08 14:05:28,007 - root - INFO - **正在测试LLM配置**: GLM-4.5-Flash
+2025-10-08 14:05:30,902 - root - INFO - **正在测试LLM配置**: GLM-4.5-Flash
+2025-10-08 14:06:11,649 - root - INFO - **正在测试LLM配置**: GLM-4.5-Flash
+2025-10-08 14:09:46,101 - root - INFO - 应用程序退出
+2025-10-08 14:10:57,907 - root - INFO - 应用程序启动
+2025-10-08 14:11:06,705 - root - INFO - 尚未找到 chapters 文件夹，请先生成章节或检查保存路径。
+2025-10-08 14:11:06,785 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-08 14:11:06,788 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-08 14:11:06,948 - root - ERROR - Failed to setup role library: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2025-10-08 14:11:06,949 - ControllerRegistry - INFO - Controller ConfigController registered
+2025-10-08 14:11:06,949 - ControllerRegistry - INFO - Controller NovelController registered
+2025-10-08 14:11:06,949 - ControllerRegistry - INFO - Controller GenerationController registered
+2025-10-08 14:11:06,950 - root - INFO - **控制器事件系统设置完成**
+2025-10-08 14:11:06,950 - root - INFO - **控制器系统初始化成功**
+2025-10-08 14:11:17,840 - root - INFO - **正在测试LLM配置**: GLM-4.5-Flash
+2025-10-08 14:17:19,878 - root - INFO - 应用程序启动
+2025-10-08 14:17:21,610 - root - INFO - 尚未找到 chapters 文件夹，请先生成章节或检查保存路径。
+2025-10-08 14:17:21,672 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-08 14:17:21,675 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-08 14:17:21,780 - root - ERROR - Failed to setup role library: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2025-10-08 14:17:21,780 - root - INFO - **开始初始化控制器系统**
+2025-10-08 14:17:21,781 - ControllerRegistry - INFO - Controller ConfigController registered
+2025-10-08 14:17:21,782 - ControllerRegistry - INFO - Controller NovelController registered
+2025-10-08 14:17:21,782 - ControllerRegistry - INFO - Controller GenerationController registered
+2025-10-08 14:17:21,782 - root - INFO - **控制器事件系统设置完成**
+2025-10-08 14:17:21,782 - root - INFO - **控制器系统初始化成功**
+2025-10-08 14:17:21,784 - Controller.ConfigController - ERROR - Model不支持配置加载
+2025-10-08 14:17:21,784 - root - INFO - **配置控制器异步初始化完成**
+2025-10-08 14:17:35,979 - root - INFO - **正在测试LLM配置**: GLM-4.5-Flash
+2025-10-08 14:17:39,179 - root - INFO - **正在测试LLM配置**: GLM-4.5-Flash
+2025-10-08 14:17:40,651 - root - INFO - **正在测试LLM配置**: GLM-4.5-Flash
+2025-10-08 14:17:44,469 - root - INFO - 应用程序退出
+2025-10-08 14:18:25,460 - root - INFO - 应用程序启动
+2025-10-08 14:18:27,188 - root - INFO - 尚未找到 chapters 文件夹，请先生成章节或检查保存路径。
+2025-10-08 14:18:27,267 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-08 14:18:27,270 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-08 14:18:27,432 - root - ERROR - Failed to setup role library: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2025-10-08 14:18:27,433 - root - INFO - **开始初始化控制器系统**
+2025-10-08 14:18:27,436 - ControllerRegistry - INFO - Controller ConfigController registered
+2025-10-08 14:18:27,436 - ControllerRegistry - INFO - Controller NovelController registered
+2025-10-08 14:18:27,436 - ControllerRegistry - INFO - Controller GenerationController registered
+2025-10-08 14:18:27,437 - root - INFO - **控制器事件系统设置完成**
+2025-10-08 14:18:27,437 - root - INFO - **控制器系统初始化成功**
+2025-10-08 14:19:07,242 - Controller.ConfigController - ERROR - Model不支持配置加载
+2025-10-08 14:19:07,247 - root - INFO - **配置控制器异步初始化完成**
+2025-10-08 14:19:20,864 - root - INFO - **正在测试LLM配置**: GLM-4.5-Flash
+2025-10-08 14:19:50,906 - root - INFO - **正在测试LLM配置**: GLM-4.5-Flash
+2025-10-08 14:20:14,641 - root - INFO - 应用程序退出
+2025-10-08 14:21:23,236 - root - INFO - 应用程序启动
+2025-10-08 14:21:24,954 - root - INFO - 尚未找到 chapters 文件夹，请先生成章节或检查保存路径。
+2025-10-08 14:21:25,030 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-08 14:21:25,034 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-08 14:21:25,196 - root - ERROR - Failed to setup role library: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2025-10-08 14:21:25,197 - root - INFO - **开始初始化控制器系统**
+2025-10-08 14:21:25,201 - ControllerRegistry - INFO - Controller ConfigController registered
+2025-10-08 14:21:25,201 - ControllerRegistry - INFO - Controller NovelController registered
+2025-10-08 14:21:25,201 - ControllerRegistry - INFO - Controller GenerationController registered
+2025-10-08 14:21:25,203 - root - INFO - **控制器事件系统设置完成**
+2025-10-08 14:21:25,203 - root - INFO - **控制器系统初始化成功**
+2025-10-08 14:26:23,572 - root - INFO - 应用程序启动
+2025-10-08 14:26:25,298 - root - INFO - 尚未找到 chapters 文件夹，请先生成章节或检查保存路径。
+2025-10-08 14:26:25,363 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-08 14:26:25,366 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-08 14:26:25,477 - root - ERROR - Failed to setup role library: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2025-10-08 14:26:25,477 - root - INFO - **开始初始化控制器系统**
+2025-10-08 14:26:25,478 - ControllerRegistry - INFO - Controller ConfigController registered
+2025-10-08 14:26:25,478 - ControllerRegistry - INFO - Controller NovelController registered
+2025-10-08 14:26:25,479 - ControllerRegistry - INFO - Controller GenerationController registered
+2025-10-08 14:26:25,479 - root - INFO - **控制器事件系统设置完成**
+2025-10-08 14:26:25,479 - root - INFO - **控制器系统初始化成功**
+2025-10-08 14:26:25,695 - root - ERROR - Observer notification failed: 'NovelGeneratorPresenter' object is not callable
+2025-10-08 14:26:25,697 - root - INFO - **配置控制器异步初始化完成**
+2025-10-08 14:26:49,691 - root - INFO - **正在测试LLM配置**: GLM-4.5-Flash
+2025-10-08 14:26:49,692 - root - INFO - 开始测试LLM配置...
+2025-10-08 14:26:58,204 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/chat/completions "HTTP/1.1 200 OK"
+2025-10-08 14:26:58,314 - root - INFO - ✅ LLM配置测试成功！
+2025-10-08 14:26:58,315 - root - INFO - 测试回复: OK
+2025-10-08 14:31:14,018 - root - INFO - 应用程序启动
+2025-10-08 14:31:15,823 - root - INFO - 尚未找到 chapters 文件夹，请先生成章节或检查保存路径。
+2025-10-08 14:31:15,895 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-08 14:31:15,898 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-08 14:31:16,007 - root - ERROR - Failed to setup role library: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2025-10-08 14:31:16,007 - root - INFO - **开始初始化控制器系统**
+2025-10-08 14:31:16,008 - ControllerRegistry - INFO - Controller ConfigController registered
+2025-10-08 14:31:16,009 - ControllerRegistry - INFO - Controller NovelController registered
+2025-10-08 14:31:16,009 - ControllerRegistry - INFO - Controller GenerationController registered
+2025-10-08 14:31:16,009 - root - INFO - **控制器事件系统设置完成**
+2025-10-08 14:31:16,009 - root - INFO - **控制器系统初始化成功**
+2025-10-08 14:31:16,187 - root - ERROR - Observer notification failed: 'NovelGeneratorPresenter' object is not callable
+2025-10-08 14:31:16,189 - root - INFO - **配置控制器异步初始化完成**
+2025-10-08 14:37:09,031 - root - INFO - 应用程序退出
+2025-10-08 14:39:31,658 - root - INFO - 应用程序启动
+2025-10-08 14:39:33,347 - root - INFO - 尚未找到 chapters 文件夹，请先生成章节或检查保存路径。
+2025-10-08 14:39:33,407 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-08 14:39:33,410 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-08 14:39:33,508 - root - ERROR - Failed to setup role library: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2025-10-08 14:39:33,508 - root - INFO - **开始初始化控制器系统**
+2025-10-08 14:39:33,509 - ControllerRegistry - INFO - Controller ConfigController registered
+2025-10-08 14:39:33,510 - ControllerRegistry - INFO - Controller NovelController registered
+2025-10-08 14:39:33,510 - ControllerRegistry - INFO - Controller GenerationController registered
+2025-10-08 14:39:33,510 - root - INFO - **控制器事件系统设置完成**
+2025-10-08 14:39:33,510 - root - INFO - **控制器系统初始化成功**
+2025-10-08 14:39:33,709 - root - ERROR - Observer notification failed: 'NovelGeneratorPresenter' object is not callable
+2025-10-08 14:39:33,710 - root - INFO - **配置控制器异步初始化完成**
+2025-10-08 14:39:38,636 - root - INFO - **正在测试LLM配置**: GLM-4.5-Flash
+2025-10-08 14:39:38,637 - root - INFO - 开始测试LLM配置...
+2025-10-08 14:39:40,063 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/chat/completions "HTTP/1.1 200 OK"
+2025-10-08 14:39:40,071 - root - INFO - ✅ LLM配置测试成功！
+2025-10-08 14:39:40,071 - root - INFO - 测试回复: OK
+2025-10-08 14:39:43,805 - root - INFO - 应用程序退出
+2025-10-08 14:42:33,205 - root - INFO - 应用程序启动
+2025-10-08 14:42:34,980 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-08 14:42:34,983 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-08 14:42:35,084 - root - ERROR - Failed to setup role library: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2025-10-08 14:42:35,084 - root - INFO - **开始初始化控制器系统**
+2025-10-08 14:42:35,085 - ControllerRegistry - INFO - Controller ConfigController registered
+2025-10-08 14:42:35,086 - ControllerRegistry - INFO - Controller NovelController registered
+2025-10-08 14:42:35,086 - ControllerRegistry - INFO - Controller GenerationController registered
+2025-10-08 14:42:35,086 - root - INFO - **控制器事件系统设置完成**
+2025-10-08 14:42:35,086 - root - INFO - **控制器系统初始化成功**
+2025-10-08 14:42:35,098 - root - INFO - 尚未找到 chapters 文件夹，请先生成章节或检查保存路径。
+2025-10-08 14:42:35,317 - root - ERROR - Observer notification failed: 'NovelGeneratorPresenter' object is not callable
+2025-10-08 14:42:35,318 - root - INFO - **配置控制器异步初始化完成**
+2025-10-08 14:45:09,211 - root - INFO - **正在测试LLM配置**: GLM-4.5-Flash
+2025-10-08 14:45:09,212 - root - INFO - 开始测试LLM配置...
+2025-10-08 14:45:10,770 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/chat/completions "HTTP/1.1 200 OK"
+2025-10-08 14:45:10,779 - root - INFO - ✅ LLM配置测试成功！
+2025-10-08 14:45:10,782 - root - INFO - 测试回复: OK
+2025-10-08 14:45:36,944 - root - INFO - 应用程序退出
+2025-10-08 14:48:50,404 - root - INFO - 应用程序启动
+2025-10-08 14:48:52,158 - plugin_manager - INFO - 插件管理器初始化完成，插件目录: plugins
+2025-10-08 14:48:52,162 - plugin_manager - INFO - 发现插件: template_plugin v1.0.0
+2025-10-08 14:48:52,277 - root - ERROR - Failed to setup role library: The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable
+2025-10-08 14:48:52,277 - root - INFO - **开始初始化控制器系统**
+2025-10-08 14:48:52,278 - ControllerRegistry - INFO - Controller ConfigController registered
+2025-10-08 14:48:52,279 - ControllerRegistry - INFO - Controller NovelController registered
+2025-10-08 14:48:52,279 - ControllerRegistry - INFO - Controller GenerationController registered
+2025-10-08 14:48:52,279 - root - INFO - **控制器事件系统设置完成**
+2025-10-08 14:48:52,279 - root - INFO - **控制器系统初始化成功**
+2025-10-08 14:48:52,289 - root - INFO - 尚未找到 chapters 文件夹，请先生成章节或检查保存路径。
+2025-10-08 14:48:52,478 - root - ERROR - Observer notification failed: 'NovelGeneratorPresenter' object is not callable
+2025-10-08 14:48:52,479 - root - INFO - **配置控制器异步初始化完成**

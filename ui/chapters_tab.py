@@ -31,7 +31,7 @@ def build_chapters_tab(self):
     self.chapter_select_menu = ctk.CTkOptionMenu(top_frame, values=[], variable=self.chapter_select_var, command=self.on_chapter_selected, font=("Microsoft YaHei", 12))
     self.chapter_select_menu.grid(row=0, column=2, padx=5, pady=5, sticky="w")
 
-    save_btn = ctk.CTkButton(top_frame, text=t("buttons.save_changes"), command=self.save_current_chapter, font=("Microsoft YaHei", 12))
+    save_btn = ctk.CTkButton(top_frame, text=t("buttons.save_changes"), command=lambda: self.save_current_chapter(self), font=("Microsoft YaHei", 12))
     save_btn.grid(row=0, column=3, padx=5, pady=5, sticky="w")
 
     refresh_btn = ctk.CTkButton(top_frame, text=t("buttons.refresh_chapters"), command=self.refresh_chapters_list, font=("Microsoft YaHei", 12))

@@ -13,13 +13,13 @@ def build_character_tab(self):
     self.character_tab.rowconfigure(1, weight=1)
     self.character_tab.columnconfigure(0, weight=1)
 
-    load_btn = ctk.CTkButton(self.character_tab, text=t("buttons.load_character_state"), command=self.load_character_state, font=("Microsoft YaHei", 12))
+    load_btn = ctk.CTkButton(self.character_tab, text=t("buttons.load_character_state"), command=lambda: self.load_character_state(self), font=("Microsoft YaHei", 12))
     load_btn.grid(row=0, column=0, padx=5, pady=5, sticky="w")
 
-    self.character_wordcount_label = ctk.CTkLabel(self.character_tab, text=f"{t('labels.word_count')}：0", font=("Microsoft YaHei", 12))
-    self.character_wordcount_label.grid(row=0, column=1, padx=5, pady=5, sticky="w")
+    self.character_word_count_label = ctk.CTkLabel(self.character_tab, text="字数: 0", font=("Microsoft YaHei", 12))
+    self.character_word_count_label.grid(row=0, column=1, padx=5, pady=5, sticky="w")
 
-    save_btn = ctk.CTkButton(self.character_tab, text=t("buttons.save_changes"), command=self.save_character_state, font=("Microsoft YaHei", 12))
+    save_btn = ctk.CTkButton(self.character_tab, text=t("buttons.save_changes"), command=lambda: self.save_character_state(self), font=("Microsoft YaHei", 12))
     save_btn.grid(row=0, column=2, padx=5, pady=5, sticky="e")
 
     self.character_text = ctk.CTkTextbox(self.character_tab, wrap="word", font=("Microsoft YaHei", 12))
