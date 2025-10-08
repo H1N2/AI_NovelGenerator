@@ -169,6 +169,13 @@ def build_ai_config_tab(self):
                 self.temp_value_label.configure(text=f"{float(config.get('temperature', 0.7)):.2f}")
                 self.max_tokens_value_label.configure(text=str(int(config.get('max_tokens', 8192))))
                 self.timeout_value_label.configure(text=str(int(config.get('timeout', 600))))
+                
+                # **通知配置控制器更新当前配置**
+                if hasattr(self, 'config_controller') and self.config_controller:
+                    try:
+                        self.config_controller.set_current_llm_config(new_value)
+                    except Exception as e:
+                        logging.error(f"设置当前LLM配置失败: {e}")
 
     def add_new_config():
         """添加新配置 - 弹出对话框让用户输入名称"""

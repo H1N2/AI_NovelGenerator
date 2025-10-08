@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "小说生成器"
+    "title": "小说生成器V0.8"
   },
   "menus": {
     "plugin_system": "插件系统",
@@ -95,7 +95,8 @@
       "base_url": "基础URL",
       "temperature": "温度",
       "max_tokens": "最大令牌数",
-      "test_connection": "测试连接"
+      "test_connection": "测试连接",
+	  "test_success":"测试连接成功"
     },
     "embedding": {
       "title": "嵌入模型配置",

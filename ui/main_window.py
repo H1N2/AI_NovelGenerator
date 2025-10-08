@@ -125,26 +125,55 @@ class NovelGeneratorView(BaseView):
                 button.configure(text=t("config.llm.testing"), state="disabled")
                 self.master.update()
                 
-                # 执行测试逻辑
+                # 执行实际的LLM连接测试
                 if hasattr(self, 'config_controller') and self.config_controller:
                     # 使用控制器进行测试
-                    result = self.config_controller.test_llm_configuration()
-                    if result:
-                        self.show_success(t("config.llm.test_success"))
-                    else:
-                        self.show_error(t("config.llm.test_failed"))
+                    import asyncio
+                    loop = asyncio.new_event_loop()
+                    asyncio.set_event_loop(loop)
+                    try:
+                        # 获取当前选中的配置名称
+                        current_config_name = None
+                        if hasattr(self, 'interface_config_var') and self.interface_config_var:
+                            current_config_name = self.interface_config_var.get()
+                        
+                        # 传递配置名称给test_llm_configuration方法
+                        result = loop.run_until_complete(
+                            self.config_controller.test_llm_configuration(current_config_name)
+                        )
+                        if result:
+                            self.show_success("**LLM配置测试成功** - 连接正常")
+                        else:
+                            self.show_error("**LLM配置测试失败** - 请检查配置参数")
+                    finally:
+                        loop.close()
                 else:
-                    # 使用fallback方法
+                    # 使用fallback方法进行实际连接测试
                     from config_manager import test_llm_config
-                    current_config = self._get_current_llm_config()
-                    result = test_llm_config(current_config)
-                    if result:
-                        self.show_success("LLM配置测试成功")
+                    current_config = self._get_current_llm_config_dict()
+                    
+                    if current_config:
+                        result = test_llm_config(
+                            interface_format=current_config.get("interface_format", "OpenAI"),
+                            api_key=current_config.get("api_key", ""),
+                            base_url=current_config.get("base_url", "https://api.openai.com/v1"),
+                            model_name=current_config.get("model_name", "gpt-4"),
+                            temperature=current_config.get("temperature", 0.7),
+                            max_tokens=current_config.get("max_tokens", 8192),
+                            timeout=current_config.get("timeout", 600),
+                            log_func=self.safe_log,
+                            handle_exception_func=self.handle_exception
+                        )
+                        if result:
+                            self.show_success("**LLM配置测试成功** - 连接正常，模型响应正常")
+                        else:
+                            self.show_error("**LLM配置测试失败** - 连接失败或模型无响应")
                     else:
-                        self.show_error("LLM配置测试失败")
+                        self.show_error("**无法获取LLM配置** - 请检查配置设置")
                         
             except Exception as e:
-                self.show_error(f"LLM配置测试出错: {e}")
+                self.show_error(f"**LLM配置测试出错**: {e}")
+                self.safe_log(f"LLM测试异常: {e}")
             finally:
                 # 恢复按钮状态
                 button.configure(text=t("config.llm.test_connection"), state="normal")
@@ -152,6 +181,44 @@ class NovelGeneratorView(BaseView):
         
         # 在新线程中执行测试，避免阻塞UI
         threading.Thread(target=test_in_thread, daemon=True).start()
+    
+    def _get_current_llm_config_dict(self):
+        """
+        获取当前LLM配置的字典格式
+        从UI变量或配置文件中获取完整的配置信息
+        """
+        try:
+            # 优先从loaded_config中获取当前选中的配置
+            if hasattr(self, 'loaded_config') and self.loaded_config:
+                llm_configs = self.loaded_config.get("llm_configs", {})
+                
+                # 如果有配置选择器，获取当前选中的配置
+                if hasattr(self, 'config_name_var') and self.config_name_var:
+                    current_config_name = self.config_name_var.get()
+                    if current_config_name in llm_configs:
+                        return llm_configs[current_config_name]
+                
+                # 否则获取第一个可用配置
+                if llm_configs:
+                    return next(iter(llm_configs.values()))
+            
+            # 备用方案：从UI变量构建配置
+            if hasattr(self, 'interface_format_var'):
+                return {
+                    "interface_format": self.interface_format_var.get() if hasattr(self, 'interface_format_var') else "OpenAI",
+                    "api_key": self.api_key_var.get() if hasattr(self, 'api_key_var') else "",
+                    "base_url": self.base_url_var.get() if hasattr(self, 'base_url_var') else "https://api.openai.com/v1",
+                    "model_name": self.model_name_var.get() if hasattr(self, 'model_name_var') else "gpt-4",
+                    "temperature": self.temperature_var.get() if hasattr(self, 'temperature_var') else 0.7,
+                    "max_tokens": self.max_tokens_var.get() if hasattr(self, 'max_tokens_var') else 8192,
+                    "timeout": self.timeout_var.get() if hasattr(self, 'timeout_var') else 600
+                }
+            
+            return None
+            
+        except Exception as e:
+            logging.error(f"获取当前LLM配置失败: {e}")
+            return None
     
     def _get_current_llm_config(self):
         """获取当前LLM配置"""
@@ -375,7 +442,44 @@ class NovelGeneratorView(BaseView):
         # 设置当前配置名称
         if config_manager.llm_config_names:
             self.interface_config_var.set(config_manager._current_llm_config)
+            # **触发UI更新，确保配置参数正确显示**
+            self._update_ui_with_current_config()
     
+    def _update_ui_with_current_config(self):
+        """根据当前选择的配置更新UI显示"""
+        try:
+            current_config_name = self.interface_config_var.get()
+            if not current_config_name:
+                return
+                
+            # **获取当前配置数据**
+            if hasattr(self, 'config_controller') and self.config_controller:
+                config = self.config_controller.get_llm_config(current_config_name)
+            else:
+                # 兜底方案
+                config = self.loaded_config.get("llm_configs", {}).get(current_config_name, {})
+            
+            if config:
+                # **更新所有LLM配置相关的UI变量**
+                self.api_key_var.set(config.get("api_key", ""))
+                self.base_url_var.set(config.get("base_url", ""))
+                self.model_name_var.set(config.get("model_name", ""))
+                self.temperature_var.set(float(config.get("temperature", 0.7)))
+                self.max_tokens_var.set(int(config.get("max_tokens", 8192)))
+                self.timeout_var.set(int(config.get("timeout", 600)))
+                self.interface_format_var.set(config.get("interface_format", "OpenAI"))
+                
+                # **更新显示标签（如果存在）**
+                if hasattr(self, 'temp_value_label') and self.temp_value_label:
+                    self.temp_value_label.configure(text=f"{float(config.get('temperature', 0.7)):.2f}")
+                if hasattr(self, 'max_tokens_value_label') and self.max_tokens_value_label:
+                    self.max_tokens_value_label.configure(text=str(int(config.get('max_tokens', 8192))))
+                if hasattr(self, 'timeout_value_label') and self.timeout_value_label:
+                    self.timeout_value_label.configure(text=str(int(config.get('timeout', 600))))
+                    
+        except Exception as e:
+            logging.error(f"更新UI配置显示失败: {e}")
+        
     def show_error(self, message: str):
         """显示错误信息"""
         messagebox.showerror("错误", message)
@@ -595,6 +699,9 @@ class NovelGeneratorGUI:
             self.novel_controller = NovelController()    # 不传参数，使用默认构造函数
             self.generation_controller = GenerationController()  # 不传参数，使用默认构造函数
             
+            # 设置控制器的model依赖 - 关键修复
+            self.config_controller.set_model(self.config_manager)
+            
             # 注册控制器 - 修复register方法调用，只传递控制器对象
             self.controller_registry.register(self.config_controller)
             self.controller_registry.register(self.novel_controller)
@@ -616,9 +723,24 @@ class NovelGeneratorGUI:
                 self.config_controller.add_event_listener('config_changed', self.presenter.handle_model_change)
                 self.config_controller.add_event_listener('config_load_error', self.presenter.handle_model_change)
                 self.config_controller.add_event_listener('config_save_error', self.presenter.handle_model_change)
+                # **添加LLM配置变更事件监听**
+                self.config_controller.add_event_listener('llm_config_changed', self._handle_llm_config_changed)
             
         except Exception as e:
             logging.error(f"控制器事件设置失败: {e}")
+    
+    def _handle_llm_config_changed(self, event_data):
+        """处理LLM配置变更事件"""
+        try:
+            config_name = event_data.get('config_name')
+            if config_name:
+                # **更新UI显示的当前配置**
+                self.interface_config_var.set(config_name)
+                # **触发UI更新**
+                self._update_ui_with_current_config()
+                self.log(f"已切换到配置: {config_name}")
+        except Exception as e:
+            logging.error(f"处理LLM配置变更事件失败: {e}")
     
     def cleanup(self):
         """清理资源"""

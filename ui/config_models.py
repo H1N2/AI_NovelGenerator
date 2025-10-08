@@ -162,6 +162,10 @@ class ConfigurationManager(BaseModel):
             # 获取当前Embedding接口
             self._current_embedding_interface = loaded_config.get("last_embedding_interface_format", "OpenAI")
             
+            # 获取当前LLM配置名称
+            if "last_llm_config_name" in loaded_config and loaded_config["last_llm_config_name"] in self._llm_configs:
+                self._current_llm_config = loaded_config["last_llm_config_name"]
+            
             self.notify_observers("config_loaded", self._get_current_config())
             return True
             
@@ -177,7 +181,8 @@ class ConfigurationManager(BaseModel):
         
         try:
             config_data = self._get_current_config()
-            success = save_config(self.config_file, config_data)
+            # 修复参数顺序：save_config(config_data, config_file)
+            success = save_config(config_data, self.config_file)
             
             if success:
                 self.notify_observers("config_saved", config_data)
@@ -255,7 +260,8 @@ class ConfigurationManager(BaseModel):
                 "consistency_review_llm": self._choose_configs.consistency_review_llm,
                 "prompt_draft_llm": self._choose_configs.prompt_draft_llm
             },
-            "last_embedding_interface_format": self._current_embedding_interface
+            "last_embedding_interface_format": self._current_embedding_interface,
+            "last_llm_config_name": self._current_llm_config
         }
     
     def _apply_proxy_settings(self):
@@ -312,6 +318,9 @@ class ConfigurationManager(BaseModel):
     def update_llm_config(self, config_name: str, config: LLMConfig):
         """更新LLM配置"""
         self._llm_configs[config_name] = config
+        # 如果是新配置或者当前没有选择配置，设置为当前配置
+        if not self._current_llm_config or config_name not in self._llm_configs:
+            self._current_llm_config = config_name
         self.notify_observers("llm_config_updated", {"name": config_name, "config": config})
     
     def update_embedding_config(self, interface: str, config: EmbeddingConfig):
