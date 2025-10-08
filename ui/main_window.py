@@ -10,9 +10,10 @@ import customtkinter as ctk
 import tkinter as tk
 from tkinter import filedialog, messagebox
 from typing import Any, Dict
+import types
 
 # 导入MVP基础类和配置模型
-from .mvp_base import BaseView, BasePresenter
+from .mvp_base import BaseView, BasePresenter, ConfigurationModel
 from .config_models import ConfigurationManager, LLMConfig, EmbeddingConfig, NovelParams
 from .role_library import RoleLibrary
 from llm_adapters import create_llm_adapter
@@ -58,8 +59,7 @@ from language_manager import get_language_manager, t
 
 class NovelGeneratorView(BaseView):
     """
-    小说生成器视图类
-    负责UI显示和用户交互，继承自BaseView
+    小说生成器视图类 - 负责UI显示和用户交互
     """
     
     def __init__(self, master):
@@ -101,18 +101,75 @@ class NovelGeneratorView(BaseView):
         self.save_current_chapter = save_current_chapter
         self.prev_chapter = prev_chapter
         self.next_chapter = next_chapter
-        self.browse_folder = self.browse_folder  # 绑定自身的browse_folder方法
         
-        # **添加测试方法的占位符**
+        # 添加测试方法的占位符
         self.test_llm_config = None
         self.test_embedding_config = None
         
-        # **添加config_file属性**
+        # 添加config_file属性
         self.config_file = "config.json"
         
         # 添加loaded_config属性（需要在配置管理器初始化后设置）
-        # 这里先设置为空字典，避免NoneType错误
         self.loaded_config = {}
+    
+    def _test_llm_config_with_button_state(self, button):
+        """
+        测试LLM配置并管理按钮状态
+        
+        Args:
+            button: 测试按钮实例，用于状态管理
+        """
+        def test_in_thread():
+            try:
+                # 设置按钮为测试中状态
+                button.configure(text=t("config.llm.testing"), state="disabled")
+                self.master.update()
+                
+                # 执行测试逻辑
+                if hasattr(self, 'config_controller') and self.config_controller:
+                    # 使用控制器进行测试
+                    result = self.config_controller.test_llm_configuration()
+                    if result:
+                        self.show_success(t("config.llm.test_success"))
+                    else:
+                        self.show_error(t("config.llm.test_failed"))
+                else:
+                    # 使用fallback方法
+                    from config_manager import test_llm_config
+                    current_config = self._get_current_llm_config()
+                    result = test_llm_config(current_config)
+                    if result:
+                        self.show_success("LLM配置测试成功")
+                    else:
+                        self.show_error("LLM配置测试失败")
+                        
+            except Exception as e:
+                self.show_error(f"LLM配置测试出错: {e}")
+            finally:
+                # 恢复按钮状态
+                button.configure(text=t("config.llm.test_connection"), state="normal")
+                self.master.update()
+        
+        # 在新线程中执行测试，避免阻塞UI
+        threading.Thread(target=test_in_thread, daemon=True).start()
+    
+    def _get_current_llm_config(self):
+        """获取当前LLM配置"""
+        try:
+            # 从UI变量构建配置对象
+            from .config_models import LLMConfig
+            return LLMConfig(
+                interface_format=self.interface_format_var.get(),
+                api_key=self.api_key_var.get(),
+                base_url=self.base_url_var.get(),
+                model_name=self.model_name_var.get(),
+                temperature=self.temperature_var.get(),
+                max_tokens=self.max_tokens_var.get(),
+                timeout=self.timeout_var.get()
+            )
+        except Exception as e:
+            logging.error(f"获取当前LLM配置失败: {e}")
+            return None
     
     def _setup_window(self):
         """设置主窗口"""
@@ -167,6 +224,11 @@ class NovelGeneratorView(BaseView):
         # 其他变量
         self.topic_default = ""
         self.user_guidance_default = ""
+        
+        # 添加全局摘要和角色状态变量
+        self.global_summary_var = ctk.StringVar()
+        self.character_state_var = ctk.StringVar()
+        self.novel_architecture_var = ctk.StringVar()
     
     def _build_ui(self):
         """构建UI界面"""
@@ -322,69 +384,64 @@ class NovelGeneratorView(BaseView):
         """显示成功信息"""
         messagebox.showinfo("成功", message)
     
-    # 保持向后兼容的方法
-    def show_tooltip(self, key: str):
-        """显示工具提示"""
-        if key in tooltips:
-            messagebox.showinfo("提示", tooltips[key])
-    
     def safe_get_int(self, var, default=1):
         """安全获取整数值"""
         try:
             return int(var.get())
-        except (ValueError, tk.TclError):
+        except (ValueError, AttributeError):
             return default
     
     def log(self, message: str):
-        """记录日志到UI控件和系统日志"""
-        # 记录到系统日志
-        logging.info(message)
-        
-        # 记录到UI控件（如果存在）
-        if hasattr(self, 'log_text') and self.log_text:
-            try:
+        """记录日志"""
+        try:
+            if hasattr(self, 'log_text') and self.log_text:
+                # 临时启用文本框以便插入内容
                 self.log_text.configure(state="normal")
-                self.log_text.insert("end", message + "\n")
+                self.log_text.insert("end", f"{message}\n")
                 self.log_text.see("end")
+                # 重新禁用文本框
                 self.log_text.configure(state="disabled")
-            except Exception as e:
-                print(f"UI log output failed: {e}")
+        except Exception as e:
+            # 如果UI日志失败，至少记录到系统日志
+            logging.info(f"UI日志失败，消息: {message}, 错误: {e}")
     
     def safe_log(self, message: str):
-        """安全记录日志（线程安全）"""
+        """安全记录日志"""
         try:
-            # 使用after方法确保在主线程中执行UI更新
-            if hasattr(self, 'master') and self.master:
-                self.master.after(0, lambda: self.log(message))
-            else:
-                self.log(message)
-        except Exception as e:
-            print(f"Logging failed: {e}")
+            self.log(message)
+        except Exception:
+            pass
     
     def disable_button_safe(self, btn):
         """安全禁用按钮"""
         try:
-            btn.configure(state="disabled")
+            if btn:
+                btn.configure(state="disabled")
         except Exception:
             pass
     
     def enable_button_safe(self, btn):
         """安全启用按钮"""
         try:
-            btn.configure(state="normal")
+            if btn:
+                btn.configure(state="normal")
         except Exception:
             pass
     
     def handle_exception(self, context: str):
         """处理异常"""
-        error_msg = f"{context}: {traceback.format_exc()}"
+        error_msg = f"在 {context} 中发生错误: {traceback.format_exc()}"
         logging.error(error_msg)
-        self.show_error(f"操作失败: {context}")
+        self.safe_log(f"❌ {error_msg}")
     
     def show_chapter_in_textbox(self, text: str):
         """在文本框中显示章节内容"""
-        # 这个方法需要根据具体的UI组件实现
-        pass
+        try:
+            if hasattr(self, 'chapter_content_text') and self.chapter_content_text:
+                self.chapter_content_text.delete("0.0", "end")
+                self.chapter_content_text.insert("0.0", text)
+        except Exception:
+            pass
     
     def browse_folder(self):
         """浏览文件夹"""
@@ -394,245 +451,350 @@ class NovelGeneratorView(BaseView):
     
     def show_character_import_window(self):
         """显示角色导入窗口"""
-        # 保持原有实现
+        # 这里可以添加角色导入的具体实现
         pass
     
     def show_role_library(self):
         """显示角色库"""
-        if hasattr(self, '_role_lib'):
-            self._role_lib.show()
+        # 这里可以添加角色库的具体实现
+        pass
 
 
 class NovelGeneratorPresenter(BasePresenter):
     """
-    小说生成器Presenter类
-    负责协调Model和View之间的交互
+    小说生成器展示器类 - 负责业务逻辑处理
     """
     
     def __init__(self, config_manager: ConfigurationManager, view: NovelGeneratorView):
-        super().__init__(config_manager, view)
+        # 创建一个简单的Model实例用于MVP架构
+        model = ConfigurationModel()
+        super().__init__(model, view)
+        self.config_manager = config_manager
         self._setup_role_library()
+        
+        # 绑定测试方法到View
+        self.view.test_llm_config = self.test_llm_config
+        self.view.test_embedding_config = self.test_embedding_config
     
     def _setup_role_library(self):
         """设置角色库"""
         try:
-            save_path = self.model.novel_params.filepath or "."
-            # **修复create_llm_adapter调用，传递正确的参数**
-            config_dict = self.model.current_llm_config.__dict__
-            llm_adapter = create_llm_adapter(
-                interface_format=config_dict.get('interface_format', ''),
-                base_url=config_dict.get('base_url', ''),
-                model_name=config_dict.get('model_name', ''),
-                api_key=config_dict.get('api_key', ''),
-                temperature=config_dict.get('temperature', 0.7),
-                max_tokens=config_dict.get('max_tokens', 2000),
-                timeout=config_dict.get('timeout', 600)
-            )
-            self.view._role_lib = RoleLibrary(self.view.master, save_path, llm_adapter)
+            # 获取保存路径
+            save_path = os.path.dirname(self.config_manager.config_file) if hasattr(self.config_manager, 'config_file') else "."
+            
+            # 创建默认的LLM适配器
+            llm_adapter = None
+            if self.config_manager.current_llm_config:
+                llm_config = self.config_manager.current_llm_config
+                llm_adapter = create_llm_adapter(
+                    interface_format=llm_config.interface_format,
+                    api_key=llm_config.api_key,
+                    base_url=llm_config.base_url,
+                    model_name=llm_config.model_name,
+                    temperature=llm_config.temperature,
+                    max_tokens=llm_config.max_tokens,
+                    timeout=llm_config.timeout
+                )
+            
+            # 创建角色库实例，传入所需的三个参数
+            self.role_library = RoleLibrary(self.view.master, save_path, llm_adapter)
+            
+            # 设置LLM适配器到角色库
+            if llm_adapter:
+                self.role_library.set_llm_adapter(llm_adapter)
         except Exception as e:
-            logging.error(f"Failed to setup role library: {e}")
+            logging.error(f"角色库LLM适配器更新失败: {e}")
     
     def handle_model_change(self, event: str, data: Any):
-        """处理Model变化"""
-        if event == "config_loaded":
-            self.view.update_view({"config_loaded": self.model})
-        elif event == "config_saved":
-            self.view.update_view({"config_saved": data})
-        elif event.startswith("config_") and event.endswith("_error"):
-            self.view.update_view({event: data})
-        elif event == "llm_config_updated":
+        """处理模型变更事件"""
+        if event == "config_changed":
             self._update_role_library()
-        elif event == "novel_params_updated":
-            self._update_role_library()
+            # 通知View更新
+            self.view.update_view({"config_loaded": self.config_manager})
+        elif event == "config_load_error":
+            self.view.update_view({"config_load_error": data})
+        elif event == "config_save_error":
+            self.view.update_view({"config_save_error": data})
     
     def _update_role_library(self):
-        """更新角色库"""
+        """更新角色库的LLM适配器"""
         try:
-            if hasattr(self.view, '_role_lib'):
-                save_path = self.model.novel_params.filepath or "."
-                # **修复create_llm_adapter调用，传递正确的参数**
-                config_dict = self.model.current_llm_config.__dict__
-                llm_adapter = create_llm_adapter(
-                    interface_format=config_dict.get('interface_format', ''),
-                    base_url=config_dict.get('base_url', ''),
-                    model_name=config_dict.get('model_name', ''),
-                    api_key=config_dict.get('api_key', ''),
-                    temperature=config_dict.get('temperature', 0.7),
-                    max_tokens=config_dict.get('max_tokens', 2000),
-                    timeout=config_dict.get('timeout', 600)
+            if self.config_manager.current_llm_config:
+                llm_config = self.config_manager.current_llm_config
+                self.llm_adapter = create_llm_adapter(
+                    interface_format=llm_config.interface_format,
+                    api_key=llm_config.api_key,
+                    base_url=llm_config.base_url,
+                    model_name=llm_config.model_name,
+                    temperature=llm_config.temperature,
+                    max_tokens=llm_config.max_tokens,
+                    timeout=llm_config.timeout
                 )
-                self.view._role_lib = RoleLibrary(self.view.master, save_path, llm_adapter)
+                self.role_library.set_llm_adapter(self.llm_adapter)
         except Exception as e:
-            logging.error(f"Failed to update role library: {e}")
+            logging.error(f"角色库LLM适配器更新失败: {e}")
     
-    # 测试配置方法
     def test_llm_config(self):
         """测试LLM配置"""
-        # 获取当前LLM配置
-        current_config = self.config_manager.current_llm_config
-        
-        return test_llm_config(
-            interface_format=current_config.interface_format,
-            api_key=current_config.api_key,
-            base_url=current_config.base_url,
-            model_name=current_config.model_name,
-            temperature=current_config.temperature,
-            max_tokens=current_config.max_tokens,
-            timeout=current_config.timeout,
-            log_func=self.view.safe_log,
-            handle_exception_func=self.view.handle_exception
-        )
+        try:
+            result = test_llm_config(self.config_manager.current_llm_config)
+            if result:
+                self.view.show_success("LLM配置测试成功")
+            else:
+                self.view.show_error("LLM配置测试失败")
+        except Exception as e:
+            self.view.show_error(f"LLM配置测试出错: {e}")
     
     def test_embedding_config(self):
         """测试Embedding配置"""
-        # 获取当前Embedding配置
-        current_config = self.config_manager.current_embedding_config
-        
-        return test_embedding_config(
-            api_key=current_config.api_key,
-            base_url=current_config.base_url,
-            model_name=current_config.model_name,
-            log_func=self.view.safe_log,
-            handle_exception_func=self.view.handle_exception
-        )
+        try:
+            result = test_embedding_config(self.config_manager.current_embedding_config)
+            if result:
+                self.view.show_success("Embedding配置测试成功")
+            else:
+                self.view.show_error("Embedding配置测试失败")
+        except Exception as e:
+            self.view.show_error(f"Embedding配置测试出错: {e}")
 
 
 class NovelGeneratorGUI:
     """
-    重构后的主GUI类，保持向后兼容性
-    内部使用MVP架构，但对外接口保持不变
+    小说生成器主GUI类 - 整合MVP架构和控制器系统
     """
     
     def __init__(self, master):
-        # 创建配置管理器
+        self.master = master
+        
+        # 初始化配置管理器
         self.config_manager = ConfigurationManager()
-        # **添加configuration_manager别名以支持控制器**
-        self.configuration_manager = self.config_manager
         
-        # **添加logger属性**
-        self.logger = logging.getLogger("NovelGeneratorGUI")
-        
-        # 创建View
+        # 创建View和Presenter
         self.view = NovelGeneratorView(master)
-        
-        # 创建Presenter
         self.presenter = NovelGeneratorPresenter(self.config_manager, self.view)
         
-        # **初始化控制器系统**
-        self._setup_controllers()
-        
-        # 保持向后兼容的属性访问
-        self._setup_compatibility_attributes()
-        
-        # 绑定原有的方法（保持向后兼容）
+        # 绑定fallback方法
         self._bind_legacy_methods()
         
-        # 加载配置
-        self.config_manager.load_configuration()
+        # 设置控制器
+        self._setup_controllers()
         
-        # **设置loaded_config属性**
-        self.loaded_config = self.config_manager._get_current_config()
-        self.view.loaded_config = self.loaded_config
+        # 设置控制器事件
+        self._setup_controller_events()
         
-        # 设置观察者模式
-        self.config_manager.add_observer(self.presenter)
+        # 设置兼容性属性
+        self._setup_compatibility_attributes()
     
     def _setup_controllers(self):
         """设置控制器系统"""
         try:
-            logging.info("**开始初始化控制器系统**")
-            
-            # 初始化控制器注册表
+            # 创建控制器注册表
             self.controller_registry = ControllerRegistry()
             
-            # 初始化控制器
-            self.config_controller = ConfigController()
-            self.novel_controller = NovelController()
-            self.generation_controller = GenerationController()
+            # 创建各个控制器 - 修复构造函数参数
+            self.config_controller = ConfigController()  # 不传参数，使用默认构造函数
+            self.novel_controller = NovelController()    # 不传参数，使用默认构造函数
+            self.generation_controller = GenerationController()  # 不传参数，使用默认构造函数
             
-            # 设置Model
-            self.config_controller.set_model(self.configuration_manager)
-            self.novel_controller.set_model(self.configuration_manager)
-            self.generation_controller.set_model(self.configuration_manager)
-            
-            # 设置View
-            self.config_controller.set_view(self.view)
-            self.novel_controller.set_view(self.view)  # 添加这行
-            self.generation_controller.set_view(self.view)  # 添加这行
-            
-            # **异步初始化配置控制器**
-            import asyncio
-            import threading
-            
-            def init_config_controller():
-                try:
-                    loop = asyncio.new_event_loop()
-                    asyncio.set_event_loop(loop)
-                    loop.run_until_complete(self.config_controller.initialize())
-                    loop.close()
-                    logging.info("**配置控制器异步初始化完成**")
-                except Exception as e:
-                    logging.error(f"**配置控制器异步初始化失败**: {e}")
-            
-            # 在后台线程中初始化配置控制器
-            init_thread = threading.Thread(target=init_config_controller, daemon=True)
-            init_thread.start()
-            
-            # 注册控制器
+            # 注册控制器 - 修复register方法调用，只传递控制器对象
             self.controller_registry.register(self.config_controller)
             self.controller_registry.register(self.novel_controller)
             self.controller_registry.register(self.generation_controller)
             
-            # 设置控制器间的事件监听
-            self._setup_controller_events()
-            
-            logging.info("**控制器系统初始化成功**")
+            # 将控制器绑定到View
+            self.view.config_controller = self.config_controller
+            self.view.novel_controller = self.novel_controller
+            self.view.generation_controller = self.generation_controller
             
         except Exception as e:
-            logging.error(f"**控制器系统初始化失败**: {e}")
-            # 即使控制器初始化失败，也不应该阻止应用程序启动
-            # 设置为None以便后续检查
-            self.config_controller = None
-            self.novel_controller = None
-            self.generation_controller = None
+            logging.error(f"控制器设置失败: {e}")
     
     def _setup_controller_events(self):
-        """设置控制器间的事件监听"""
-        if not self.controller_registry:
-            return
-            
+        """设置控制器事件监听"""
         try:
-            # 配置变更事件
-            self.config_controller.add_event_listener("config_changed", 
-                lambda data: self.novel_controller.handle_config_change(data))
-            self.config_controller.add_event_listener("config_changed", 
-                lambda data: self.generation_controller.handle_config_change(data))
-            
-            # 项目变更事件
-            self.novel_controller.add_event_listener("project_changed", 
-                lambda data: self.generation_controller.handle_project_change(data))
-            
-            logging.info("**控制器事件系统设置完成**")
+            # 配置控制器事件 - 使用正确的方法名
+            if hasattr(self.config_controller, 'add_event_listener'):
+                self.config_controller.add_event_listener('config_changed', self.presenter.handle_model_change)
+                self.config_controller.add_event_listener('config_load_error', self.presenter.handle_model_change)
+                self.config_controller.add_event_listener('config_save_error', self.presenter.handle_model_change)
             
         except Exception as e:
-            logging.error(f"**控制器事件设置失败**: {e}")
+            logging.error(f"控制器事件设置失败: {e}")
     
     def cleanup(self):
         """清理资源"""
         try:
-            if hasattr(self, 'controller_registry') and self.controller_registry:
-                self.controller_registry.cleanup_all()
-                logging.info("**控制器系统清理完成**")
+            if hasattr(self, 'controller_registry'):
+                self.controller_registry.cleanup()
+            if hasattr(self.view, 'plugin_manager'):
+                self.view.plugin_manager.cleanup()
         except Exception as e:
-            logging.error(f"**控制器清理失败**: {e}")
-        
+            logging.error(f"资源清理失败: {e}")
+    
+    def _bind_legacy_methods(self):
+        """绑定fallback方法到View实例"""
+        # 创建fallback方法并绑定到View
+        self.view._generate_architecture_fallback = self._create_architecture_fallback()
+        self.view._generate_blueprint_fallback = self._create_blueprint_fallback()
+        self.view._generate_draft_fallback = self._create_draft_fallback()
+        self.view._finalize_chapter_fallback = self._create_finalize_fallback()
+    
+    def _create_architecture_fallback(self):
+        """创建架构生成fallback方法"""
+        def _generate_architecture_fallback(filepath):
+            """原有架构生成逻辑作为备用"""
+            try:
+                interface_format = self.view.loaded_config["llm_configs"][self.view.architecture_llm_var.get()]["interface_format"]
+                api_key = self.view.loaded_config["llm_configs"][self.view.architecture_llm_var.get()]["api_key"]
+                base_url = self.view.loaded_config["llm_configs"][self.view.architecture_llm_var.get()]["base_url"]
+                model_name = self.view.loaded_config["llm_configs"][self.view.architecture_llm_var.get()]["model_name"]
+                temperature = self.view.loaded_config["llm_configs"][self.view.architecture_llm_var.get()]["temperature"]
+                max_tokens = self.view.loaded_config["llm_configs"][self.view.architecture_llm_var.get()]["max_tokens"]
+                timeout_val = self.view.loaded_config["llm_configs"][self.view.architecture_llm_var.get()]["timeout"]
+
+                topic = self.view.topic_text.get("0.0", "end").strip()
+                genre = self.view.genre_var.get().strip()
+                num_chapters = self.view.safe_get_int(self.view.num_chapters_var, 10)
+                word_number = self.view.safe_get_int(self.view.word_number_var, 3000)
+                user_guidance = self.view.user_guide_text.get("0.0", "end").strip()
+
+                self.view.safe_log("开始生成小说架构...")
+                from novel_generator import Novel_architecture_generate
+                Novel_architecture_generate(
+                    interface_format=interface_format,
+                    api_key=api_key,
+                    base_url=base_url,
+                    llm_model=model_name,
+                    topic=topic,
+                    genre=genre,
+                    number_of_chapters=num_chapters,
+                    word_number=word_number,
+                    filepath=filepath,
+                    temperature=temperature,
+                    max_tokens=max_tokens,
+                    timeout=timeout_val,
+                    user_guidance=user_guidance
+                )
+                self.view.safe_log("✅ 小说架构生成完成。请在 'Novel Architecture' 标签页查看或编辑。")
+            except Exception as e:
+                self.view.handle_exception("架构生成fallback")
+        return _generate_architecture_fallback
+
+    def _create_blueprint_fallback(self):
+        """创建章节蓝图fallback方法"""
+        def _generate_blueprint_fallback(filepath):
+            """原有大纲生成逻辑作为备用"""
+            try:
+                interface_format = self.view.loaded_config["llm_configs"][self.view.chapter_outline_llm_var.get()]["interface_format"]
+                api_key = self.view.loaded_config["llm_configs"][self.view.chapter_outline_llm_var.get()]["api_key"]
+                base_url = self.view.loaded_config["llm_configs"][self.view.chapter_outline_llm_var.get()]["base_url"]
+                model_name = self.view.loaded_config["llm_configs"][self.view.chapter_outline_llm_var.get()]["model_name"]
+                temperature = self.view.loaded_config["llm_configs"][self.view.chapter_outline_llm_var.get()]["temperature"]
+                max_tokens = self.view.loaded_config["llm_configs"][self.view.chapter_outline_llm_var.get()]["max_tokens"]
+                timeout_val = self.view.loaded_config["llm_configs"][self.view.chapter_outline_llm_var.get()]["timeout"]
+
+                self.view.safe_log("开始生成章节大纲...")
+                from novel_generator import Chapter_blueprint_generate
+                Chapter_blueprint_generate(
+                    interface_format=interface_format,
+                    api_key=api_key,
+                    base_url=base_url,
+                    llm_model=model_name,
+                    filepath=filepath,
+                    temperature=temperature,
+                    max_tokens=max_tokens,
+                    timeout=timeout_val
+                )
+                self.view.safe_log("✅ 章节大纲生成完成。请在 'Chapter Blueprint' 标签页查看或编辑。")
+            except Exception as e:
+                self.view.handle_exception("章节蓝图生成fallback")
+        return _generate_blueprint_fallback
+
+    def _create_draft_fallback(self):
+        """创建章节草稿fallback方法"""
+        def _generate_draft_fallback(filepath):
+            """原有章节生成逻辑作为备用"""
+            try:
+                interface_format = self.view.loaded_config["llm_configs"][self.view.final_chapter_llm_var.get()]["interface_format"]
+                api_key = self.view.loaded_config["llm_configs"][self.view.final_chapter_llm_var.get()]["api_key"]
+                base_url = self.view.loaded_config["llm_configs"][self.view.final_chapter_llm_var.get()]["base_url"]
+                model_name = self.view.loaded_config["llm_configs"][self.view.final_chapter_llm_var.get()]["model_name"]
+                temperature = self.view.loaded_config["llm_configs"][self.view.final_chapter_llm_var.get()]["temperature"]
+                max_tokens = self.view.loaded_config["llm_configs"][self.view.final_chapter_llm_var.get()]["max_tokens"]
+                timeout_val = self.view.loaded_config["llm_configs"][self.view.final_chapter_llm_var.get()]["timeout"]
+
+                chapter_num = self.view.safe_get_int(self.view.chapter_num_var, 1)
+                characters_involved = self.view.characters_involved_var.get().strip()
+                key_items = self.view.key_items_var.get().strip()
+                scene_location = self.view.scene_location_var.get().strip()
+                time_constraint = self.view.time_constraint_var.get().strip()
+                user_guidance = self.view.user_guide_text.get("0.0", "end").strip()
+
+                self.view.safe_log(f"开始生成第 {chapter_num} 章草稿...")
+                from novel_generator import Chapter_draft_generate
+                Chapter_draft_generate(
+                    interface_format=interface_format,
+                    api_key=api_key,
+                    base_url=base_url,
+                    llm_model=model_name,
+                    chapter_num=chapter_num,
+                    characters_involved=characters_involved,
+                    key_items=key_items,
+                    scene_location=scene_location,
+                    time_constraint=time_constraint,
+                    filepath=filepath,
+                    temperature=temperature,
+                    max_tokens=max_tokens,
+                    timeout=timeout_val,
+                    user_guidance=user_guidance
+                )
+                self.view.safe_log(f"✅ 第 {chapter_num} 章草稿生成完成。")
+            except Exception as e:
+                self.view.handle_exception("章节草稿生成fallback")
+        return _generate_draft_fallback
+
+    def _create_finalize_fallback(self):
+        """创建章节完善fallback方法"""
+        def _finalize_chapter_fallback(filepath):
+            """原有章节完善逻辑作为备用"""
+            try:
+                interface_format = self.view.loaded_config["llm_configs"][self.view.consistency_review_llm_var.get()]["interface_format"]
+                api_key = self.view.loaded_config["llm_configs"][self.view.consistency_review_llm_var.get()]["api_key"]
+                base_url = self.view.loaded_config["llm_configs"][self.view.consistency_review_llm_var.get()]["base_url"]
+                model_name = self.view.loaded_config["llm_configs"][self.view.consistency_review_llm_var.get()]["model_name"]
+                temperature = self.view.loaded_config["llm_configs"][self.view.consistency_review_llm_var.get()]["temperature"]
+                max_tokens = self.view.loaded_config["llm_configs"][self.view.consistency_review_llm_var.get()]["max_tokens"]
+                timeout_val = self.view.loaded_config["llm_configs"][self.view.consistency_review_llm_var.get()]["timeout"]
+
+                chapter_num = self.view.safe_get_int(self.view.chapter_num_var, 1)
+                user_guidance = self.view.user_guide_text.get("0.0", "end").strip()
+
+                self.view.safe_log(f"开始完善第 {chapter_num} 章...")
+                from novel_generator import Finalize_chapter
+                Finalize_chapter(
+                    interface_format=interface_format,
+                    api_key=api_key,
+                    base_url=base_url,
+                    llm_model=model_name,
+                    chapter_num=chapter_num,
+                    filepath=filepath,
+                    temperature=temperature,
+                    max_tokens=max_tokens,
+                    timeout=timeout_val,
+                    user_guidance=user_guidance
+                )
+                self.view.safe_log(f"✅ 第 {chapter_num} 章完善完成。")
+            except Exception as e:
+                self.view.handle_exception("章节完善fallback")
+        return _finalize_chapter_fallback
+    
     def _setup_compatibility_attributes(self):
-        """设置向后兼容的属性"""
-        # 将View的属性暴露到主类中（保持兼容性）
-        self.master = self.view.master
-        self.tabview = self.view.tabview
+        """设置兼容性属性，确保原有代码能正常工作"""
+        # 将View的属性映射到GUI实例，保持向后兼容
+        self.config_manager = self.config_manager
+        self.view = self.view
+        self.presenter = self.presenter
         
-        # UI变量
+        # 映射所有UI变量到GUI实例
         self.api_key_var = self.view.api_key_var
         self.base_url_var = self.view.base_url_var
         self.interface_format_var = self.view.interface_format_var
@@ -666,184 +828,6 @@ class NovelGeneratorGUI:
         self.webdav_url_var = self.view.webdav_url_var
         self.webdav_username_var = self.view.webdav_username_var
         self.webdav_password_var = self.view.webdav_password_var
-        
-        self.topic_default = self.view.topic_default
-        self.user_guidance_default = self.view.user_guidance_default
-        
-        # 配置相关属性
-        self.config_file = self.config_manager.config_file
-        self.loaded_config = self.config_manager._get_current_config()
-        
-        # 角色库
-        if hasattr(self.view, '_role_lib'):
-            self._role_lib = self.view._role_lib
-    
-    def _bind_legacy_methods(self):
-        """绑定原有的方法（保持向后兼容）"""
-        # 将导入的各模块函数直接赋给类方法
-        self.generate_novel_architecture_ui = generate_novel_architecture_ui
-        self.generate_chapter_blueprint_ui = generate_chapter_blueprint_ui
-        self.generate_chapter_draft_ui = generate_chapter_draft_ui
-        self.finalize_chapter_ui = finalize_chapter_ui
-        self.do_consistency_check = do_consistency_check
-        self.generate_batch_ui = lambda: generate_batch_ui(self)
-        self.import_knowledge_handler = import_knowledge_handler
-        self.clear_vectorstore_handler = clear_vectorstore_handler
-        self.show_plot_arcs_ui = show_plot_arcs_ui
-        self.load_config_btn = load_config_btn
-        self.save_config_btn = save_config_btn
-        self.load_novel_architecture = load_novel_architecture
-        self.save_novel_architecture = save_novel_architecture
-        self.load_chapter_blueprint = load_chapter_blueprint
-        self.save_chapter_blueprint = save_chapter_blueprint
-        self.load_character_state = load_character_state
-        self.save_character_state = save_character_state
-        self.load_global_summary = load_global_summary
-        self.save_global_summary = save_global_summary
-        self.refresh_chapters_list = refresh_chapters_list
-        self.on_chapter_selected = on_chapter_selected
-        self.save_current_chapter = save_current_chapter
-        self.prev_chapter = prev_chapter
-        self.next_chapter = next_chapter
-        self.browse_folder = self.view.browse_folder
-        
-        # 绑定View的方法
-        self.show_tooltip = self.view.show_tooltip
-        self.safe_get_int = self.view.safe_get_int
-        self.log = self.view.log
-        self.safe_log = self.view.safe_log
-        self.disable_button_safe = self.view.disable_button_safe
-        self.enable_button_safe = self.view.enable_button_safe
-        self.handle_exception = self.view.handle_exception
-        self.show_chapter_in_textbox = self.view.show_chapter_in_textbox
-        self.show_character_import_window = self.view.show_character_import_window
-        self.show_role_library = self.view.show_role_library
-        
-        # 绑定Presenter的方法
-        self.test_llm_config = self.presenter.test_llm_config
-        self.test_embedding_config = self.presenter.test_embedding_config
-        
-        # 同时将这些方法也绑定到View上（确保完全兼容）
-        self.view.loaded_config = self.loaded_config
-        self.view.generate_novel_architecture_ui = generate_novel_architecture_ui
-        self.view.generate_chapter_blueprint_ui = generate_chapter_blueprint_ui
-        self.view.generate_chapter_draft_ui = generate_chapter_draft_ui
-        self.view.finalize_chapter_ui = finalize_chapter_ui
-        self.view.do_consistency_check = do_consistency_check
-        self.view.generate_batch_ui = lambda: generate_batch_ui(self.view)
-        self.view.import_knowledge_handler = import_knowledge_handler
-        self.view.clear_vectorstore_handler = clear_vectorstore_handler
-        self.view.show_plot_arcs_ui = show_plot_arcs_ui
-        self.view.load_config_btn = load_config_btn
-        self.view.save_config_btn = save_config_btn
-        self.view.load_novel_architecture = load_novel_architecture
-        self.view.save_novel_architecture = save_novel_architecture
-        self.view.load_chapter_blueprint = load_chapter_blueprint
-        self.view.save_chapter_blueprint = save_chapter_blueprint
-        self.view.load_character_state = load_character_state
-        self.view.save_character_state = save_character_state
-        self.view.load_global_summary = load_global_summary
-        self.view.save_global_summary = save_global_summary
-        self.view.refresh_chapters_list = refresh_chapters_list
-        self.view.on_chapter_selected = on_chapter_selected
-        self.view.save_current_chapter = save_current_chapter
-        self.view.prev_chapter = prev_chapter
-        self.view.next_chapter = next_chapter
-        
-        # 绑定到view对象
-        self.view.test_llm_config = self.presenter.test_llm_config
-        self.view.test_embedding_config = self.presenter.test_embedding_config
-        
-        # 添加异步包装函数，用于UI按钮调用
-        self.view._test_llm_config_async = self._test_llm_config_async
-        self.view._test_llm_config_with_button_state = self._test_llm_config_with_button_state
-        self.view._test_embedding_config_async = self._test_embedding_config_async
-
-    def _test_llm_config_async(self):
-        """异步包装函数，用于UI按钮调用LLM配置测试"""
-        import asyncio
-        import threading
-        
-        def run_async():
-            try:
-                loop = asyncio.new_event_loop()
-                asyncio.set_event_loop(loop)
-                
-                # ═══════════════════════════════════════════════════════════════
-                # 获取当前选中的LLM配置名称
-                # ═══════════════════════════════════════════════════════════════
-                current_llm_name = None
-                if hasattr(self.view, 'interface_config_var'):
-                    current_llm_name = self.view.interface_config_var.get()
-                    self.view.safe_log(f"**正在测试LLM配置**: {current_llm_name}")
-                
-                # 调用Controller测试方法，传递配置名称
-                loop.run_until_complete(
-                    self.config_controller.test_llm_configuration(current_llm_name)
-                )
-                
-            except Exception as e:
-                self.view.safe_log(f"**测试LLM配置失败**: {str(e)}")
-            finally:
-                loop.close()
-        
-        thread = threading.Thread(target=run_async, daemon=True)
-        thread.start()
-    
-    def _test_llm_config_with_button_state(self, button):
-        """带按钮状态管理的LLM配置测试方法"""
-        import asyncio
-        import threading
-        
-        def run_async():
-            try:
-                # ═══════════════════════════════════════════════════════════════
-                # 禁用按钮，防止重复点击
-                # ═══════════════════════════════════════════════════════════════
-                if button and hasattr(button, 'configure'):
-                    button.configure(state="disabled", text="测试中...")
-                
-                loop = asyncio.new_event_loop()
-                asyncio.set_event_loop(loop)
-                
-                # 获取当前选中的LLM配置名称
-                current_llm_name = None
-                if hasattr(self.view, 'interface_config_var'):
-                    current_llm_name = self.view.interface_config_var.get()
-                    self.view.safe_log(f"**正在测试LLM配置**: {current_llm_name}")
-                
-                # 调用Controller测试方法，传递配置名称
-                loop.run_until_complete(
-                    self.config_controller.test_llm_configuration(current_llm_name)
-                )
-                
-            except Exception as e:
-                self.view.safe_log(f"**测试LLM配置失败**: {str(e)}")
-            finally:
-                # ═══════════════════════════════════════════════════════════════
-                # 恢复按钮状态
-                # ═══════════════════════════════════════════════════════════════
-                if button and hasattr(button, 'configure'):
-                    button.configure(state="normal", text=t("config.llm.test_connection"))
-                loop.close()
-        
-        thread = threading.Thread(target=run_async, daemon=True)
-        thread.start()
-    
-    def _test_embedding_config_async(self):
-        """异步包装函数，用于UI按钮调用Embedding配置测试"""
-        import asyncio
-        import threading
-        
-        def run_async():
-            try:
-                loop = asyncio.new_event_loop()
-                asyncio.set_event_loop(loop)
-                loop.run_until_complete(self.config_controller.test_embedding_configuration())
-            except Exception as e:
-                self.view.safe_log(f"**测试Embedding配置失败**: {str(e)}")
-            finally:
-                loop.close()
-        
-        thread = threading.Thread(target=run_async, daemon=True)
-        thread.start()
+        self.global_summary_var = self.view.global_summary_var
+        self.character_state_var = self.view.character_state_var
+        self.novel_architecture_var = self.view.novel_architecture_var
