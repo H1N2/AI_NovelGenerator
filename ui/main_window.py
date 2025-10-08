@@ -523,23 +523,45 @@ class NovelGeneratorGUI:
         self.config_manager.add_observer(self.presenter)
     
     def _setup_controllers(self):
-        """**初始化控制器系统**"""
+        """设置控制器系统"""
         try:
-            # 创建控制器注册表
+            logging.info("**开始初始化控制器系统**")
+            
+            # 初始化控制器注册表
             self.controller_registry = ControllerRegistry()
             
-            # 创建各个控制器
+            # 初始化控制器
             self.config_controller = ConfigController()
             self.novel_controller = NovelController()
             self.generation_controller = GenerationController()
             
-            # **使用set_model方法设置模型**
+            # 设置Model
             self.config_controller.set_model(self.configuration_manager)
-            self.config_controller.set_view(self.view)  # 添加这行
             self.novel_controller.set_model(self.configuration_manager)
-            self.novel_controller.set_view(self.view)  # 添加这行
             self.generation_controller.set_model(self.configuration_manager)
+            
+            # 设置View
+            self.config_controller.set_view(self.view)
+            self.novel_controller.set_view(self.view)  # 添加这行
             self.generation_controller.set_view(self.view)  # 添加这行
+            
+            # **异步初始化配置控制器**
+            import asyncio
+            import threading
+            
+            def init_config_controller():
+                try:
+                    loop = asyncio.new_event_loop()
+                    asyncio.set_event_loop(loop)
+                    loop.run_until_complete(self.config_controller.initialize())
+                    loop.close()
+                    logging.info("**配置控制器异步初始化完成**")
+                except Exception as e:
+                    logging.error(f"**配置控制器异步初始化失败**: {e}")
+            
+            # 在后台线程中初始化配置控制器
+            init_thread = threading.Thread(target=init_config_controller, daemon=True)
+            init_thread.start()
             
             # 注册控制器
             self.controller_registry.register(self.config_controller)
